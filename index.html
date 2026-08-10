@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>신동탄롯데캐슬 입주예정자협의회</title>
+<!-- © 2026 법무법인 제이엘(JL Law) — 무단 복제·재배포 금지. 본 코드는 제이엘의 지적재산입니다. -->
+<meta property="og:title" content="신동탄롯데캐슬 입주예정자협의회">
+<meta property="og:description" content="위임장 접수 · 투표 · 공지 · 일정을 한 곳에서. 입주예정자협의회 공식 운영 플랫폼">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" rel="stylesheet">
+<style>
+:root{
+  --brand:#0D5C30; --brand2:#1A7A42; --brand3:#2EA055;
+  --brand-soft:#E8F5ED; --brand-mid:#C2E0CC;
+  --gold:#C49A3C; --gold-soft:#FBF4E3;
+  --ink:#0A1A10; --ink2:#2D4535; --ink3:#5A7060; --ink4:#93AC9D; --ink5:#DCE8E0;
+  --bg:#EDF3EF; --surface:#FFFFFF; --surface2:#F5FAF7;
+  --border:#E4EDE8;
+  --red:#C0392B; --red-soft:#FDEEEC;
+  --amber:#B07D00; --amber-soft:#FFF8E6;
+  --blue:#1A5A9E; --blue-soft:#EBF2FC;
+  --sidebar:#0A1A10; --sidebar-w:232px;
+  --r:11px; --r-sm:8px; --r-lg:16px;
+  --sh:0 1px 3px rgba(0,0,0,.07),0 1px 2px rgba(0,0,0,.04);
+  --sh-md:0 6px 20px rgba(10,40,25,.10);
+  --font:'Pretendard',-apple-system,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;
+  --tr:.18s cubic-bezier(.4,0,.2,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{font-family:var(--font);background:var(--bg);color:var(--ink);font-size:14px;line-height:1.6;display:flex;min-height:100vh;-webkit-font-smoothing:antialiased;letter-spacing:-.01em}
+button,input,select,textarea{font-family:var(--font);font-size:14px}
+button{cursor:pointer;border:none;background:none}
+a{color:inherit;text-decoration:none}
+img{max-width:100%}
+::-webkit-scrollbar{width:8px;height:8px}
+::-webkit-scrollbar-thumb{background:var(--ink5);border-radius:4px}
+
+/* ===== 레이아웃 ===== */
+#sidebar{width:var(--sidebar-w);min-height:100vh;background:var(--sidebar);position:fixed;left:0;top:0;bottom:0;z-index:300;display:flex;flex-direction:column;transition:transform var(--tr)}
+#main{margin-left:var(--sidebar-w);flex:1;display:flex;flex-direction:column;min-height:100vh}
+.topbar{background:var(--surface);border-bottom:1px solid var(--border);height:58px;padding:0 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:200}
+.content{padding:22px 24px 90px;flex:1;max-width:1180px;width:100%}
+.app-footer{text-align:center;font-size:11px;color:var(--ink4);padding:18px 0 4px;margin-top:6px}
+.app-footer b{color:var(--ink3);font-weight:700}
+.view{display:none;animation:fade .3s ease}
+.view.on{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+#overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:250}
+#overlay.on{display:block}
+
+/* ===== 사이드바 ===== */
+.sb-top{padding:20px 16px 16px;border-bottom:1px solid rgba(255,255,255,.07)}
+.sb-brand{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.sb-logo{width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,var(--brand),var(--brand3));display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;color:#fff;flex-shrink:0;letter-spacing:-.03em;box-shadow:0 3px 10px rgba(46,160,85,.3)}
+.sb-title{font-size:12px;font-weight:800;color:#fff;line-height:1.35}
+.sb-title small{display:block;font-weight:400;color:rgba(255,255,255,.4);font-size:10px;margin-top:2px}
+.sb-rate{background:linear-gradient(135deg,var(--brand),var(--brand2));border-radius:var(--r);padding:12px 14px;position:relative;overflow:hidden}
+.sb-rate::after{content:"";position:absolute;right:-14px;top:-14px;width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,.08)}
+.sb-rate-lb{font-size:9.5px;font-weight:700;color:rgba(255,255,255,.6);letter-spacing:.07em;text-transform:uppercase}
+.sb-rate-v{font-size:26px;font-weight:900;color:#fff;line-height:1;margin:4px 0;letter-spacing:-.03em}
+.sb-rate-bar{height:4px;background:rgba(255,255,255,.2);border-radius:2px;overflow:hidden;margin-top:8px}
+.sb-rate-bar i{display:block;height:100%;background:var(--gold);border-radius:2px;transition:width .7s cubic-bezier(.2,.8,.2,1)}
+.sb-nav{flex:1;overflow-y:auto;padding:10px}
+.sb-glabel{font-size:9px;font-weight:800;color:rgba(255,255,255,.22);letter-spacing:.13em;text-transform:uppercase;padding:14px 8px 5px}
+.nav-item{display:flex;align-items:center;gap:11px;padding:10px 10px;border-radius:var(--r-sm);font-size:13px;font-weight:500;color:rgba(255,255,255,.55);cursor:pointer;transition:var(--tr);margin-bottom:2px}
+.nav-item:hover{background:rgba(255,255,255,.07);color:rgba(255,255,255,.9)}
+.nav-item.on{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;font-weight:700;box-shadow:0 3px 10px rgba(13,92,48,.35)}
+.nav-ico{width:22px;text-align:center;font-size:15px;flex-shrink:0}
+.sb-foot{padding:12px;border-top:1px solid rgba(255,255,255,.06)}
+.sb-user{display:flex;align-items:center;gap:9px}
+.sb-av{width:32px;height:32px;border-radius:50%;background:var(--brand);color:#fff;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sb-un{font-size:12.5px;font-weight:700;color:#fff}
+.sb-ur{font-size:10.5px;color:rgba(255,255,255,.4)}
+
+/* ===== 탑바 ===== */
+.tb-title{font-size:15.5px;font-weight:800;letter-spacing:-.02em}
+.tb-right{display:flex;align-items:center;gap:10px}
+.tb-date{font-size:12px;color:var(--ink3);font-weight:500}
+.menu-btn{display:none;width:36px;height:36px;border-radius:var(--r-sm);background:var(--surface2);border:1px solid var(--border);align-items:center;justify-content:center;font-size:17px}
+.cafe-link{display:inline-flex;align-items:center;gap:6px;background:#03C75A;color:#fff;border-radius:20px;padding:6px 13px;font-size:12px;font-weight:700;transition:var(--tr)}
+.cafe-link:hover{filter:brightness(.93);transform:translateY(-1px)}
+.gh-chip{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:600;color:var(--ink3);background:var(--surface2);border:1px solid var(--border);border-radius:20px;padding:5px 11px}
+.gh-dot{width:7px;height:7px;border-radius:50%;background:var(--ink4);flex-shrink:0}
+.gh-dot.ok{background:#22c55e}
+.gh-dot.err{background:var(--red)}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+.gh-dot.ok{animation:pulse 2.5s infinite}
+
+/* ===== 카드 ===== */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:20px;box-shadow:var(--sh)}
+.card-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;gap:10px}
+
+/* 공정율표 - 대형 히어로 스타일 */
+.prog-hero-card{background:linear-gradient(160deg,var(--surface) 60%,var(--brand-soft) 150%);border:1px solid rgba(13,92,48,.1);padding:26px 22px 22px}
+.prog-hero-hd{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:26px;gap:14px}
+.prog-hero-t{font-size:18px;font-weight:900;letter-spacing:-.02em;color:var(--ink)}
+.prog-hero-sub{font-size:12.5px;color:var(--ink3);font-weight:600;margin-top:4px}
+.prog-hero-badge{background:linear-gradient(135deg,var(--brand),var(--brand2));border-radius:16px;padding:10px 18px;text-align:center;box-shadow:0 8px 20px rgba(13,92,48,.28);flex-shrink:0}
+.prog-hero-badge-v{font-size:26px;font-weight:900;color:#fff;line-height:1.1}
+.prog-hero-badge-l{font-size:10px;font-weight:700;color:rgba(255,255,255,.8);margin-top:2px}
+
+.prog-track-wrap{padding:10px 6px 4px}
+.prog-track{position:relative;height:16px;background:var(--ink5);border-radius:10px;margin:0 20px;overflow:visible;box-shadow:inset 0 2px 4px rgba(0,0,0,.06)}
+.prog-track-wrap.editable .prog-track{cursor:grab;overflow:visible}
+.prog-track-wrap.editable .prog-track:active{cursor:grabbing}
+.prog-handle{position:absolute;top:50%;width:26px;height:26px;border-radius:50%;background:#fff;border:3px solid var(--brand);box-shadow:0 3px 10px rgba(13,92,48,.35);transform:translate(-50%,-50%);z-index:5;touch-action:none}
+.prog-handle::after{content:'';position:absolute;inset:5px;border-radius:50%;background:var(--brand)}
+.prog-edit-hint{display:none;text-align:center;font-size:11px;font-weight:700;color:var(--brand);margin-top:12px;padding-top:2px}
+.prog-track-wrap.editable .prog-edit-hint{display:block}
+.prog-track-fill{position:absolute;left:0;top:0;height:100%;background:linear-gradient(90deg,var(--brand),var(--brand3),#4CC776);border-radius:10px;width:0%;transition:width 1.8s cubic-bezier(.16,1,.3,1);overflow:hidden}
+.prog-track-glow{position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);width:60%;animation:progShimmer 2.2s ease-in-out infinite;animation-delay:1.6s}
+@keyframes progShimmer{0%{transform:translateX(-120%)}100%{transform:translateX(220%)}}
+
+.prog-dots{display:flex;justify-content:space-between;margin-top:2px;padding:0 4px}
+.prog-dot-btn{background:none;border:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:8px;padding:10px 2px;flex:1;transition:transform .15s}
+.prog-dot-btn:active{transform:scale(.92)}
+.prog-dot{width:24px;height:24px;border-radius:50%;background:var(--surface);border:3.5px solid var(--ink5);transition:.35s;position:relative;z-index:2;box-shadow:0 2px 5px rgba(0,0,0,.08)}
+.prog-dot.passed{border-color:var(--brand);background:linear-gradient(135deg,var(--brand),var(--brand3))}
+.prog-dot.current{border-color:var(--brand);background:#fff;box-shadow:0 0 0 6px rgba(13,92,48,.16),0 2px 8px rgba(13,92,48,.25);animation:progPulse 1.8s ease-in-out infinite}
+@keyframes progPulse{0%,100%{box-shadow:0 0 0 6px rgba(13,92,48,.16),0 2px 8px rgba(13,92,48,.25)}50%{box-shadow:0 0 0 10px rgba(13,92,48,.06),0 2px 8px rgba(13,92,48,.25)}}
+.prog-dot-lb{font-size:11.5px;font-weight:800;color:var(--ink4);transition:.3s}
+.prog-dot-btn:has(.prog-dot.passed) .prog-dot-lb{color:var(--brand)}
+.prog-dot-btn:has(.prog-dot.current) .prog-dot-lb{color:var(--brand);font-size:12.5px}
+
+.prog-modal-bg{display:none;position:fixed;inset:0;background:rgba(6,16,10,.72);backdrop-filter:blur(2px);z-index:950;align-items:flex-end;justify-content:center}
+.prog-modal-bg.on{display:flex}
+.prog-modal{background:var(--surface);width:100%;max-width:520px;height:66vh;border-radius:22px 22px 0 0;display:flex;flex-direction:column;animation:progUp .28s cubic-bezier(.2,.8,.2,1);box-shadow:0 -10px 40px rgba(0,0,0,.3)}
+@keyframes progUp{from{transform:translateY(40px);opacity:0}to{transform:translateY(0);opacity:1}}
+.prog-modal-hd{display:flex;align-items:center;justify-content:space-between;padding:22px 22px 18px;background:linear-gradient(135deg,var(--brand),var(--brand2));border-radius:22px 22px 0 0;flex-shrink:0}
+.prog-modal-pct{font-size:26px;font-weight:900;color:#fff}
+.prog-modal-x{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.2);border:none;font-size:15px;color:#fff;cursor:pointer}
+.prog-modal-body{padding:20px 22px 30px;overflow-y:auto;flex:1;min-height:0}
+.prog-sec{margin-bottom:18px}
+.prog-sec:last-child{margin-bottom:0}
+.prog-sec-t{font-size:12.5px;font-weight:800;color:var(--ink3);margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.prog-sec-list{display:flex;flex-direction:column;gap:6px}
+.prog-item{font-size:13.5px;color:var(--ink2);line-height:1.5;padding-left:14px;position:relative}
+.prog-item::before{content:'';position:absolute;left:0;top:8px;width:5px;height:5px;border-radius:50%;background:var(--brand3)}
+
+.card-t{font-size:13.5px;font-weight:800;display:flex;align-items:center;gap:8px;letter-spacing:-.02em}
+.card-t .b{width:3px;height:15px;background:var(--brand);border-radius:2px}
+.card-m{font-size:11.5px;color:var(--ink4);font-weight:500}
+
+/* ===== 통계 그리드 ===== */
+.home-hero{display:flex;align-items:center;gap:13px;margin-bottom:16px;padding:16px 18px;background:linear-gradient(135deg,var(--brand),var(--brand2));border-radius:var(--r-lg);box-shadow:var(--sh)}
+.home-hero-emblem{width:42px;height:42px;border-radius:11px;background:rgba(255,255,255,.18);color:#fff;font-size:18px;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.home-hero-title{font-size:16px;font-weight:900;color:#fff;letter-spacing:-.02em;line-height:1.3}
+.home-hero-sub{font-size:12px;color:rgba(255,255,255,.75);margin-top:2px;font-weight:500}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px}
+.stat{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:17px 18px;box-shadow:var(--sh);position:relative;overflow:hidden}
+.stat.hero{background:linear-gradient(135deg,var(--brand) 0%,var(--brand2) 100%);border-color:transparent}
+.stat::after{content:"";position:absolute;right:-18px;top:-18px;width:68px;height:68px;border-radius:50%;background:rgba(255,255,255,.05)}
+.stat.hero::after{background:rgba(255,255,255,.08)}
+.stat-lb{font-size:10.5px;font-weight:700;color:var(--ink4);letter-spacing:.04em;text-transform:uppercase;margin-bottom:8px}
+.stat.hero .stat-lb{color:rgba(255,255,255,.6)}
+.stat-v{font-size:28px;font-weight:900;letter-spacing:-.04em;line-height:1}
+.stat.hero .stat-v{color:#fff}
+.stat-v .u{font-size:14px;font-weight:600;color:var(--ink4)}
+.stat.hero .stat-v .u{color:rgba(255,255,255,.65)}
+.stat-sub{font-size:11.5px;color:var(--ink4);margin-top:9px;font-weight:500}
+.stat.hero .stat-sub{color:rgba(255,255,255,.65)}
+.stat-bar{height:4px;border-radius:2px;background:var(--ink5);overflow:hidden;margin-top:10px}
+.stat-bar i{display:block;height:100%;border-radius:2px;background:var(--brand);transition:width .7s cubic-bezier(.2,.8,.2,1)}
+.stat.hero .stat-bar{background:rgba(255,255,255,.2)}
+.stat.hero .stat-bar i{background:var(--gold)}
+
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:14px}
+
+/* ===== 도넛 ===== */
+.rate-wrap{display:flex;align-items:center;gap:22px}
+.donut{position:relative;flex-shrink:0}
+.donut-c{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.donut-p{font-size:23px;font-weight:900;color:var(--brand);letter-spacing:-.03em;line-height:1}
+.donut-l{font-size:9.5px;font-weight:700;color:var(--ink4);letter-spacing:.05em;margin-top:2px}
+.rate-legend{flex:1;display:flex;flex-direction:column;gap:11px}
+.rl-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:3px}
+.rl-left{display:flex;align-items:center;gap:7px;font-size:13px;color:var(--ink2);font-weight:500}
+.rl-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+.rl-val{font-size:14px;font-weight:900;letter-spacing:-.02em}
+.rl-prog{height:5px;background:var(--ink5);border-radius:3px;overflow:hidden}
+.rl-prog i{display:block;height:100%;border-radius:3px;transition:width .7s cubic-bezier(.2,.8,.2,1)}
+
+/* ===== 채널 버튼 ===== */
+.ch-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.ch-btn{display:flex;flex-direction:column;align-items:center;gap:8px;padding:18px 10px;border:1px solid var(--border);border-radius:var(--r);transition:var(--tr);cursor:pointer}
+.ch-btn:hover{border-color:var(--brand);background:var(--brand-soft);transform:translateY(-2px)}
+.ch-ico{font-size:26px}
+.ch-t{font-size:12.5px;font-weight:700}
+.ch-s{font-size:10.5px;color:var(--ink4)}
+
+/* ===== 폼 ===== */
+.fg{margin-bottom:14px}
+.fl{display:block;font-size:12px;font-weight:700;color:var(--ink3);margin-bottom:6px}
+.fl .rq{color:var(--red)}
+.fc{width:100%;padding:11px 13px;border:1.5px solid var(--border);border-radius:var(--r-sm);font-family:var(--font);font-size:13.5px;color:var(--ink);background:var(--surface);transition:var(--tr)}
+.fc:focus{outline:none;border-color:var(--brand);box-shadow:0 0 0 3px var(--brand-soft)}
+.fc::placeholder{color:var(--ink4)}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.radio-g{display:flex;gap:8px;flex-wrap:wrap}
+.radio-o{flex:1;min-width:120px;padding:11px 13px;border:1.5px solid var(--border);border-radius:var(--r-sm);display:flex;align-items:center;gap:7px;font-size:13px;font-weight:600;cursor:pointer;background:var(--surface);transition:var(--tr);color:var(--ink2)}
+.radio-o:has(input:checked){border-color:var(--brand);background:var(--brand-soft);color:var(--brand)}
+.radio-o input{accent-color:var(--brand)}
+
+/* ===== 버튼 ===== */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:11px 19px;border-radius:var(--r-sm);font-family:var(--font);font-size:13.5px;font-weight:700;cursor:pointer;transition:var(--tr);border:none;white-space:nowrap}
+.btn-p{background:var(--brand);color:#fff}
+.btn-p:hover{background:var(--brand2);transform:translateY(-1px)}
+.btn-p:active{transform:translateY(0)}
+.btn-p:disabled{opacity:.6;pointer-events:none}
+.btn-g{background:transparent;border:1.5px solid var(--border);color:var(--ink2)}
+.btn-g:hover{border-color:var(--brand);color:var(--brand);background:var(--brand-soft)}
+.btn-d{background:transparent;border:1.5px solid var(--red);color:var(--red)}
+.btn-sm{padding:6px 12px;font-size:12.5px}
+.btn-full{width:100%;padding:14px}
+
+/* ===== 서명 ===== */
+.sig-wrap{border:2px dashed var(--border);border-radius:var(--r);background:var(--surface2);position:relative;transition:var(--tr)}
+.sig-wrap.active{border-color:var(--brand);border-style:solid;background:#fff}
+#sigCanvas{width:100%;height:160px;display:block;touch-action:none;border-radius:calc(var(--r) - 2px)}
+#jointSigCanvas{width:100%;height:160px;display:block;touch-action:none;border-radius:calc(var(--r) - 2px)}
+.sig-ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none;color:var(--ink4);gap:7px;font-size:13px;font-weight:500}
+.sig-ph svg{opacity:.3}
+.sig-bar{display:flex;justify-content:space-between;align-items:center;margin-top:8px}
+
+/* ===== 완료 ===== */
+.done{text-align:center;padding:38px 18px}
+.done-mk{width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,var(--brand),var(--brand3));color:#fff;font-size:32px;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;animation:pop .4s cubic-bezier(.34,1.56,.64,1);box-shadow:0 8px 24px rgba(46,160,85,.35)}
+@keyframes pop{from{transform:scale(0);opacity:0}to{transform:scale(1);opacity:1}}
+.done-t{font-size:20px;font-weight:900;margin-bottom:8px;letter-spacing:-.02em}
+.done-d{font-size:13.5px;color:var(--ink3);line-height:1.7;margin-bottom:22px;white-space:pre-line}
+.done-note{background:var(--amber-soft);border:1px solid #E6C766;border-radius:var(--r-sm);padding:13px 15px;font-size:12.5px;color:var(--amber);text-align:left;margin-bottom:22px;line-height:1.6}
+
+/* ===== 투표 ===== */
+.vote-c{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:20px;margin-bottom:14px;box-shadow:var(--sh);transition:var(--tr)}
+.vote-c:hover{box-shadow:var(--sh-md)}
+.vote-badge{font-size:10px;font-weight:800;padding:3px 9px;border-radius:11px;display:inline-flex;align-items:center;gap:4px}
+.vb-live{background:#DCFCE7;color:#15803D}
+.vb-end{background:var(--ink5);color:var(--ink3)}
+.vote-t{font-size:15.5px;font-weight:800;margin:10px 0 5px;letter-spacing:-.02em}
+.vote-pd{font-size:11.5px;color:var(--ink4);margin-bottom:15px}
+.vote-dong{display:flex;gap:8px;margin-bottom:12px}
+.vote-opts{display:flex;flex-direction:column;gap:8px}
+.vote-o{position:relative;border:1.5px solid var(--border);border-radius:var(--r-sm);padding:12px 15px;cursor:pointer;transition:var(--tr);overflow:hidden;display:flex;align-items:center;justify-content:space-between}
+.vote-o:hover{border-color:var(--brand)}
+.vote-o.sel{border-color:var(--brand);background:var(--brand-soft)}
+.vote-o.done{cursor:default}
+.vote-o-bar{position:absolute;left:0;top:0;bottom:0;background:var(--brand-soft);border-radius:6px 0 0 6px;transition:width .6s cubic-bezier(.2,.8,.2,1);z-index:0}
+.vote-o-t{font-size:13.5px;font-weight:600;position:relative;z-index:1}
+.vote-o-p{font-size:12px;font-weight:800;color:var(--brand);position:relative;z-index:1}
+.vote-foot{margin-top:12px;display:flex;align-items:center;justify-content:space-between}
+.vote-cnt{font-size:12px;color:var(--ink4)}
+
+/* ===== 타임라인 ===== */
+.tl{position:relative;padding-left:24px}
+.tl::before{content:"";position:absolute;left:6px;top:8px;bottom:8px;width:2px;background:var(--ink5);border-radius:1px}
+.tl-i{position:relative;margin-bottom:16px}
+.tl-i:last-child{margin-bottom:0}
+.tl-d{position:absolute;left:-20px;top:3px;width:12px;height:12px;border-radius:50%;border:2px solid var(--brand2);background:var(--surface)}
+.tl-i.done .tl-d{background:var(--brand2)}
+.tl-i.now .tl-d{background:var(--gold);border-color:var(--gold);box-shadow:0 0 0 4px var(--gold-soft)}
+.tl-dt{font-size:10.5px;color:var(--ink4);font-weight:500;margin-bottom:2px}
+.tl-tx{font-size:13px;font-weight:700;color:var(--ink2)}
+.tl-i.done .tl-tx{color:var(--ink4);font-weight:500;text-decoration:line-through;text-decoration-color:var(--ink5)}
+.tl-i.now .tl-tx{color:var(--brand);font-weight:800}
+.tl-chip{display:inline-block;font-size:9.5px;font-weight:700;padding:1px 7px;border-radius:5px;margin-left:6px;vertical-align:1px}
+.tl-chip.now{background:var(--gold-soft);color:var(--gold)}
+.tl-chip.done{background:var(--brand-soft);color:var(--brand2)}
+
+/* ===== 공지 ===== */
+.nt-i{display:flex;align-items:flex-start;gap:11px;padding:12px 0;border-bottom:1px solid var(--border);cursor:pointer;transition:var(--tr)}
+.nt-i:last-child{border:none}
+.nt-i:hover{margin:0 -20px;padding:12px 20px;background:var(--brand-soft);border-radius:var(--r-sm)}
+.nt-cat{flex-shrink:0;padding:2px 8px;border-radius:5px;font-size:10px;font-weight:800}
+.ntc-imp{background:var(--red-soft);color:var(--red)}
+.ntc-nor{background:var(--brand-soft);color:var(--brand)}
+.ntc-sch{background:var(--amber-soft);color:var(--amber)}
+.nt-t{font-size:13px;font-weight:700;margin-bottom:2px}
+.nt-dt{font-size:11px;color:var(--ink4)}
+
+/* ===== 단지정보 ===== */
+.ai-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
+.ai-box{background:var(--surface2);border:1px solid var(--border);border-radius:var(--r-sm);padding:14px}
+.ai-lb{font-size:10px;font-weight:700;color:var(--ink4);text-transform:uppercase;letter-spacing:.05em;margin-bottom:5px}
+.ai-v{font-size:18px;font-weight:900;color:var(--brand);letter-spacing:-.02em}
+.ai-u{font-size:11px;color:var(--ink4);font-weight:500;margin-left:2px}
+.tbars{display:flex;flex-direction:column;gap:10px}
+.tb-row .m{display:flex;justify-content:space-between;margin-bottom:4px}
+.tb-n{font-size:12.5px;font-weight:700}
+.tb-c{font-size:11.5px;color:var(--ink4)}
+.tb-tr{height:7px;background:var(--ink5);border-radius:4px;overflow:hidden}
+.tb-f{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--brand),var(--brand3));transition:width .6s cubic-bezier(.2,.8,.2,1)}
+
+/* ===== FAQ ===== */
+.qa{border:1px solid var(--border);border-radius:var(--r-sm);margin-bottom:8px;overflow:hidden}
+.qa-q{display:flex;align-items:center;gap:9px;padding:13px 15px;cursor:pointer;transition:var(--tr)}
+.qa-q:hover{background:var(--brand-soft)}
+.qa-n{width:21px;height:21px;border-radius:50%;background:var(--brand);color:#fff;font-size:10px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.qa-t{font-size:13px;font-weight:700;flex:1}
+
+/* ===== 게시판(건의사항) ===== */
+.board-item{padding:14px 15px;border-bottom:1px solid var(--border);cursor:pointer;transition:var(--tr)}
+.board-item:last-child{border-bottom:none}
+.board-item:hover{background:var(--surface2)}
+.board-item-hd{display:flex;align-items:center;gap:8px;margin-bottom:4px}
+.board-badge{font-size:10px;font-weight:800;padding:2px 7px;border-radius:8px;background:var(--brand-soft);color:var(--brand);flex-shrink:0}
+.board-item-t{font-size:13.5px;font-weight:700;color:var(--ink);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.board-item-meta{font-size:11px;color:var(--ink4);display:flex;gap:8px}
+.board-empty{padding:40px 20px;text-align:center;color:var(--ink4);font-size:13px}
+
+.board-fab{position:fixed;bottom:24px;right:calc(50% - 210px + 20px);width:52px;height:52px;border-radius:50%;background:var(--brand);color:#fff;font-size:22px;border:none;box-shadow:0 6px 20px rgba(13,92,48,.35);cursor:pointer;z-index:100;display:flex;align-items:center;justify-content:center}
+@media(max-width:820px){.board-fab{right:20px}}
+
+.board-modal-bg{display:none;position:fixed;inset:0;background:rgba(6,16,10,.72);z-index:960;align-items:flex-end;justify-content:center}
+.board-modal-bg.on{display:flex}
+.board-modal{background:var(--surface);width:100%;max-width:520px;max-height:88vh;border-radius:22px 22px 0 0;display:flex;flex-direction:column;animation:progUp .28s cubic-bezier(.2,.8,.2,1)}
+.board-modal-hd{display:flex;align-items:center;justify-content:space-between;padding:18px 20px;border-bottom:1px solid var(--border);flex-shrink:0}
+.board-modal-hd-t{font-size:15px;font-weight:800}
+.board-modal-x{width:30px;height:30px;border-radius:50%;background:var(--surface2);border:none;font-size:14px;color:var(--ink3);cursor:pointer}
+.board-modal-body{padding:18px 20px 24px;overflow-y:auto;flex:1}
+.board-field{margin-bottom:14px}
+.board-field label{display:block;font-size:12px;font-weight:700;color:var(--ink3);margin-bottom:6px}
+.board-field input,.board-field textarea{width:100%;padding:11px 13px;border:1px solid var(--border);border-radius:10px;font-size:13.5px;font-family:inherit;color:var(--ink)}
+.board-field textarea{resize:vertical;min-height:110px;line-height:1.6}
+.board-row2{display:flex;gap:8px}
+.board-anon{display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--ink3);margin-bottom:16px;cursor:pointer}
+.board-anon input{width:auto}
+.board-view-meta{display:flex;gap:10px;font-size:11.5px;color:var(--ink4);margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid var(--border)}
+.board-view-content{font-size:13.5px;color:var(--ink2);line-height:1.8;white-space:pre-wrap}
+.qa-ar{color:var(--ink4);font-size:10px;transition:.2s}
+.qa-a{display:none;padding:12px 15px;background:var(--surface2);border-top:1px solid var(--border);font-size:12.5px;color:var(--ink2);line-height:1.75}
+.qa.open .qa-ar{transform:rotate(180deg)}
+.qa.open .qa-a{display:block}
+
+/* ===== 조직 ===== */
+.org-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:11px}
+.org-c{border:1px solid var(--border);border-radius:var(--r);padding:17px 12px;text-align:center;transition:var(--tr)}
+.org-c:hover{border-color:var(--brand);transform:translateY(-2px);box-shadow:var(--sh-md)}
+.org-av{width:46px;height:46px;border-radius:50%;background:var(--brand-soft);color:var(--brand);font-size:21px;display:flex;align-items:center;justify-content:center;margin:0 auto 9px}
+.org-p{font-size:10px;font-weight:700;color:var(--ink4);text-transform:uppercase;letter-spacing:.04em;margin-bottom:2px}
+.org-n{font-size:13.5px;font-weight:800}
+
+/* ===== 회비 ===== */
+.bg-i{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--border)}
+.bg-i:last-child{border:none}
+.bg-ic{width:37px;height:37px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.bg-ic.in{background:var(--brand-soft)}
+.bg-ic.out{background:var(--red-soft)}
+.bg-n{font-size:13px;font-weight:700}
+.bg-m{font-size:11px;color:var(--ink4);margin-top:1px}
+.bg-a{margin-left:auto;font-size:14.5px;font-weight:900;white-space:nowrap}
+.bg-a.in{color:var(--brand)}
+.bg-a.out{color:var(--red)}
+
+/* ===== 관리자 ===== */
+.lock{max-width:380px;margin:50px auto;background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:34px;box-shadow:var(--sh-md);text-align:center}
+.lock-ic{width:58px;height:58px;border-radius:15px;background:var(--brand-soft);color:var(--brand);font-size:25px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
+.lock-t{font-size:17px;font-weight:900;letter-spacing:-.02em;margin-bottom:6px}
+.lock-s{font-size:12.5px;color:var(--ink3);margin-bottom:22px;line-height:1.5}
+.atabs{display:flex;background:var(--surface2);border:1px solid var(--border);border-radius:var(--r-sm);overflow:hidden;margin-bottom:16px;flex-wrap:wrap}
+.atab{flex:1;min-width:70px;padding:10px 5px;font-size:12px;font-weight:600;color:var(--ink3);text-align:center;cursor:pointer;transition:var(--tr)}
+.atab.on{background:var(--brand);color:#fff;font-weight:700}
+.atab:not(.on):hover{color:var(--brand);background:var(--brand-soft)}
+.tbl-w{overflow-x:auto}
+table.tbl{width:100%;border-collapse:collapse;font-size:12.5px}
+table.tbl th{padding:9px 11px;text-align:left;font-size:10.5px;font-weight:700;color:var(--ink4);border-bottom:1px solid var(--border);background:var(--surface2);white-space:nowrap;letter-spacing:.03em;text-transform:uppercase}
+table.tbl td{padding:10px 11px;border-bottom:1px solid var(--border);white-space:nowrap}
+table.tbl tbody tr:hover td{background:var(--brand-soft)}
+table.tbl tbody tr:last-child td{border:none}
+.tag{display:inline-flex;align-items:center;border-radius:5px;padding:2px 8px;font-size:11px;font-weight:700}
+.tag-g{background:var(--brand-soft);color:var(--brand)}
+.tag-r{background:var(--red-soft);color:var(--red)}
+.tag-a{background:var(--amber-soft);color:var(--amber)}
+.tag-b{background:var(--blue-soft);color:var(--blue)}
+.racts button{padding:4px 10px;font-size:11.5px;font-weight:600;border-radius:5px;border:1px solid var(--border);background:var(--surface);color:var(--ink3);cursor:pointer;transition:.12s;margin-right:4px}
+.racts button:hover{border-color:var(--brand);color:var(--brand)}
+.racts button.del:hover{border-color:var(--red);color:var(--red)}
+.set-t{font-size:10px;font-weight:800;color:var(--ink4);letter-spacing:.1em;text-transform:uppercase;padding-bottom:9px;border-bottom:1px solid var(--border);margin-bottom:13px}
+input[type=color]{width:48px;height:40px;padding:2px;border:1.5px solid var(--border);border-radius:var(--r-sm);background:var(--surface);cursor:pointer}
+.jl-banner{display:flex;align-items:center;gap:10px;margin-bottom:14px;padding:12px 16px;background:linear-gradient(135deg,#0A1A10,#16342180);border-radius:var(--r-sm);color:#fff}
+.jl-banner .t{font-size:12.5px;font-weight:700}
+.jl-banner .s{font-size:11px;color:rgba(255,255,255,.6)}
+
+/* ===== 갤러리 ===== */
+.gal{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.gal-i{aspect-ratio:4/3;border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700}
+
+/* ===== 인쇄 위임장 ===== */
+#printLayer{display:none}
+@media print{
+  #sidebar,#main,#overlay,.toast{display:none!important}
+  html,body{display:block!important;width:100%!important;height:auto!important;margin:0!important;padding:0!important;background:#fff!important}
+  #printLayer{display:block!important;width:100%!important;max-width:none!important;margin:0!important;padding:0!important;background:#fff!important}
+  .pl-page{page-break-after:always;width:100%}
+  .pl-page:last-child{page-break-after:auto}
+  @page{size:A4;margin:15mm 15mm}
+}
+#printLayer{font-family:"Batang","바탕","Noto Serif CJK KR",serif;font-size:10.8pt;color:#000;line-height:1.5;word-break:keep-all;overflow-wrap:break-word}
+.pl-t{text-align:center;font-size:16pt;font-weight:900;letter-spacing:.01em;margin-bottom:8px;word-break:keep-all}
+.pl-s{text-align:center;font-size:9.3pt;color:#444;margin-bottom:22px}
+.pl-hr{border:none;border-top:1.5px solid #000;margin:18px 0}
+.pl-sec{font-size:10pt;font-weight:800;margin:22px 0 9px}
+.pl-tb{width:100%;border-collapse:collapse;margin-bottom:11px}
+.pl-tb th,.pl-tb td{border:1px solid #000;padding:10px 12px;font-size:10.3pt;vertical-align:middle;line-height:1.35}
+.pl-tb th{background:#f0f0f0;font-weight:700;text-align:center;width:22%}
+.pl-terms{border:1px solid #000;padding:16px 18px;font-size:9.5pt;page-break-inside:avoid}
+.pl-terms ol{padding-left:16px;display:grid;gap:8px;line-height:1.4}
+.pl-note{font-size:8.8pt;margin-top:16px;color:#333;line-height:1.45}
+.pl-priv{border:1px solid #000;padding:14px 18px;font-size:9.5pt;margin-top:16px;page-break-inside:avoid}
+.pl-priv b{display:block;text-align:center;font-size:10.3pt;margin-bottom:6px}
+.pl-date{text-align:center;font-size:11.3pt;margin:34px 0 12px}
+.pl-sign-block{margin-top:4px}
+.pl-sign-row{display:grid;grid-template-columns:1fr 95px 46px;align-items:center;gap:10px;margin-top:16px;page-break-inside:avoid}
+.pl-sign-row .pl-sign-label{font-size:11.5pt;font-weight:700;text-align:right}
+.pl-sign-row .pl-sign-imgbox{display:flex;justify-content:center;align-items:center;height:46px}
+.pl-sign-row .pl-sign-imgbox img{height:46px;max-width:100%}
+/* 공동명의(내용 추가분) 있을 때만 자동 압축 — 1페이지 안전 보장 */
+.pl-compact .pl-t{margin-bottom:4px}
+.pl-compact .pl-s{margin-bottom:11px}
+.pl-compact .pl-hr{margin:8px 0}
+.pl-compact .pl-sec{margin:10px 0 4px}
+.pl-compact .pl-tb{margin-bottom:5px}
+.pl-compact .pl-tb th,.pl-compact .pl-tb td{padding:6px 9px}
+.pl-compact .pl-terms{padding:8px 11px}
+.pl-compact .pl-terms ol{gap:3px;line-height:1.35}
+.pl-compact .pl-note{margin-top:6px}
+.pl-compact .pl-priv{padding:7px 11px;margin-top:7px}
+.pl-compact .pl-priv b{margin-bottom:4px}
+.pl-compact .pl-date{margin:15px 0 5px}
+.pl-compact .pl-sign-row{margin-top:7px}
+.pl-compact .pl-foot{margin-top:18px}
+.pl-sign-row .pl-sign-suffix{font-size:9.5pt;text-align:left}
+.pl-foot{text-align:center;font-size:13pt;font-weight:900;margin-top:18px;letter-spacing:.03em}
+.cbx{font-family:sans-serif}
+
+/* ===== 토스트 ===== */
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(14px);background:var(--ink);color:#fff;padding:11px 22px;border-radius:9px;font-size:13px;font-weight:500;opacity:0;pointer-events:none;z-index:9999;transition:all .24s;box-shadow:var(--sh-md);white-space:nowrap}
+.toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* ===== 반응형 ===== */
+@media(max-width:860px){
+  #sidebar{transform:translateX(-100%)}
+  #sidebar.open{transform:translateX(0)}
+  #main{margin-left:0}
+  .menu-btn{display:flex}
+  .stats{grid-template-columns:1fr 1fr}
+  .grid2,.grid3{grid-template-columns:1fr}
+  .content{padding:16px 14px 90px}
+  .ai-grid{grid-template-columns:1fr 1fr}
+  .cafe-link span.full{display:none}
+  .tb-date{display:none}
+}
+@media(max-width:520px){
+  .org-grid{grid-template-columns:1fr 1fr 1fr}
+  .gal{grid-template-columns:1fr 1fr}
+  .rate-wrap{flex-direction:column;gap:16px}
+  .frow{grid-template-columns:1fr}
+  .radio-g{flex-direction:column}
+  .radio-o{min-width:0}
+  .home-hero{padding:14px 15px}
+  .home-hero-title{font-size:14.5px}
+  .vote-dong{flex-direction:column}
+}
+@media(max-width:600px){
+  .fc,select.fc,input.fc,textarea.fc{font-size:16px}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<div id="overlay" onclick="closeSb()"></div>
+
+<!-- 사이드바 -->
+<aside id="sidebar">
+  <div class="sb-top">
+    <div class="sb-brand">
+      <div class="sb-logo">P</div>
+      <div class="sb-title">신동탄롯데캐슬<small>입주예정자협의회</small></div>
+    </div>
+    <div class="sb-rate">
+      <div class="sb-rate-lb">위임장 접수율</div>
+      <div class="sb-rate-v"><span id="sbRate">0</span>%</div>
+      <div class="sb-rate-bar"><i id="sbRateBar" style="width:0%"></i></div>
+    </div>
+  </div>
+  <nav class="sb-nav">
+    <div class="sb-glabel">입주민</div>
+    <div class="nav-item on" id="ni-home" onclick="go('home')"><span class="nav-ico">🏠</span>홈</div>
+    <div class="nav-item" id="ni-delegate" onclick="go('delegate')"><span class="nav-ico">📋</span>위임장 제출</div>
+    <div class="nav-item" id="ni-vote" onclick="go('vote')"><span class="nav-ico">🗳️</span>투표·설문</div>
+    <div class="nav-item" id="ni-notice" onclick="go('notice')"><span class="nav-ico">📢</span>공지사항</div>
+    <div class="nav-item" id="ni-board" onclick="go('board')"><span class="nav-ico">💬</span>건의사항</div>
+    <div class="nav-item" id="ni-schedule" onclick="go('schedule')"><span class="nav-ico">📅</span>일정 타임라인</div>
+    <div class="nav-item" id="ni-gallery" onclick="go('gallery')"><span class="nav-ico">📸</span>현장 사진</div>
+    <div class="sb-glabel">단지 정보</div>
+    <div class="nav-item" id="ni-aptinfo" onclick="go('aptinfo')"><span class="nav-ico">🏗️</span>단지 개요</div>
+    <div class="nav-item" id="ni-org" onclick="go('org')"><span class="nav-ico">👥</span>임원진</div>
+    <div class="nav-item" id="ni-budget" onclick="go('budget')"><span class="nav-ico">💰</span>회비·지출</div>
+    <div class="sb-glabel">운영</div>
+    <div class="nav-item" id="ni-admin" onclick="go('admin')"><span class="nav-ico">⚙️</span>관리자</div>
+  </nav>
+  <div class="sb-foot">
+    <div class="sb-user">
+      <div class="sb-av">협</div>
+      <div><div class="sb-un">입주예정자협의회</div><div class="sb-ur">공식 운영 플랫폼</div></div>
+    </div>
+  </div>
+</aside>
+
+<div id="main">
+  <div class="topbar">
+    <div style="display:flex;align-items:center;gap:10px">
+      <button class="menu-btn" onclick="toggleSb()">☰</button>
+      <span class="tb-title" id="tbTitle">홈</span>
+    </div>
+    <div class="tb-right">
+      <a class="cafe-link" href="https://cafe.naver.com/" target="_blank">💚<span class="full">입예협 카페</span></a>
+      <div class="gh-chip"><div class="gh-dot" id="ghDot"></div><span id="ghStatus">연결 중…</span></div>
+      <div class="tb-date" id="tbDate"></div>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <!-- ===== 홈 ===== -->
+    <div id="view-home" class="view on">
+      <div class="home-hero">
+        <div class="home-hero-emblem">P</div>
+        <div>
+          <div class="home-hero-title" id="homeAptName">신동탄롯데캐슬</div>
+          <div class="home-hero-sub">입주예정자협의회 공식 운영 플랫폼</div>
+        </div>
+      </div>
+      <div class="stats">
+        <div class="stat hero">
+          <div class="stat-lb">위임장 접수율</div>
+          <div class="stat-v"><span id="stRate">0</span><span class="u">%</span></div>
+          <div class="stat-bar"><i id="stRateBar" style="width:0%"></i></div>
+          <div class="stat-sub">총 1,185세대 중 <span id="stDone">0</span>세대</div>
+        </div>
+        <div class="stat">
+          <div class="stat-lb">총 세대수</div>
+          <div class="stat-v">1,185<span class="u">세대</span></div>
+          <div class="stat-sub">12개동 · 지상 25층</div>
+        </div>
+        <div class="stat">
+          <div class="stat-lb">동의 접수</div>
+          <div class="stat-v" id="stAgree">0</div>
+          <div class="stat-sub">위임 동의 세대</div>
+        </div>
+        <div class="stat">
+          <div class="stat-lb">미접수</div>
+          <div class="stat-v" id="stLeft">1,370</div>
+          <div class="stat-sub">접수 대기 세대</div>
+        </div>
+      </div>
+
+      <div class="grid2">
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <div class="card">
+            <div class="card-hd"><div class="card-t"><span class="b"></span>동의 현황</div><div class="card-m" id="homeRateMeta">0 / 1,370 세대</div></div>
+            <div class="rate-wrap">
+              <div class="donut">
+                <svg width="106" height="106" viewBox="0 0 106 106">
+                  <circle cx="53" cy="53" r="40" fill="none" stroke="#DCE8E0" stroke-width="12" transform="rotate(-90 53 53)"/>
+                  <circle id="donutC" cx="53" cy="53" r="40" fill="none" stroke="#0D5C30" stroke-width="12" stroke-dasharray="0 251" stroke-linecap="round" transform="rotate(-90 53 53)" style="transition:stroke-dasharray .7s cubic-bezier(.2,.8,.2,1)"/>
+                </svg>
+                <div class="donut-c"><div class="donut-p" id="donutP">0%</div><div class="donut-l">접수율</div></div>
+              </div>
+              <div class="rate-legend">
+                <div><div class="rl-row"><span class="rl-left"><span class="rl-dot" style="background:var(--brand)"></span>동의</span><span class="rl-val" id="rlAgree">0세대</span></div><div class="rl-prog"><i id="rpAgree" style="width:0%;background:var(--brand)"></i></div></div>
+                <div><div class="rl-row"><span class="rl-left"><span class="rl-dot" style="background:var(--red)"></span>미동의</span><span class="rl-val" id="rlDeny">0세대</span></div><div class="rl-prog"><i id="rpDeny" style="width:0%;background:var(--red)"></i></div></div>
+                <div><div class="rl-row"><span class="rl-left"><span class="rl-dot" style="background:var(--ink5)"></span>미접수</span><span class="rl-val" id="rlLeft">1,370세대</span></div><div class="rl-prog"><i id="rpLeft" style="width:100%;background:var(--ink5)"></i></div></div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-hd"><div class="card-t"><span class="b"></span>채널 바로가기</div></div>
+            <div class="ch-grid">
+              <a class="ch-btn" href="https://cafe.naver.com/" target="_blank"><span class="ch-ico">💚</span><span class="ch-t">네이버 카페</span><span class="ch-s">공식 커뮤니티</span></a>
+              <a class="ch-btn" href="https://open.kakao.com/" target="_blank"><span class="ch-ico">💬</span><span class="ch-t">카카오 오픈톡</span><span class="ch-s">입주민 소통방</span></a>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-hd"><div class="card-t"><span class="b"></span>진행 중인 투표</div><button class="btn btn-g btn-sm" onclick="go('vote')">전체보기</button></div>
+          <div id="homeVote"></div>
+        </div>
+      </div>
+
+      <div class="card prog-hero-card">
+        <div class="prog-hero-hd">
+          <div>
+            <div class="prog-hero-t">🏗️ 공사 진행 현황</div>
+            <div class="prog-hero-sub">항목을 눌러 진행 단계별 안내를 확인하세요</div>
+          </div>
+          <div class="prog-hero-badge">
+            <div class="prog-hero-badge-v" id="progHeroPct">2%</div>
+            <div class="prog-hero-badge-l">현재 공정률</div>
+          </div>
+        </div>
+
+        <div class="prog-track-wrap" id="progTrackWrap">
+          <div class="prog-track" id="progTrack"><div class="prog-track-fill" id="progTrackFill"><span class="prog-track-glow"></span></div><div class="prog-handle" id="progHandle" style="display:none"></div></div>
+          <div class="prog-dots" id="progDots"></div>
+          <div class="prog-edit-hint" id="progEditHint">👆 드래그하여 공정률 수정</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 공정율 상세 팝업 -->
+    <div class="prog-modal-bg" id="progModalBg" onclick="if(event.target===this)closeProgressPopup()">
+      <div class="prog-modal">
+        <div class="prog-modal-hd">
+          <div class="prog-modal-pct" id="progModalPct">10%</div>
+          <button class="prog-modal-x" onclick="closeProgressPopup()">✕</button>
+        </div>
+        <div class="prog-modal-body" id="progModalBody"></div>
+      </div>
+    </div>
+
+    <!-- ===== 위임장 ===== -->
+    <div id="view-delegate" class="view">
+      <div id="dForm">
+        <div class="card" style="margin-bottom:12px">
+          <div class="card-hd"><div class="card-t"><span class="b"></span>계약자 정보</div><div class="card-m">반드시 계약자명으로 작성</div></div>
+          <div class="frow">
+            <div class="fg"><label class="fl">성명 <span class="rq">*</span></label><input id="fName" class="fc" placeholder="계약자 성명" autocomplete="name"></div>
+            <div class="fg"><label class="fl">생년월일 <span class="rq">*</span></label><input id="fBirth" class="fc" placeholder="1985-03-21" inputmode="numeric" maxlength="10"></div>
+            <div class="fg"><label class="fl">계약 동 <span class="rq">*</span></label><select id="fDong" class="fc"></select></div>
+            <div class="fg"><label class="fl">계약 호수 <span class="rq">*</span></label><input id="fHo" class="fc" placeholder="예: 1503" inputmode="numeric" maxlength="5"></div>
+          </div>
+          <div class="fg"><label class="fl">연락처 <span class="rq">*</span></label><input id="fPhone" class="fc" placeholder="010-0000-0000" inputmode="tel" maxlength="13"></div>
+          <label style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--ink2);cursor:pointer;margin-top:6px;padding:10px 12px;background:var(--surface2);border-radius:var(--r-sm)">
+            <input type="checkbox" id="fJoint" onchange="toggleJoint(this.checked)" style="accent-color:var(--brand);width:16px;height:16px">
+            공동명의 (부부공동명의 등) 여부
+          </label>
+          <div id="jointFields" style="display:none;margin-top:12px;padding:14px;background:var(--surface2);border:1px dashed var(--border);border-radius:var(--r-sm)">
+            <div style="font-size:12px;font-weight:700;color:var(--ink3);margin-bottom:10px">공동명의자 정보</div>
+            <div class="frow">
+              <div class="fg" style="margin-bottom:8px"><label class="fl">공동명의자 성명 <span class="rq">*</span></label><input id="fJointName" class="fc" placeholder="공동명의자 성명"></div>
+              <div class="fg" style="margin-bottom:8px"><label class="fl">공동명의자 생년월일 <span class="rq">*</span></label><input id="fJointBirth" class="fc" placeholder="1985-03-21" inputmode="numeric" maxlength="10"></div>
+            </div>
+            <div class="fg" style="margin-bottom:12px"><label class="fl">공동명의자 연락처</label><input id="fJointPhone" class="fc" placeholder="010-0000-0000 (선택)" inputmode="tel" maxlength="13"></div>
+            <div class="fg" style="margin-bottom:0">
+              <label class="fl">공동명의자 자필 서명 <span class="rq">*</span></label>
+              <div class="sig-wrap" id="jointSigWrap" style="margin:0 -14px;width:auto">
+                <canvas id="jointSigCanvas"></canvas>
+                <div class="sig-ph" id="jointSigPh"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 3a2.83 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5z"/></svg>공동명의자 서명</div>
+              </div>
+              <div class="sig-bar" style="margin-left:-14px;margin-right:-14px;padding-left:14px;padding-right:14px"><span style="font-size:11px;color:var(--ink4)">공동명의자 본인이 직접 서명해 주세요</span><button type="button" class="btn btn-g btn-sm" onclick="clearJointSig()">지우기</button></div>
+            </div>
+          </div>
+        </div>
+        <div class="card" style="margin-bottom:12px">
+          <div class="card-hd"><div class="card-t"><span class="b"></span>위임사항 확인</div></div>
+          <div style="border:1px solid var(--border);border-radius:var(--r-sm);background:var(--surface2);padding:14px 16px;max-height:200px;overflow-y:auto;font-size:12.5px;line-height:1.7;color:var(--ink2)">
+            <ol id="termsList" style="padding-left:16px;display:grid;gap:5px"></ol>
+            <p style="margin-top:10px;font-size:11.5px;color:var(--ink4)">상기 위임 사항에 대하여 임원진들은 주택법 시행령 및 관련 법령을 준수하고 투명하게 운영합니다.</p>
+          </div>
+          <div class="fg" style="margin-top:14px"><label class="fl">위임 동의 여부 <span class="rq">*</span></label>
+            <div class="radio-g">
+              <label class="radio-o"><input type="radio" name="fAgree" value="동의" checked> ☑ 동의합니다</label>
+              <label class="radio-o"><input type="radio" name="fAgree" value="미동의"> ☐ 미동의합니다</label>
+            </div>
+          </div>
+          <div class="fg"><label class="fl">개인정보 수집·이용·제공 동의 <span class="rq">*</span></label>
+            <div class="radio-g">
+              <label class="radio-o"><input type="radio" name="fPriv" value="동의"> 동의합니다</label>
+              <label class="radio-o"><input type="radio" name="fPriv" value="미동의"> 동의하지 않습니다</label>
+            </div>
+          </div>
+        </div>
+        <div class="card" style="margin-bottom:16px">
+          <div class="card-hd"><div class="card-t"><span class="b"></span>자필 서명</div><div class="card-m">손가락·마우스로 직접 서명</div></div>
+          <div class="sig-wrap" id="sigWrap">
+            <canvas id="sigCanvas"></canvas>
+            <div class="sig-ph" id="sigPh"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 3a2.83 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5z"/></svg>여기에 서명하세요</div>
+          </div>
+          <div class="sig-bar"><span style="font-size:11.5px;color:var(--ink4)">서명은 위임장에 포함됩니다</span><button class="btn btn-g btn-sm" onclick="clearSig()">지우기</button></div>
+        </div>
+        <button class="btn btn-p btn-full" id="submitBtn" onclick="submitDelegate()">위임장 제출하기 →</button>
+      </div>
+      <div id="dDone" class="card done" style="display:none">
+        <div class="done-mk">✓</div>
+        <div class="done-t">위임장이 접수되었습니다</div>
+        <div class="done-d" id="doneMsg"></div>
+        <div class="done-note">📌 위임장 출력(PDF)이 필요하신 경우 <b>운영진 또는 법무법인 제이엘</b>에 문의해 주세요.</div>
+        <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
+          <button class="btn btn-p" onclick="go('home')">🏠 홈으로 가기</button>
+          <button class="btn btn-g" onclick="resetDelegate()">새 위임장 작성하기</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== 투표 ===== -->
+    <div id="view-vote" class="view">
+      <div id="voteList"></div>
+      <div id="voteEmpty" class="card" style="text-align:center;padding:44px;display:none">
+        <div style="font-size:34px;margin-bottom:10px">🗳️</div>
+        <div style="font-weight:800;font-size:15px;margin-bottom:6px">진행 중인 투표가 없습니다</div>
+        <div style="font-size:13px;color:var(--ink4)">운영진이 투표를 등록하면 여기에 표시됩니다.</div>
+      </div>
+    </div>
+
+    <!-- ===== 공지 ===== -->
+    <div id="view-notice" class="view">
+      <div class="card">
+        <div class="card-hd"><div class="card-t"><span class="b"></span>공지사항</div></div>
+        <div id="noticeList"></div>
+        <div id="noticeEmpty" style="text-align:center;padding:24px;color:var(--ink4);display:none">등록된 공지가 없습니다.</div>
+      </div>
+      <div class="card" id="noticeDetail" style="display:none;margin-top:12px">
+        <div class="card-hd"><div class="card-t" id="ndTitle"></div><button class="btn btn-g btn-sm" onclick="document.getElementById('noticeDetail').style.display='none'">목록</button></div>
+        <div style="font-size:11.5px;color:var(--ink4);margin-bottom:12px" id="ndMeta"></div>
+        <div style="font-size:13.5px;line-height:1.75;white-space:pre-wrap" id="ndBody"></div>
+      </div>
+    </div>
+
+    <!-- ===== 게시판(건의사항) ===== -->
+    <div id="view-board" class="view">
+      <div class="card">
+        <div class="card-hd"><div class="card-t"><span class="b"></span>건의사항 게시판</div><button class="btn btn-p btn-sm" onclick="openBoardWrite()">✏️ 글쓰기</button></div>
+        <div id="boardList"></div>
+        <div id="boardEmpty" class="board-empty" style="display:none">등록된 게시글이 없습니다.<br>첫 건의사항을 남겨보세요.</div>
+      </div>
+    </div>
+    <button class="board-fab" id="boardFab" onclick="openBoardWrite()" style="display:none">✏️</button>
+
+    <!-- 게시판 글쓰기 팝업 -->
+    <div class="board-modal-bg" id="boardWriteBg" onclick="if(event.target===this)closeBoardWrite()">
+      <div class="board-modal">
+        <div class="board-modal-hd"><div class="board-modal-hd-t">건의사항 작성</div><button class="board-modal-x" onclick="closeBoardWrite()">✕</button></div>
+        <div class="board-modal-body">
+          <div class="board-field"><label>제목 *</label><input id="bwTitle" placeholder="제목을 입력하세요" maxlength="60"></div>
+          <div class="board-field"><label>작성자명 *</label><input id="bwName" placeholder="이름" maxlength="20"></div>
+          <div class="board-field"><label>동/호수 (선택)</label>
+            <div class="board-row2">
+              <input id="bwDong" placeholder="동" style="flex:1">
+              <input id="bwHo" placeholder="호수" style="flex:1">
+            </div>
+          </div>
+          <div class="board-field"><label>내용 *</label><textarea id="bwContent" placeholder="건의하실 내용을 자유롭게 작성해주세요" maxlength="1000"></textarea></div>
+          <label class="board-anon"><input type="checkbox" id="bwAnon">다른 입주민에게는 이름을 비공개로 표시</label>
+          <button class="btn btn-primary" style="width:100%" onclick="submitBoard()">등록하기</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 게시판 상세보기 팝업 -->
+    <div class="board-modal-bg" id="boardViewBg" onclick="if(event.target===this)closeBoardView()">
+      <div class="board-modal">
+        <div class="board-modal-hd"><div class="board-modal-hd-t">건의사항</div><button class="board-modal-x" onclick="closeBoardView()">✕</button></div>
+        <div class="board-modal-body" id="boardViewBody"></div>
+      </div>
+    </div>
+
+    <div id="view-schedule" class="view">
+      <div class="card"><div class="card-hd"><div class="card-t"><span class="b"></span>입주를 향한 여정</div><div class="card-m">신동탄롯데캐슬</div></div><div class="tl" id="tlEl"></div></div>
+    </div>
+
+    <!-- ===== 갤러리 ===== -->
+    <div id="view-gallery" class="view">
+      <div class="card">
+        <div class="card-hd"><div class="card-t"><span class="b"></span>현장 사진 갤러리</div><div class="card-m">공정 현황</div></div>
+        <div class="gal">
+          <div class="gal-i" style="background:#E8F5ED;color:#0D5C30">2024.07 기초공사</div>
+          <div class="gal-i" style="background:#dceee2;color:#166b3b">2024.11 골조공사</div>
+          <div class="gal-i" style="background:#cce6d3;color:#125e2e">2025.03 외벽공사</div>
+          <div class="gal-i" style="background:#bcdecc;color:#0d5128">2025.05 마감공사</div>
+          <div class="gal-i" style="background:#aad7c5;color:#094522">2025.06 조경공사</div>
+          <div class="gal-i" style="background:#98cfbe;color:#06381b">2025.07 현장 전경</div>
+        </div>
+        <div style="text-align:center;margin-top:14px;font-size:12px;color:var(--ink4)">실제 공사 사진은 추후 업데이트됩니다.</div>
+      </div>
+    </div>
+
+    <!-- ===== 단지 개요 ===== -->
+    <div id="view-aptinfo" class="view">
+      <div class="card" style="margin-bottom:12px">
+        <div class="card-hd"><div class="card-t"><span class="b"></span>단지 개요</div></div>
+        <div class="ai-grid">
+          <div class="ai-box"><div class="ai-lb">총 세대수</div><div class="ai-v">1,185<span class="ai-u">세대</span></div></div>
+          <div class="ai-box"><div class="ai-lb">개동 수</div><div class="ai-v">12<span class="ai-u">개동</span></div></div>
+          <div class="ai-box"><div class="ai-lb">최고 층수</div><div class="ai-v">25<span class="ai-u">층</span></div></div>
+          <div class="ai-box"><div class="ai-lb">지하</div><div class="ai-v">B2<span class="ai-u">층</span></div></div>
+          <div class="ai-box"><div class="ai-lb">주택형</div><div class="ai-v" style="font-size:14px">82~117㎡</div></div>
+          <div class="ai-box"><div class="ai-lb">위치</div><div class="ai-v" style="font-size:12px;line-height:1.35">경기 화성시 병점구<br>반월동 962</div></div>
+        </div>
+      </div>
+      <div class="card" style="margin-bottom:12px">
+        <div class="card-hd"><div class="card-t"><span class="b"></span>타입별 세대</div><div class="card-m">총 1,185세대</div></div>
+        <div class="tbars" id="tbarsMain"></div>
+      </div>
+
+      <div class="card">
+        <div class="card-hd"><div class="card-t"><span class="b"></span>자주 묻는 질문</div></div>
+        <div id="qaEl"></div>
+      </div>
+    </div>
+
+    <!-- ===== 조직 ===== -->
+    <div id="view-org" class="view">
+      <div class="card"><div class="card-hd"><div class="card-t"><span class="b"></span>임원진 소개</div></div><div class="org-grid" id="orgEl"></div></div>
+    </div>
+
+    <!-- ===== 회비 ===== -->
+    <div id="view-budget" class="view">
+      <div class="grid2">
+        <div class="stat"><div class="stat-lb">총 수입</div><div class="stat-v" id="bIn" style="font-size:23px">0<span class="u">원</span></div></div>
+        <div class="stat"><div class="stat-lb">총 지출</div><div class="stat-v" id="bOut" style="font-size:23px">0<span class="u">원</span></div></div>
+      </div>
+      <div class="card"><div class="card-hd"><div class="card-t"><span class="b"></span>회비·지출 내역</div><div class="card-m">투명 공개</div></div><div id="budgetEl"></div><div id="budgetEmpty" style="text-align:center;padding:24px;color:var(--ink4);display:none">등록된 내역이 없습니다.</div></div>
+    </div>
+
+    <!-- ===== 관리자 ===== -->
+    <div id="view-admin" class="view">
+      <div id="lock" class="lock">
+        <div class="lock-ic">🔐</div>
+        <div class="lock-t">운영진 인증</div>
+        <div class="lock-s">관리자 접속 코드를 입력하세요<br><span style="font-size:11px;color:var(--ink4)">운영진 코드 또는 제이엘 마스터 코드</span></div>
+        <div class="fg"><input id="pinInput" class="fc" type="password" placeholder="접속 코드" maxlength="16" style="text-align:center;letter-spacing:.25em;font-size:17px" onkeydown="if(event.key==='Enter')unlock()"></div>
+        <button class="btn btn-p btn-full" onclick="unlock()">접속하기</button>
+      </div>
+
+      <div id="adminPanel" style="display:none">
+        <div class="jl-banner">
+          <div class="gh-dot ok"></div>
+          <div style="flex:1"><div class="t" id="jlBannerT">운영진 모드</div><div class="s">위임장 데이터 서버 자동 저장 중</div></div>
+        </div>
+
+        <div class="atabs" id="atabs">
+          <div class="atab on" id="at-map" onclick="aTab('map')">배치도</div>
+          <div class="atab" id="at-list" onclick="aTab('list')">접수목록</div>
+          <div class="atab" id="at-vote" onclick="aTab('vote')">🗳️ 투표</div>
+          <div class="atab" id="at-notice" onclick="aTab('notice')">공지</div>
+          <div class="atab" id="at-sched" onclick="aTab('sched')">일정</div>
+          <div class="atab" id="at-budget" onclick="aTab('budget')">회비</div>
+          <div class="atab" id="at-org" onclick="aTab('org')">조직</div>
+          <div class="atab" id="at-cfg" onclick="aTab('cfg')" style="display:none">⚙️ 설정</div>
+        </div>
+
+        <!-- 배치도 -->
+        <div id="ap-map">
+          <div class="stats" style="margin-bottom:14px">
+            <div class="stat hero"><div class="stat-lb">접수율</div><div class="stat-v"><span id="aRate">0</span><span class="u">%</span></div><div class="stat-bar"><i id="aRateBar" style="width:0%"></i></div></div>
+            <div class="stat"><div class="stat-lb">총 세대</div><div class="stat-v" id="aTotal">1,370</div></div>
+            <div class="stat"><div class="stat-lb">접수 완료</div><div class="stat-v" id="aDone">0</div></div>
+            <div class="stat"><div class="stat-lb">미접수</div><div class="stat-v" id="aLeft">1,370</div></div>
+          </div>
+          <div class="card">
+            <div class="card-hd"><div class="card-t"><span class="b"></span>세대별 배치도</div><div class="card-m">세대 클릭 → 상세·PDF 출력</div></div>
+            <div class="dong-tabs" id="dongTabs" style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:12px"></div>
+            <div style="overflow-x:auto;padding-bottom:4px"><div id="unitGrid" style="display:grid;gap:3px;min-width:max-content"></div></div>
+            <div style="display:flex;gap:14px;margin-top:11px;font-size:11.5px;color:var(--ink3);flex-wrap:wrap">
+              <span><i style="display:inline-block;width:9px;height:9px;border-radius:3px;background:var(--brand);margin-right:4px;vertical-align:-1px"></i>동의</span>
+              <span><i style="display:inline-block;width:9px;height:9px;border-radius:3px;background:var(--red);margin-right:4px;vertical-align:-1px"></i>미동의</span>
+              <span><i style="display:inline-block;width:9px;height:9px;border-radius:3px;background:var(--surface2);border:1px solid var(--border);margin-right:4px;vertical-align:-1px"></i>미접수</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 접수목록 -->
+        <div id="ap-list" style="display:none">
+          <div class="card">
+            <div class="card-hd"><div class="card-t"><span class="b"></span>위임장 접수 목록</div>
+              <div style="display:flex;gap:7px">
+                <button class="btn btn-g btn-sm" onclick="exportCSV()">CSV</button>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;padding:10px 14px;background:var(--surface2);border:1px solid var(--border);border-radius:var(--r-sm);flex-wrap:wrap">
+              <label style="display:flex;align-items:center;gap:6px;font-size:13px;font-weight:600;cursor:pointer">
+                <input type="checkbox" id="selectAllChk" onchange="toggleSelectAll(this.checked)"> 전체선택
+              </label>
+              <span id="selCount" style="font-size:12.5px;color:var(--ink4)">0건 선택됨</span>
+              <div style="margin-left:auto;display:flex;gap:7px">
+                <button class="btn btn-p btn-sm" onclick="printSelectedFromCheckbox()">🖨️ 선택 항목 PDF 출력</button>
+                <button class="btn btn-g btn-sm" onclick="printAllVisible()">전체 PDF 출력</button>
+              </div>
+            </div>
+            <div class="tbl-w"><table class="tbl"><thead><tr><th style="width:32px"><input type="checkbox" id="selectAllChk2" onchange="toggleSelectAll(this.checked)"></th><th>접수일시</th><th>동/호수</th><th>성명</th><th>연락처</th><th>위임</th><th>개인정보</th><th>PDF</th></tr></thead><tbody id="listBody"></tbody></table></div>
+            <div id="listEmpty" style="text-align:center;padding:24px;color:var(--ink4)">접수된 위임장이 없습니다.</div>
+          </div>
+        </div>
+
+        <!-- 투표 관리 -->
+        <div id="ap-vote" style="display:none">
+          <div class="card" style="margin-bottom:12px">
+            <div class="card-t" style="margin-bottom:16px"><span class="b"></span>투표 등록</div>
+            <div class="fg"><label class="fl">투표 제목 <span class="rq">*</span></label><input id="vtTitle" class="fc" placeholder="예: 법무법인 선정에 관한 투표"></div>
+            <div class="frow">
+              <div class="fg"><label class="fl">시작일</label><input id="vtStart" class="fc" type="date"></div>
+              <div class="fg"><label class="fl">종료일</label><input id="vtEnd" class="fc" type="date"></div>
+            </div>
+            <div class="fg"><label class="fl">선택지 (줄바꿈 구분) <span class="rq">*</span></label><textarea id="vtOpts" class="fc" rows="4" placeholder="법무법인 제이엘&#10;기타 법무법인&#10;반대합니다"></textarea></div>
+            <button class="btn btn-p btn-full" onclick="addVote()">투표 등록</button>
+          </div>
+          <div class="card"><div class="card-t" style="margin-bottom:14px"><span class="b"></span>등록된 투표</div><div id="voteMgmt"></div></div>
+        </div>
+
+        <!-- 공지 관리 -->
+        <div id="ap-notice" style="display:none">
+          <div class="card" style="margin-bottom:12px">
+            <div class="card-t" style="margin-bottom:16px"><span class="b"></span>공지 등록</div>
+            <div class="fg"><label class="fl">제목 <span class="rq">*</span></label><input id="nTitle" class="fc" placeholder="공지 제목"></div>
+            <div class="frow">
+              <div class="fg"><label class="fl">분류</label><select id="nCat" class="fc"><option>공지</option><option>중요</option><option>일정</option><option>기타</option></select></div>
+              <div class="fg"><label class="fl">날짜</label><input id="nDate" class="fc" type="date"></div>
+            </div>
+            <div class="fg"><label class="fl">내용 <span class="rq">*</span></label><textarea id="nBody" class="fc" rows="4"></textarea></div>
+            <button class="btn btn-p btn-full" onclick="addNotice()">공지 등록</button>
+          </div>
+          <div class="card"><div class="card-t" style="margin-bottom:14px"><span class="b"></span>등록된 공지</div><div id="noticeMgmt"></div></div>
+        </div>
+
+        <!-- 일정 관리 -->
+        <div id="ap-sched" style="display:none">
+          <div class="card" style="margin-bottom:12px">
+            <div class="card-t" style="margin-bottom:16px"><span class="b"></span>일정 등록</div>
+            <div class="frow">
+              <div class="fg"><label class="fl">일정명 <span class="rq">*</span></label><input id="scTitle" class="fc" placeholder="중도금 1차 납부"></div>
+              <div class="fg"><label class="fl">날짜 <span class="rq">*</span></label><input id="scDate" class="fc" type="date"></div>
+            </div>
+            <div class="fg"><label class="fl">상태</label><select id="scStat" class="fc"><option value="done">완료</option><option value="now">진행중</option><option value="">예정</option></select></div>
+            <button class="btn btn-p btn-full" onclick="addSched()">일정 등록</button>
+          </div>
+          <div class="card"><div class="card-t" style="margin-bottom:14px"><span class="b"></span>등록된 일정</div><div id="schedMgmt"></div></div>
+        </div>
+
+        <!-- 회비 관리 -->
+        <div id="ap-budget" style="display:none">
+          <div class="card" style="margin-bottom:12px">
+            <div class="card-t" style="margin-bottom:16px"><span class="b"></span>내역 등록</div>
+            <div class="frow">
+              <div class="fg"><label class="fl">구분</label><select id="bType" class="fc"><option value="in">수입</option><option value="out">지출</option></select></div>
+              <div class="fg"><label class="fl">날짜</label><input id="bDate" class="fc" type="date"></div>
+              <div class="fg"><label class="fl">항목명 <span class="rq">*</span></label><input id="bName" class="fc" placeholder="회비 수금"></div>
+              <div class="fg"><label class="fl">금액(원) <span class="rq">*</span></label><input id="bAmt" class="fc" placeholder="500000" inputmode="numeric"></div>
+            </div>
+            <div class="fg"><label class="fl">비고</label><input id="bNote" class="fc" placeholder="메모"></div>
+            <button class="btn btn-p btn-full" onclick="addBudget()">등록</button>
+          </div>
+        </div>
+
+        <!-- 조직 관리 -->
+        <div id="ap-org" style="display:none">
+          <div class="card" style="margin-bottom:12px">
+            <div class="card-t" style="margin-bottom:16px"><span class="b"></span>임원 등록</div>
+            <div class="frow">
+              <div class="fg"><label class="fl">직책 <span class="rq">*</span></label><input id="oPos" class="fc" placeholder="회장"></div>
+              <div class="fg"><label class="fl">이름 <span class="rq">*</span></label><input id="oName" class="fc" placeholder="홍길동"></div>
+            </div>
+            <div class="fg"><label class="fl">이모지</label><input id="oEmoji" class="fc" placeholder="👤" maxlength="2"></div>
+            <button class="btn btn-p btn-full" onclick="addOrg()">임원 등록</button>
+          </div>
+          <div class="card"><div class="card-t" style="margin-bottom:14px"><span class="b"></span>현재 임원진</div><div id="orgMgmt"></div></div>
+        </div>
+
+        <!-- 설정 (제이엘 전용) -->
+        <div id="ap-cfg" style="display:none">
+          <div class="card">
+            <div class="card-hd"><div class="card-t"><span class="b"></span>플랫폼 설정</div><span class="tag tag-a">제이엘 전용</span></div>
+            <div class="set-t">기본 정보</div>
+            <div class="fg"><label class="fl">아파트명</label><input id="cfgName" class="fc"></div>
+            <div style="display:flex;align-items:flex-end;gap:12px;margin-bottom:14px">
+              <div class="fg" style="margin-bottom:0"><label class="fl">테마 색상</label><input id="cfgColor" type="color"></div>
+              <div style="font-size:12px;color:var(--ink4);padding-bottom:5px">아파트별 브랜드 색상</div>
+            </div>
+            <div class="fg"><label class="fl">수임 단체명</label><input id="cfgOrg" class="fc"></div>
+            <div class="fg"><label class="fl">카페 주소</label><input id="cfgCafe" class="fc"></div>
+            <div class="set-t" style="margin-top:16px">동·호수 배치도</div>
+            <div style="font-size:12px;color:var(--ink4);margin-bottom:8px">한 줄에 하나: 동이름, 층수, 라인수 (예: 101, 24, 4)</div>
+            <div class="fg"><textarea id="cfgDongs" class="fc" rows="9" style="font-family:monospace;font-size:12.5px"></textarea></div>
+            <div style="display:flex;gap:8px;margin-bottom:18px">
+              <button class="btn btn-p" onclick="saveCfg()">설정 저장</button>
+              <button class="btn btn-g" onclick="loadCfgForm()">초기화</button>
+            </div>
+            <div class="set-t">접속 코드</div>
+            <div style="display:flex;gap:8px;margin-bottom:8px">
+              <input id="cfgPin" class="fc" maxlength="16" placeholder="새 운영진 코드" style="flex:1">
+              <button class="btn btn-g" onclick="savePin()">변경</button>
+            </div>
+            <div style="margin-top:20px;padding-top:16px;border-top:1px solid var(--border)">
+              <button class="btn btn-d btn-sm" onclick="wipeData()">로컬 접수 데이터 초기화</button>
+              <div style="font-size:11.5px;color:var(--ink4);margin-top:6px">⚠️ 로컬 표시 데이터만 삭제됩니다. GitHub Issues 원본은 별도 삭제가 필요합니다.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="app-footer">
+      <span>본 플랫폼은</span> <b>법무법인 제이엘</b> <span>이 입주예정자협의회를 위해 제공합니다</span>
+    </div>
+
+  </div>
+</div>
+
+<!-- 인쇄 위임장 -->
+<div id="printLayer"></div>
+
+<div class="toast" id="toast"></div>
+<script>
+/* 저장소 자동 격리 패치 - 이 단지 데이터가 다른 단지(다른 github.io 경로)와
+   같은 브라우저 localStorage를 공유해 섞이는 것을 방지 */
+(function(){
+  var NS = 'sindongtan-lottecastle__';
+  var _get = Storage.prototype.getItem;
+  var _set = Storage.prototype.setItem;
+  Storage.prototype.getItem = function(key){
+    if(typeof key==='string' && key.indexOf('tp_')===0) key = NS + key;
+    return _get.call(this, key);
+  };
+  Storage.prototype.setItem = function(key, value){
+    if(typeof key==='string' && key.indexOf('tp_')===0) key = NS + key;
+    return _set.call(this, key, value);
+  };
+})();
+</script>
+<script>
+const a0_0x26d9d7=a0_0x72e6;(function(_0x50bd47,_0x2aff7e){const _0x1ddd89=a0_0x72e6,_0x594916=_0x50bd47();while(!![]){try{const _0x471242=-parseInt(_0x1ddd89(0x392))/0x1+-parseInt(_0x1ddd89(0x137))/0x2*(-parseInt(_0x1ddd89(0x145))/0x3)+-parseInt(_0x1ddd89(0x16d))/0x4*(parseInt(_0x1ddd89(0x1e5))/0x5)+-parseInt(_0x1ddd89(0x37b))/0x6+-parseInt(_0x1ddd89(0x1e6))/0x7+parseInt(_0x1ddd89(0x1a4))/0x8+parseInt(_0x1ddd89(0x202))/0x9*(parseInt(_0x1ddd89(0x1ed))/0xa);if(_0x471242===_0x2aff7e)break;else _0x594916['push'](_0x594916['shift']());}catch(_0x588b59){_0x594916['push'](_0x594916['shift']());}}}(a0_0x33e5,0x5e7bb));const GH_OWNER='kingjin77-rgb',GH_REPO='sindongtan-lottecastle',GH_TOKEN='',GH_API='https://api.github.com/repos/'+GH_OWNER+'/'+GH_REPO,JL_MASTER='jl2025',TOTAL=1185,TERMS=[a0_0x26d9d7(0x2ee),a0_0x26d9d7(0x219),'아파트\x20단지\x20주변\x20주거\x20및\x20주변\x20환경\x20개선에\x20대한\x20모든\x20활동\x20및\x20행위\x20추구\x20일체와\x20외부\x20자문요청\x20및\x20진행',a0_0x26d9d7(0x20e),a0_0x26d9d7(0x3aa),a0_0x26d9d7(0x347),a0_0x26d9d7(0x217)],TYPES=[{'t':'82A','u':411},{'t':'84B','u':46},{'t':'114B','u':158},{'t':'115A','u':357},{'t':'117C','u':213}],QA=[{'q':a0_0x26d9d7(0x130),'a':'미동의\x20세대는\x20협의회\x20활동의\x20법적\x20효력에서\x20제외될\x20수\x20있습니다.\x20많은\x20세대가\x20참여할수록\x20협의회\x20협상력이\x20강화됩니다.'},{'q':a0_0x26d9d7(0x204),'a':'전자서명법\x20제3조에\x20따라\x20자필서명\x20이미지를\x20포함한\x20전자문서는\x20서면과\x20동일한\x20효력을\x20가집니다.'},{'q':'법무대리인\x20안내는\x20언제\x20오나요?','a':a0_0x26d9d7(0x241)},{'q':a0_0x26d9d7(0x35c),'a':a0_0x26d9d7(0x166)}],DEFAULT_CFG={'aptName':'신동탄롯데캐슬','themeColor':'#8B1A2B','pin':'1234','orgName':'신동탄롯데캐슬 입주예정자협의회','cafeAddr':'https://cafe.naver.com/','dongs':[{'n':'101','f':25,'l':4},{'n':'102','f':25,'l':4},{'n':'103','f':25,'l':5},{'n':'104','f':21,'l':4},{'n':'105','f':21,'l':4},{'n':'106','f':22,'l':4},{'n':'107','f':21,'l':3},{'n':'108','f':19,'l':4},{'n':'109','f':23,'l':4},{'n':'110','f':24,'l':4},{'n':'111','f':23,'l':4},{'n':'112','f':21,'l':2}]},DEFAULT_SCHED=[{'t':a0_0x26d9d7(0x264),'d':a0_0x26d9d7(0x316),'s':a0_0x26d9d7(0x272)},{'t':a0_0x26d9d7(0x2e1),'d':'2024-09-19','s':a0_0x26d9d7(0x272)},{'t':a0_0x26d9d7(0x1ae),'d':a0_0x26d9d7(0x320),'s':a0_0x26d9d7(0x272)},{'t':a0_0x26d9d7(0x1eb),'d':a0_0x26d9d7(0x32a),'s':a0_0x26d9d7(0x272)},{'t':a0_0x26d9d7(0x1b0),'d':a0_0x26d9d7(0x175),'s':'done'},{'t':a0_0x26d9d7(0x1d9),'d':a0_0x26d9d7(0x296),'s':a0_0x26d9d7(0x272)},{'t':a0_0x26d9d7(0x14b),'d':a0_0x26d9d7(0x2fa),'s':a0_0x26d9d7(0x251)},{'t':'사전점검\x20진행','d':a0_0x26d9d7(0x1ac),'s':''},{'t':a0_0x26d9d7(0x336),'d':a0_0x26d9d7(0x200),'s':''}];let CURRENT_PROGRESS=0x2;const PROGRESS_DATA={0xa:{'sections':[{'t':a0_0x26d9d7(0x190),'items':[a0_0x26d9d7(0x2a7),a0_0x26d9d7(0x2a2),'카페\x20활성화\x20및\x20위임장\x20징구','고유번호증\x20발급',a0_0x26d9d7(0x1c1)]},{'t':a0_0x26d9d7(0x39f),'items':[a0_0x26d9d7(0x3c8),a0_0x26d9d7(0x20c)]}]},0x14:{'sections':[{'t':a0_0x26d9d7(0x2ca),'items':['건축\x20외장재\x20검토','설비시스템\x20검토','주차장\x20층고(택배차\x20진입)']},{'t':a0_0x26d9d7(0x190),'items':[a0_0x26d9d7(0x2e8),a0_0x26d9d7(0x26d),a0_0x26d9d7(0x397),a0_0x26d9d7(0x227),a0_0x26d9d7(0x1c1)]},{'t':'공사현황','items':[a0_0x26d9d7(0x312),a0_0x26d9d7(0x214)]}]},0x1e:{'sections':[{'t':a0_0x26d9d7(0x2ca),'items':[a0_0x26d9d7(0x2ec),a0_0x26d9d7(0x1bf),a0_0x26d9d7(0x375)]},{'t':'공사현황','items':[a0_0x26d9d7(0x28f),a0_0x26d9d7(0x150),a0_0x26d9d7(0x377),a0_0x26d9d7(0x24f),'기초배관\x20공사']}]},0x28:{'sections':[{'t':a0_0x26d9d7(0x2ca),'items':[a0_0x26d9d7(0x2d9),'단지\x20업그레이드\x20확인',a0_0x26d9d7(0x2be)]},{'t':a0_0x26d9d7(0x190),'items':['감리보고서\x20분석(분기별)',a0_0x26d9d7(0x218)]},{'t':a0_0x26d9d7(0x39f),'items':[a0_0x26d9d7(0x142),'창호\x20프레임공사',a0_0x26d9d7(0x1cf),a0_0x26d9d7(0x2dd),a0_0x26d9d7(0x3b3)]}]},0x32:{'sections':[{'t':a0_0x26d9d7(0x2ca),'items':[a0_0x26d9d7(0x1e2),a0_0x26d9d7(0x1dc)]},{'t':'공사현황','items':[a0_0x26d9d7(0x386),'유리공사',a0_0x26d9d7(0x173),'조경계획\x20및\x20토사반입',a0_0x26d9d7(0x12a)]}]},0x3c:{'sections':[{'t':a0_0x26d9d7(0x2ca),'items':[a0_0x26d9d7(0x39b),'문주\x20디자인\x20검토',a0_0x26d9d7(0x1f5)]},{'t':'협의회','items':[a0_0x26d9d7(0x208),'현장방문\x20후\x20사전점검\x20등\x20논의']},{'t':a0_0x26d9d7(0x39f),'items':[a0_0x26d9d7(0x243),'슬라브·조적\x20배관\x20작업']}]},0x46:{'sections':[{'t':a0_0x26d9d7(0x2ca),'items':[a0_0x26d9d7(0x34a),a0_0x26d9d7(0x36a),a0_0x26d9d7(0x23a),'조경설명회\x20요청']},{'t':a0_0x26d9d7(0x190),'items':['사전점검\x20준비',a0_0x26d9d7(0x1d2),a0_0x26d9d7(0x387)]},{'t':a0_0x26d9d7(0x39f),'items':[a0_0x26d9d7(0x28e),a0_0x26d9d7(0x121),a0_0x26d9d7(0x305),'우오수배관·경계석·조경구조물\x20작업',a0_0x26d9d7(0x30c),'조경특화계획']}]},0x50:{'sections':[{'t':a0_0x26d9d7(0x2ca),'items':[a0_0x26d9d7(0x2eb),a0_0x26d9d7(0x1b1)]},{'t':'협의회','items':[a0_0x26d9d7(0x270),a0_0x26d9d7(0x2c6),a0_0x26d9d7(0x3bd)]},{'t':a0_0x26d9d7(0x39f),'items':[a0_0x26d9d7(0x1dd),a0_0x26d9d7(0x30a)]}]},0x5a:{'sections':[{'t':'공정별\x20체크사항','items':['입주지정기간\x20협의',a0_0x26d9d7(0x2e0),a0_0x26d9d7(0x230),'준공관련\x20사항\x20확인']},{'t':a0_0x26d9d7(0x190),'items':[a0_0x26d9d7(0x2fd)]},{'t':a0_0x26d9d7(0x39f),'items':[a0_0x26d9d7(0x275),a0_0x26d9d7(0x353),a0_0x26d9d7(0x2c2)]}]},0x64:{'sections':[{'t':a0_0x26d9d7(0x190),'items':[a0_0x26d9d7(0x18b),'하자보고서\x20작성',a0_0x26d9d7(0x2f0),a0_0x26d9d7(0x3a0),a0_0x26d9d7(0x38a)]},{'t':a0_0x26d9d7(0x39f),'items':[a0_0x26d9d7(0x171),a0_0x26d9d7(0x372),a0_0x26d9d7(0x39a)]}]}},_mem={},S={async 'g'(_0x17478b){const _0x5a2969=a0_0x26d9d7;try{if(window[_0x5a2969(0x19d)]){const _0x1d5c18=await window[_0x5a2969(0x19d)]['get'](_0x17478b);return _0x1d5c18?JSON[_0x5a2969(0x380)](_0x1d5c18[_0x5a2969(0x2ff)]):null;}}catch(_0x1f7f1d){}try{const _0xcf2d9d=localStorage['getItem'](_0x17478b);if(_0xcf2d9d)return JSON[_0x5a2969(0x380)](_0xcf2d9d);}catch(_0x1281bb){}return _mem[_0x17478b]??null;},async 's'(_0x12741a,_0xe16f2b){const _0x599744=a0_0x26d9d7;try{window['storage']&&await window[_0x599744(0x19d)]['set'](_0x12741a,JSON['stringify'](_0xe16f2b));}catch(_0x7652c6){}try{localStorage[_0x599744(0x27f)](_0x12741a,JSON[_0x599744(0x127)](_0xe16f2b));}catch(_0x26e94a){}_mem[_0x12741a]=_0xe16f2b;}};let CFG=JSON['parse'](JSON[a0_0x26d9d7(0x127)](DEFAULT_CFG)),DATA={},NOTICES=[],SCHEDS=[],BUDGETS=[],ORGS=[],VOTES=[],STATS={'done':0x0,'agree':0x0},SUBMITTED_KEYS=[],curDong=null,curTab=a0_0x26d9d7(0x1a5),unlocked=![],jlMode=![],lastRec=null,dataLoaded=![];async function init(){const _0x23f337=a0_0x26d9d7,_0x47d89d=await S['g'](_0x23f337(0x285));if(_0x47d89d)CFG={...DEFAULT_CFG,..._0x47d89d,'dongs':_0x47d89d[_0x23f337(0x21a)]&&_0x47d89d['dongs'][_0x23f337(0x1c8)]?_0x47d89d[_0x23f337(0x21a)]:DEFAULT_CFG[_0x23f337(0x21a)]};const _0x5620bc=await S['g'](_0x23f337(0x34d));if(_0x5620bc)STATS=_0x5620bc;const _0x3384e8=await S['g']('tp_keys');if(_0x3384e8)SUBMITTED_KEYS=_0x3384e8;const _0x29691f=await S['g'](_0x23f337(0x183));if(_0x29691f)NOTICES=_0x29691f;const _0x2786ec=await S['g']('tp_scheds');SCHEDS=_0x2786ec&&_0x2786ec[_0x23f337(0x1c8)]?_0x2786ec:[...DEFAULT_SCHED];const _0x55bbb6=await S['g']('tp_budgets');if(_0x55bbb6)BUDGETS=_0x55bbb6;const _0x546b13=await S['g']('tp_orgs');if(_0x546b13)ORGS=_0x546b13;const _0x1a5753=await S['g'](_0x23f337(0x157));if(_0x1a5753)VOTES=_0x1a5753;const _0x258fbf=await S['g'](_0x23f337(0x2d3));if(typeof _0x258fbf===_0x23f337(0x199))CURRENT_PROGRESS=_0x258fbf;applyTheme(),document[_0x23f337(0x13a)](_0x23f337(0x2c9))[_0x23f337(0x25d)]=TERMS[_0x23f337(0x1a5)](_0x2e33f9=>_0x23f337(0x2d2)+esc(_0x2e33f9)+_0x23f337(0x355))[_0x23f337(0x2e2)](''),setDate(),renderDongSel(),bindMasks(),initSig(),initJointSig(),curDong=CFG['dongs'][0x0]?.['n']||_0x23f337(0x274),renderAll(),checkGH(),guardDevtools();}function esc(_0x1b31f7){const _0xbd356f=a0_0x26d9d7;return String(_0x1b31f7??'')['replace'](/[&<>"]/g,_0x50d13a=>({'&':_0xbd356f(0x2e7),'<':_0xbd356f(0x362),'>':_0xbd356f(0x2c4),'\x22':'&quot;'}[_0x50d13a]));}function gv(_0x89558c){const _0x3143da=a0_0x26d9d7,_0x494cb7=document['getElementById'](_0x89558c);return _0x494cb7?_0x494cb7[_0x3143da(0x2ff)][_0x3143da(0x136)]():'';}function rv(_0x55d457){const _0x5dd0ae=a0_0x26d9d7,_0x42e1c8=document[_0x5dd0ae(0x1c6)](_0x5dd0ae(0x13d)+_0x55d457+_0x5dd0ae(0x16b));return _0x42e1c8?_0x42e1c8[_0x5dd0ae(0x2ff)]:'';}function fmtTs(_0x583b1d){const _0x3436d4=a0_0x26d9d7,_0x3d94e1=new Date(_0x583b1d);return _0x3d94e1['getFullYear']()+'.'+String(_0x3d94e1['getMonth']()+0x1)['padStart'](0x2,'0')+'.'+String(_0x3d94e1[_0x3436d4(0x311)]())['padStart'](0x2,'0')+'\x20'+String(_0x3d94e1[_0x3436d4(0x383)]())[_0x3436d4(0x282)](0x2,'0')+':'+String(_0x3d94e1[_0x3436d4(0x319)]())[_0x3436d4(0x282)](0x2,'0');}function fmtDate(_0x223685){const _0x1a06bc=a0_0x26d9d7;return _0x223685['getFullYear']()+'-'+String(_0x223685[_0x1a06bc(0x2e6)]()+0x1)[_0x1a06bc(0x282)](0x2,'0')+'-'+String(_0x223685['getDate']())[_0x1a06bc(0x282)](0x2,'0');}let toastT;function toast(_0x3b5e91){const _0xe4d23c=a0_0x26d9d7,_0x5e54a2=document['getElementById'](_0xe4d23c(0x195));_0x5e54a2[_0xe4d23c(0x271)]=_0x3b5e91,_0x5e54a2[_0xe4d23c(0x176)][_0xe4d23c(0x39d)]('on'),clearTimeout(toastT),toastT=setTimeout(()=>_0x5e54a2['classList'][_0xe4d23c(0x31a)]('on'),0xaf0);}function applyTheme(){const _0x542c20=a0_0x26d9d7,_0x3cea9e=CFG['themeColor'];document[_0x542c20(0x162)]['style'][_0x542c20(0x180)]('--brand',_0x3cea9e),document['documentElement']['style'][_0x542c20(0x180)](_0x542c20(0x35f),shade(_0x3cea9e,0x14)),document['documentElement']['style'][_0x542c20(0x180)](_0x542c20(0x38d),shade(_0x3cea9e,0x28)),document['documentElement'][_0x542c20(0x235)][_0x542c20(0x180)](_0x542c20(0x14c),_0x3cea9e+'16'),document[_0x542c20(0x162)][_0x542c20(0x235)][_0x542c20(0x180)](_0x542c20(0x286),_0x3cea9e+'33'),document[_0x542c20(0x313)]=CFG[_0x542c20(0x310)]+_0x542c20(0x133);const _0x2ed7d9=document[_0x542c20(0x13a)]('homeAptName');if(_0x2ed7d9)_0x2ed7d9[_0x542c20(0x271)]=CFG['aptName'];}function shade(_0x349cfb,_0x1dde50){const _0x166bca=a0_0x26d9d7;let _0x47990c=parseInt(_0x349cfb['replace']('#',''),0x10),_0x572871=Math[_0x166bca(0x284)](0xff,(_0x47990c>>0x10&0xff)+_0x1dde50),_0x20a679=Math[_0x166bca(0x284)](0xff,(_0x47990c>>0x8&0xff)+_0x1dde50),_0x185829=Math['min'](0xff,(_0x47990c&0xff)+_0x1dde50);return'#'+[_0x572871,_0x20a679,_0x185829][_0x166bca(0x1a5)](_0x460161=>_0x460161[_0x166bca(0x18c)](0x10)[_0x166bca(0x282)](0x2,'0'))[_0x166bca(0x2e2)]('');}function setDate(){const _0x5eec78=a0_0x26d9d7,_0x3eaeb6=new Date();document[_0x5eec78(0x13a)](_0x5eec78(0x2a3))[_0x5eec78(0x271)]=_0x3eaeb6[_0x5eec78(0x3a8)]()+'년\x20'+(_0x3eaeb6[_0x5eec78(0x2e6)]()+0x1)+'월\x20'+_0x3eaeb6['getDate']()+'일';}const WORKER_URL='WORKER_URL_PLACEHOLDER';async function checkGH(){const _0xac4241=a0_0x26d9d7,_0x49a5b6=document[_0xac4241(0x13a)](_0xac4241(0x289)),_0x5d4f49=document[_0xac4241(0x13a)]('ghStatus');try{const _0x1a271c=await fetch(GH_API+_0xac4241(0x39c));if(_0x1a271c['ok'])_0x49a5b6[_0xac4241(0x1c0)]='gh-dot\x20ok',_0x5d4f49['textContent']=_0xac4241(0x19f);else throw 0x0;}catch{_0x49a5b6[_0xac4241(0x1c0)]='gh-dot\x20err',_0x5d4f49['textContent']=_0xac4241(0x213);}}async function saveToGH(_0x1f42c1){const _0x4183d5=a0_0x26d9d7;if(!WORKER_URL)throw new Error(_0x4183d5(0x1c5));const _0x1f5767=await fetch(WORKER_URL,{'method':'POST','headers':{'Content-Type':_0x4183d5(0x3b8)},'body':JSON[_0x4183d5(0x127)]({'type':_0x4183d5(0x1f7),'rec':_0x1f42c1})});if(!_0x1f5767['ok'])throw new Error('save\x20failed');return _0x1f5767['json']();}async function voteToGH(_0x3cb292,_0x4face8,_0x1dd18d,_0x2bcea2){const _0x4e4132=a0_0x26d9d7;if(!WORKER_URL)return;try{await fetch(WORKER_URL,{'method':_0x4e4132(0x17e),'headers':{'Content-Type':_0x4e4132(0x3b8)},'body':JSON[_0x4e4132(0x127)]({'type':'vote','title':_0x3cb292[_0x4e4132(0x313)],'option':_0x3cb292[_0x4e4132(0x364)][_0x4face8],'dong':_0x1dd18d,'ho':_0x2bcea2})});}catch(_0x216165){console[_0x4e4132(0x304)](_0x4e4132(0x17d),_0x216165);}}async function loadFullDataForAdmin(){const _0x2fba6c=a0_0x26d9d7,_0x4f7251=document['getElementById']('listBody');if(_0x4f7251)_0x4f7251[_0x2fba6c(0x25d)]=_0x2fba6c(0x25a);DATA={};let _0x3cbaf7=0x0;try{let _0x42e927=0x1,_0x5a6c3c=[];while(_0x42e927<=0x5){const _0x5c0733=await fetch(GH_API+'/issues?labels=위임장&state=all&per_page=100&page='+_0x42e927);if(!_0x5c0733['ok'])break;const _0x1aea81=await _0x5c0733[_0x2fba6c(0x19b)]();_0x5a6c3c=_0x5a6c3c['concat'](_0x1aea81);if(_0x1aea81[_0x2fba6c(0x1c8)]<0x64)break;_0x42e927++;}for(const _0xab78dd of _0x5a6c3c){const _0x2a4e1e=parseIssueBody(_0xab78dd['body']);_0x2a4e1e&&(DATA[_0x2a4e1e['dong']+'-'+_0x2a4e1e['ho']]=_0x2a4e1e,_0x3cbaf7++);}}catch(_0x4fd1e0){console[_0x2fba6c(0x304)](_0x2fba6c(0x147),_0x4fd1e0);}const _0x2a7364=await S['g'](_0x2fba6c(0x141))||{};let _0x5c5c85=0x0;for(const _0x90f932 in _0x2a7364){!DATA[_0x90f932]&&(DATA[_0x90f932]={..._0x2a7364[_0x90f932],'_pending':!![]},_0x5c5c85++);}dataLoaded=!![],toast(_0x2fba6c(0x291)+_0x3cbaf7+'건'+(_0x5c5c85?_0x2fba6c(0x2a0)+_0x5c5c85+'건':'')+_0x2fba6c(0x277));}function parseIssueBody(_0x1f4981){const _0x421903=a0_0x26d9d7;try{const _0x188928=_0x537ee3=>{const _0x6e5a93=a0_0x72e6,_0x2bf895=_0x1f4981[_0x6e5a93(0x3b2)](new RegExp(_0x6e5a93(0x3b4)+_0x537ee3+'\x5cs*\x5c|\x5cs*([^|]+)\x5c|'));return _0x2bf895?_0x2bf895[0x1][_0x6e5a93(0x136)]():'';},_0x44109e=_0x188928(_0x421903(0x384)),_0x284283=_0x44109e[_0x421903(0x3b2)](/(\d+)동\s*(\d+)호/);if(!_0x284283)return null;const _0xff68eb=_0x1f4981[_0x421903(0x3b2)](/!\[서명\]\(([^)]+)\)/),_0x353153=_0xff68eb?_0xff68eb[0x1]:'',_0x1c23e5=_0x1f4981[_0x421903(0x3b2)](/!\[공동명의자서명\]\(([^)]+)\)/),_0x1d9b9c=_0x188928(_0x421903(0x22d));let _0x2e7977=null;if(_0x1d9b9c){const _0x5e4789=_0x1d9b9c[_0x421903(0x3b2)](/^(.+?)\s*\(([^)]+)\)/);_0x2e7977={'name':_0x5e4789?_0x5e4789[0x1][_0x421903(0x136)]():_0x1d9b9c,'birth':_0x5e4789?_0x5e4789[0x2][_0x421903(0x136)]():'','phone':_0x188928('공동명의자\x20연락처'),'sig':_0x1c23e5?_0x1c23e5[0x1]:''};}return{'dong':_0x284283[0x1],'ho':_0x284283[0x2],'name':_0x188928('성명'),'birth':_0x188928(_0x421903(0x188)),'phone':_0x188928(_0x421903(0x1ee)),'agree':_0x188928('위임\x20동의'),'priv':_0x188928('개인정보\x20동의'),'ts':_0x188928(_0x421903(0x3a9)),'sig':_0x353153,'joint':_0x2e7977};}catch(_0x87cbb){return null;}}const PAGES=[a0_0x26d9d7(0x360),'delegate',a0_0x26d9d7(0x249),a0_0x26d9d7(0x265),'board',a0_0x26d9d7(0x169),a0_0x26d9d7(0x236),a0_0x26d9d7(0x246),a0_0x26d9d7(0x329),'budget','admin'],NAMES={'home':'홈','delegate':a0_0x26d9d7(0x2b8),'vote':'투표·설문','notice':a0_0x26d9d7(0x27a),'board':'건의사항','schedule':'일정\x20타임라인','gallery':'현장\x20사진','aptinfo':'단지\x20개요','org':'임원진','budget':a0_0x26d9d7(0x314),'admin':'관리자'};let curPage='home';function go(_0x4ad7d5){const _0x5d1563=a0_0x26d9d7;curPage=_0x4ad7d5,PAGES['forEach'](_0x15bd39=>{const _0x1f345f=a0_0x72e6;document[_0x1f345f(0x13a)](_0x1f345f(0x35e)+_0x15bd39)?.[_0x1f345f(0x176)][_0x1f345f(0x1fd)]('on',_0x15bd39===_0x4ad7d5),document[_0x1f345f(0x13a)](_0x1f345f(0x15a)+_0x15bd39)?.[_0x1f345f(0x176)][_0x1f345f(0x1fd)]('on',_0x15bd39===_0x4ad7d5);}),document[_0x5d1563(0x13a)](_0x5d1563(0x331))[_0x5d1563(0x271)]=NAMES[_0x4ad7d5]||_0x4ad7d5;_0x4ad7d5==='delegate'&&(setTimeout(resizeSig,0x32),setTimeout(resizeSig,0xfa),document[_0x5d1563(0x13a)]('fJoint')[_0x5d1563(0x3bb)]&&(setTimeout(resizeJointSig,0x32),setTimeout(resizeJointSig,0xfa)));if(_0x4ad7d5===_0x5d1563(0x3c5)&&unlocked)refreshAdmin();_0x4ad7d5===_0x5d1563(0x360)&&(renderHome(),fetchVoteTallies()[_0x5d1563(0x206)](_0x5bc7c1=>{applyTalliesToVotes(_0x5bc7c1),renderHome();})),_0x4ad7d5===_0x5d1563(0x249)&&(renderVotes(),fetchVoteTallies()['then'](_0x462d90=>{applyTalliesToVotes(_0x462d90),renderVotes();})),_0x4ad7d5==='board'&&(renderBoard(),loadBoard()),document.getElementById('boardFab').style.display=(_0x4ad7d5==='board'?'flex':'none'),window[_0x5d1563(0x1a7)]({'top':0x0}),closeSb();}function toggleSb(){const _0x38fccf=a0_0x26d9d7;document[_0x38fccf(0x13a)](_0x38fccf(0x2fb))['classList'][_0x38fccf(0x1fd)](_0x38fccf(0x354)),document[_0x38fccf(0x13a)](_0x38fccf(0x14d))[_0x38fccf(0x176)][_0x38fccf(0x1fd)]('on');}function closeSb(){const _0x2a614c=a0_0x26d9d7;document['getElementById']('sidebar')[_0x2a614c(0x176)][_0x2a614c(0x31a)]('open'),document[_0x2a614c(0x13a)](_0x2a614c(0x14d))['classList'][_0x2a614c(0x31a)]('on');}function calcStats(){const _0x2ec216=a0_0x26d9d7,_0x271490=dataLoaded?Object[_0x2ec216(0x17f)](DATA)['length']:STATS['done'],_0x18bc29=dataLoaded?Object[_0x2ec216(0x122)](DATA)[_0x2ec216(0x2c5)](_0xca6c38=>_0xca6c38[_0x2ec216(0x12b)]==='동의')['length']:STATS[_0x2ec216(0x12b)];return{'done':_0x271490,'agree':_0x18bc29,'deny':_0x271490-_0x18bc29,'rate':Math['round'](_0x271490/TOTAL*0x3e8)/0xa,'left':TOTAL-_0x271490};}function updateStats(){const _0x372144=a0_0x26d9d7,_0x18d8fb=calcStats(),_0x3f610c=(_0x17ef50,_0x10b3ed)=>{const _0x55ea1b=a0_0x72e6,_0x73d670=document[_0x55ea1b(0x13a)](_0x17ef50);if(_0x73d670)_0x73d670[_0x55ea1b(0x271)]=_0x10b3ed;};_0x3f610c(_0x372144(0x318),_0x18d8fb['rate']),document[_0x372144(0x13a)](_0x372144(0x2f7))[_0x372144(0x235)][_0x372144(0x3b7)]=Math[_0x372144(0x284)](_0x18d8fb[_0x372144(0x268)],0x64)+'%',_0x3f610c(_0x372144(0x247),_0x18d8fb['rate']),document['getElementById'](_0x372144(0x1a2))['style']['width']=Math[_0x372144(0x284)](_0x18d8fb['rate'],0x64)+'%',_0x3f610c(_0x372144(0x158),_0x18d8fb[_0x372144(0x272)]),_0x3f610c(_0x372144(0x1d6),_0x18d8fb[_0x372144(0x12b)]),_0x3f610c(_0x372144(0x253),_0x18d8fb[_0x372144(0x1e7)][_0x372144(0x23e)]());const _0xb80734=0xfb,_0x6bab99=_0xb80734*(_0x18d8fb[_0x372144(0x268)]/0x64);document[_0x372144(0x13a)]('donutC')[_0x372144(0x345)](_0x372144(0x283),_0x6bab99+'\x20'+(_0xb80734-_0x6bab99)),_0x3f610c('donutP',_0x18d8fb[_0x372144(0x268)]+'%'),_0x3f610c(_0x372144(0x2ed),_0x18d8fb[_0x372144(0x272)][_0x372144(0x23e)]()+_0x372144(0x196)+TOTAL[_0x372144(0x23e)]()+'\x20세대'),_0x3f610c(_0x372144(0x346),_0x18d8fb[_0x372144(0x12b)][_0x372144(0x23e)]()+'세대'),_0x3f610c('rlDeny',_0x18d8fb[_0x372144(0x1f8)][_0x372144(0x23e)]()+'세대'),_0x3f610c(_0x372144(0x15e),_0x18d8fb[_0x372144(0x1e7)][_0x372144(0x23e)]()+'세대'),document['getElementById'](_0x372144(0x373))[_0x372144(0x235)][_0x372144(0x3b7)]=(_0x18d8fb[_0x372144(0x272)]?_0x18d8fb[_0x372144(0x12b)]/_0x18d8fb[_0x372144(0x272)]*0x64:0x0)+'%',document['getElementById'](_0x372144(0x1a0))[_0x372144(0x235)][_0x372144(0x3b7)]=(_0x18d8fb[_0x372144(0x272)]?_0x18d8fb['deny']/_0x18d8fb[_0x372144(0x272)]*0x64:0x0)+'%',document[_0x372144(0x13a)]('rpLeft')[_0x372144(0x235)][_0x372144(0x3b7)]=_0x18d8fb['left']/TOTAL*0x64+'%',_0x3f610c('aRate',_0x18d8fb[_0x372144(0x268)]);const _0x47f412=document['getElementById'](_0x372144(0x2f4));if(_0x47f412)_0x47f412['style'][_0x372144(0x3b7)]=Math[_0x372144(0x284)](_0x18d8fb[_0x372144(0x268)],0x64)+'%';_0x3f610c(_0x372144(0x33d),_0x18d8fb[_0x372144(0x272)]),_0x3f610c(_0x372144(0x152),_0x18d8fb['left'][_0x372144(0x23e)]()),_0x3f610c(_0x372144(0x179),TOTAL[_0x372144(0x23e)]());}function renderAll(){updateStats(),renderHome(),renderNotice(),renderSchedule(),renderAptInfo(),renderOrg(),renderBudget(),renderVotes();}function renderHome(){const _0x1da4f4=a0_0x26d9d7;updateStats();const _0x56ea18=document[_0x1da4f4(0x13a)]('homeVote'),_0x43fe45=VOTES[_0x1da4f4(0x2c5)](_0x158aaa=>_0x158aaa['status']===_0x1da4f4(0x197))[_0x1da4f4(0x38c)](0x0,0x2);_0x56ea18[_0x1da4f4(0x25d)]=_0x43fe45[_0x1da4f4(0x1c8)]?_0x43fe45['map'](_0x7689c5=>{const _0x35680e=_0x1da4f4,_0x21f33c=Object[_0x35680e(0x122)](_0x7689c5[_0x35680e(0x1df)]||{})[_0x35680e(0x252)]((_0x4568b4,_0x5b7453)=>_0x4568b4+_0x5b7453,0x0);return _0x35680e(0x2b4)+esc(_0x7689c5[_0x35680e(0x313)])+_0x35680e(0x125)+_0x7689c5['end']+_0x35680e(0x33f)+_0x21f33c+'명\x20참여</div></div>';})[_0x1da4f4(0x2e2)](''):_0x1da4f4(0x390),renderProgressTrack();}function renderProgressTrack(){const _0x4f60cf=a0_0x26d9d7,_0x5d748c=[0xa,0x14,0x1e,0x28,0x32,0x3c,0x46,0x50,0x5a,0x64],_0x95fea8=document[_0x4f60cf(0x13a)]('progDots');if(!_0x95fea8)return;_0x95fea8[_0x4f60cf(0x25d)]=_0x5d748c[_0x4f60cf(0x1a5)](_0x32d2b1=>{const _0x297239=_0x4f60cf,_0x400e65=_0x32d2b1<=CURRENT_PROGRESS?_0x297239(0x30b):nearestMilestone(CURRENT_PROGRESS)===_0x32d2b1?'current':'';return _0x297239(0x31b)+_0x32d2b1+_0x297239(0x16a)+_0x400e65+_0x297239(0x3ac)+_0x32d2b1+_0x297239(0x128);})[_0x4f60cf(0x2e2)](''),document['getElementById'](_0x4f60cf(0x2a9))[_0x4f60cf(0x271)]=CURRENT_PROGRESS+'%',requestAnimationFrame(()=>{setTimeout(()=>{const _0x1225e8=a0_0x72e6;document[_0x1225e8(0x13a)](_0x1225e8(0x330))[_0x1225e8(0x235)]['width']=Math[_0x1225e8(0x284)](0x64,CURRENT_PROGRESS)+'%';},0x96);});const _0x1bba69=document[_0x4f60cf(0x13a)](_0x4f60cf(0x124)),_0x55d290=document[_0x4f60cf(0x13a)](_0x4f60cf(0x359));_0x1bba69&&(_0x1bba69['style'][_0x4f60cf(0x399)]=unlocked?'block':_0x4f60cf(0x322),_0x1bba69[_0x4f60cf(0x235)]['left']=Math[_0x4f60cf(0x284)](0x64,CURRENT_PROGRESS)+'%');if(_0x55d290)_0x55d290[_0x4f60cf(0x176)][_0x4f60cf(0x1fd)]('editable',!!unlocked);bindProgressDrag();}let progDragBound=![];function bindProgressDrag(){const _0x3f2d65=a0_0x26d9d7,_0x5e54e2=document['getElementById'](_0x3f2d65(0x12c));if(!_0x5e54e2||progDragBound)return;progDragBound=!![];let _0x5f4e11=![];const _0x36591e=_0x3bcb8e=>{const _0x310611=_0x3f2d65,_0x240b31=_0x5e54e2['getBoundingClientRect'](),_0x4f1589=(_0x3bcb8e[_0x310611(0x153)]??(_0x3bcb8e['touches']&&_0x3bcb8e[_0x310611(0x37e)][0x0]?.[_0x310611(0x153)])??0x0)-_0x240b31['left'];return Math[_0x310611(0x25b)](0x0,Math['min'](0x64,Math['round'](_0x4f1589/_0x240b31['width']*0x64)));},_0x36096f=_0x4acb8c=>{const _0x5c991b=_0x3f2d65;if(!_0x5f4e11||!unlocked)return;const _0x47d751=_0x36591e(_0x4acb8c);document[_0x5c991b(0x13a)](_0x5c991b(0x330))[_0x5c991b(0x235)][_0x5c991b(0x381)]=_0x5c991b(0x322),document[_0x5c991b(0x13a)](_0x5c991b(0x330))[_0x5c991b(0x235)][_0x5c991b(0x3b7)]=_0x47d751+'%',document[_0x5c991b(0x13a)](_0x5c991b(0x124))[_0x5c991b(0x235)]['transition']=_0x5c991b(0x322),document[_0x5c991b(0x13a)](_0x5c991b(0x124))[_0x5c991b(0x235)][_0x5c991b(0x1e7)]=_0x47d751+'%',document[_0x5c991b(0x13a)]('progHeroPct')[_0x5c991b(0x271)]=_0x47d751+'%';if(_0x4acb8c[_0x5c991b(0x23c)])_0x4acb8c['preventDefault']();},_0x3bc4d3=_0x4d5f8d=>{if(!unlocked)return;_0x5f4e11=!![],_0x36096f(_0x4d5f8d);},_0x4d90f9=async _0x3f0946=>{const _0x3985de=_0x3f2d65;if(!_0x5f4e11||!unlocked)return;_0x5f4e11=![],document['getElementById'](_0x3985de(0x330))['style']['transition']='',document[_0x3985de(0x13a)](_0x3985de(0x124))[_0x3985de(0x235)]['transition']='';const _0x8e16b5=_0x36591e(_0x3f0946['changedTouches']?_0x3f0946[_0x3985de(0x184)][0x0]:_0x3f0946);CURRENT_PROGRESS=_0x8e16b5,await S['s'](_0x3985de(0x2d3),_0x8e16b5),renderProgressTrack(),toast(_0x3985de(0x1ca)+_0x8e16b5+_0x3985de(0x2e9));};_0x5e54e2[_0x3f2d65(0x36d)](_0x3f2d65(0x1ff),_0x3bc4d3),_0x5e54e2['addEventListener'](_0x3f2d65(0x2c1),_0x36096f),window[_0x3f2d65(0x36d)](_0x3f2d65(0x3a2),_0x4d90f9),_0x5e54e2['addEventListener'](_0x3f2d65(0x189),_0x3bc4d3,{'passive':![]}),_0x5e54e2[_0x3f2d65(0x36d)](_0x3f2d65(0x34e),_0x36096f,{'passive':![]}),window['addEventListener'](_0x3f2d65(0x1b9),_0x4d90f9);}function nearestMilestone(_0x173ffc){const _0x2e4231=[0xa,0x14,0x1e,0x28,0x32,0x3c,0x46,0x50,0x5a,0x64];for(const _0x22f9ff of _0x2e4231)if(_0x173ffc<=_0x22f9ff)return _0x22f9ff;return 0x64;}function openProgressPopup(_0x1e492a){const _0x30f4f2=a0_0x26d9d7,_0x385b60=PROGRESS_DATA[_0x1e492a];document[_0x30f4f2(0x13a)](_0x30f4f2(0x232))[_0x30f4f2(0x271)]=_0x1e492a+'%';const _0x2c43e7=document['getElementById'](_0x30f4f2(0x2aa));!_0x385b60||!_0x385b60[_0x30f4f2(0x374)]||!_0x385b60[_0x30f4f2(0x374)]['length']?_0x2c43e7['innerHTML']='<div\x20style=\x22color:var(--ink4);font-size:13px\x22>등록된\x20안내가\x20없습니다.</div>':_0x2c43e7[_0x30f4f2(0x25d)]=_0x385b60[_0x30f4f2(0x374)][_0x30f4f2(0x1a5)](_0x26b8cc=>_0x30f4f2(0x338)+esc(_0x26b8cc['t'])+'</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22prog-sec-list\x22>'+_0x26b8cc[_0x30f4f2(0x1ad)][_0x30f4f2(0x1a5)](_0x40348d=>'<div\x20class=\x22prog-item\x22>'+esc(_0x40348d)+_0x30f4f2(0x1d7))[_0x30f4f2(0x2e2)]('')+_0x30f4f2(0x385))[_0x30f4f2(0x2e2)](''),document[_0x30f4f2(0x13a)](_0x30f4f2(0x21c))[_0x30f4f2(0x176)][_0x30f4f2(0x39d)]('on');}function closeProgressPopup(){const _0x38c98c=a0_0x26d9d7;document[_0x38c98c(0x13a)]('progModalBg')['classList'][_0x38c98c(0x31a)]('on');}function renderNotice(){const _0x295726=a0_0x26d9d7,_0x72e87a=document[_0x295726(0x13a)]('noticeList'),_0x99d872=document[_0x295726(0x13a)](_0x295726(0x28c));if(!NOTICES[_0x295726(0x1c8)]){_0x72e87a[_0x295726(0x25d)]='',_0x99d872[_0x295726(0x235)][_0x295726(0x399)]='block';return;}_0x99d872['style'][_0x295726(0x399)]=_0x295726(0x322),_0x72e87a[_0x295726(0x25d)]=[...NOTICES]['reverse']()[_0x295726(0x1a5)]((_0x5ca3d4,_0x3bb592)=>_0x295726(0x32d)+(NOTICES['length']-0x1-_0x3bb592)+_0x295726(0x2e3)+(_0x5ca3d4[_0x295726(0x2a1)]==='중요'?_0x295726(0x1b6):_0x5ca3d4['cat']==='일정'?_0x295726(0x210):_0x295726(0x395))+'\x22>'+esc(_0x5ca3d4[_0x295726(0x2a1)]||'공지')+_0x295726(0x1e9)+esc(_0x5ca3d4[_0x295726(0x313)])+_0x295726(0x129)+esc(_0x5ca3d4[_0x295726(0x2b7)]||'')+'</div></div><span\x20style=\x22color:var(--ink4)\x22>›</span></div>')[_0x295726(0x2e2)]('');}function showNotice(_0x2a1fcb){const _0x5bdf28=a0_0x26d9d7,_0x5a2d31=NOTICES[_0x2a1fcb];document[_0x5bdf28(0x13a)](_0x5bdf28(0x26a))[_0x5bdf28(0x25d)]=_0x5bdf28(0x13e)+esc(_0x5a2d31[_0x5bdf28(0x313)]),document['getElementById']('ndMeta')[_0x5bdf28(0x271)]=(_0x5a2d31[_0x5bdf28(0x2a1)]||'공지')+'\x20·\x20'+_0x5a2d31['date'],document[_0x5bdf28(0x13a)]('ndBody')[_0x5bdf28(0x271)]=_0x5a2d31[_0x5bdf28(0x2b5)],document['getElementById'](_0x5bdf28(0x1f2))[_0x5bdf28(0x235)][_0x5bdf28(0x399)]=_0x5bdf28(0x135),document[_0x5bdf28(0x13a)](_0x5bdf28(0x1f2))[_0x5bdf28(0x2ef)]({'behavior':'smooth'});}function renderSchedule(){const _0xa5a519=a0_0x26d9d7,_0x5975c0=document[_0xa5a519(0x13a)](_0xa5a519(0x369));_0x5975c0[_0xa5a519(0x25d)]=SCHEDS[_0xa5a519(0x1c8)]?SCHEDS[_0xa5a519(0x1a5)](_0x4f45d3=>_0xa5a519(0x226)+(_0x4f45d3['s']||'')+'\x22><div\x20class=\x22tl-d\x22></div><div\x20class=\x22tl-dt\x22>'+esc(_0x4f45d3['d']||'')+_0xa5a519(0x28d)+esc(_0x4f45d3['t'])+(_0x4f45d3['s']===_0xa5a519(0x251)?_0xa5a519(0x1ce):_0x4f45d3['s']===_0xa5a519(0x272)?'<span\x20class=\x22tl-chip\x20done\x22>완료</span>':'')+_0xa5a519(0x388))[_0xa5a519(0x2e2)](''):_0xa5a519(0x34c);}function renderAptInfo(){
+  const el=document.getElementById('tbarsMain');
+  if(el){
+    const max=Math.max(...TYPES.map(x=>x.u));
+    el.innerHTML=TYPES.map(x=>'<div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"><div style="width:56px;font-size:11.5px;font-weight:700;color:var(--ink2);flex-shrink:0">'+x.t+'</div><div style="flex:1;height:9px;background:var(--surface2);border-radius:6px;overflow:hidden"><div style="height:100%;background:var(--brand);border-radius:6px;width:'+Math.round(x.u/max*100)+'%"></div></div><div style="width:64px;text-align:right;font-size:11.5px;font-weight:800;color:var(--ink);flex-shrink:0">'+x.u.toLocaleString()+'세대</div></div>').join('');
+  }
+  document.getElementById('qaEl').innerHTML=QA.map((qa,i)=>'<div class="qa" id="qaBox'+i+'"><div class="qa-q" onclick="document.getElementById(\'qaBox'+i+'\').classList.toggle(\'open\')"><div class="qa-n">'+(i+1)+'</div><div class="qa-t">'+esc(qa.q)+'</div><span class="qa-ar">▾</span></div><div class="qa-a">'+esc(qa.a)+'</div></div>').join('');
+}
+let BOARD=[];
+async function loadBoard(){
+  try{
+    const r=await fetch(`${GH_API}/issues?labels=${encodeURIComponent('건의사항')}&state=open&per_page=100&sort=created&direction=desc`);
+    if(!r.ok)return;
+    const issues=await r.json();
+    BOARD=issues.map(iss=>{
+      const m=(iss.body||'').match(/```json\n([\s\S]*?)\n```/);
+      let data={};
+      try{data=JSON.parse(m?m[1]:'{}');}catch(e){}
+      return{id:iss.number,title:(iss.title||'').replace(/^\[건의사항\]\s*/,''),name:data.name||'익명',dong:data.dong||'',ho:data.ho||'',anon:!!data.anon,content:data.content||'',ts:data.ts||iss.created_at};
+    });
+    renderBoard();
+  }catch(e){console.warn('board load fail',e);}
+}
+function renderBoard(){
+  const el=document.getElementById('boardList'),empty=document.getElementById('boardEmpty');
+  if(!el)return;
+  if(!BOARD.length){el.innerHTML='';if(empty)empty.style.display='block';return;}
+  if(empty)empty.style.display='none';
+  el.innerHTML=BOARD.map((b,i)=>{
+    const dn=b.anon?'익명':esc(b.name);
+    const loc=(b.dong&&b.ho)?esc(b.dong)+'동 '+esc(b.ho)+'호 · ':'';
+    return '<div class="board-item" onclick="openBoardView('+i+')"><div class="board-item-hd"><span class="board-badge">건의</span><span class="board-item-t">'+esc(b.title)+'</span></div><div class="board-item-meta"><span>'+loc+dn+'</span><span>'+fmtTs(b.ts)+'</span></div></div>';
+  }).join('');
+}
+function openBoardWrite(){
+  document.getElementById('bwTitle').value='';
+  document.getElementById('bwName').value='';
+  document.getElementById('bwDong').value='';
+  document.getElementById('bwHo').value='';
+  document.getElementById('bwContent').value='';
+  document.getElementById('bwAnon').checked=false;
+  document.getElementById('boardWriteBg').classList.add('on');
+}
+function closeBoardWrite(){document.getElementById('boardWriteBg').classList.remove('on');}
+async function submitBoard(){
+  const title=document.getElementById('bwTitle').value.trim();
+  const name=document.getElementById('bwName').value.trim();
+  const dong=document.getElementById('bwDong').value.trim();
+  const ho=document.getElementById('bwHo').value.trim();
+  const content=document.getElementById('bwContent').value.trim();
+  const anon=document.getElementById('bwAnon').checked;
+  if(!title||!name||!content){toast('제목·이름·내용을 모두 입력해주세요');return;}
+  const ts=new Date().toISOString();
+  try{
+    const r=await fetch(WORKER_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({type:'board',title,name,dong,ho,anon,content,ts})});
+    if(!r.ok)throw new Error('fail');
+    closeBoardWrite();
+    toast('✅ 건의사항이 등록되었습니다');
+    BOARD.unshift({id:0,title,name,dong,ho,anon,content,ts});
+    renderBoard();
+  }catch(e){
+    toast('❌ 등록에 실패했습니다. 잠시 후 다시 시도해주세요');
+  }
+}
+function openBoardView(i){
+  const b=BOARD[i];
+  const dn=b.anon?'익명':esc(b.name);
+  const loc=(b.dong&&b.ho)?esc(b.dong)+'동 '+esc(b.ho)+'호 · ':'';
+  document.getElementById('boardViewBody').innerHTML='<div style="font-size:16px;font-weight:800;margin-bottom:10px">'+esc(b.title)+'</div><div class="board-view-meta"><span>'+loc+dn+'</span><span>'+fmtTs(b.ts)+'</span></div><div class="board-view-content">'+esc(b.content)+'</div>';
+  document.getElementById('boardViewBg').classList.add('on');
+}
+function closeBoardView(){document.getElementById('boardViewBg').classList.remove('on');}
+function renderOrg(){const _0x452a87=a0_0x26d9d7,_0x48fcaa=document['getElementById'](_0x452a87(0x290));_0x48fcaa[_0x452a87(0x25d)]=ORGS[_0x452a87(0x1c8)]?ORGS[_0x452a87(0x1a5)](_0x27023a=>_0x452a87(0x1b7)+esc(_0x27023a[_0x452a87(0x2b3)]||_0x27023a[_0x452a87(0x138)][0x0]||'👤')+'</div><div\x20class=\x22org-p\x22>'+esc(_0x27023a[_0x452a87(0x256)])+'</div><div\x20class=\x22org-n\x22>'+esc(_0x27023a[_0x452a87(0x138)])+_0x452a87(0x388))['join'](''):'<div\x20style=\x22color:var(--ink4);font-size:13px;grid-column:1/-1\x22>관리자에서\x20임원진을\x20등록해\x20주세요.</div>';}function renderBudget(){const _0x56bfbc=a0_0x26d9d7,_0x169341=document['getElementById']('budgetEl'),_0x1550c6=document['getElementById'](_0x56bfbc(0x207)),_0x591f79=(_0x311770,_0x45c66d)=>document[_0x56bfbc(0x13a)](_0x311770)[_0x56bfbc(0x25d)]=_0x45c66d[_0x56bfbc(0x23e)]()+'<span\x20class=\x22u\x22>원</span>';if(!BUDGETS['length']){_0x169341[_0x56bfbc(0x25d)]='',_0x1550c6[_0x56bfbc(0x235)]['display']=_0x56bfbc(0x135),_0x591f79('bIn',0x0),_0x591f79(_0x56bfbc(0x38f),0x0);return;}_0x1550c6[_0x56bfbc(0x235)][_0x56bfbc(0x399)]='none',_0x591f79(_0x56bfbc(0x148),BUDGETS['filter'](_0x318b5f=>_0x318b5f[_0x56bfbc(0x245)]==='in')['reduce']((_0xc454ec,_0x1d5bf5)=>_0xc454ec+ +_0x1d5bf5[_0x56bfbc(0x35b)],0x0)),_0x591f79('bOut',BUDGETS['filter'](_0x501d96=>_0x501d96[_0x56bfbc(0x245)]===_0x56bfbc(0x1f0))[_0x56bfbc(0x252)]((_0x4d3eaf,_0x44637f)=>_0x4d3eaf+ +_0x44637f['amt'],0x0)),_0x169341[_0x56bfbc(0x25d)]=[...BUDGETS][_0x56bfbc(0x1ea)]()[_0x56bfbc(0x1a5)](_0x28a6f2=>'<div\x20class=\x22bg-i\x22><div\x20class=\x22bg-ic\x20'+_0x28a6f2[_0x56bfbc(0x245)]+'\x22>'+(_0x28a6f2[_0x56bfbc(0x245)]==='in'?'💚':'💸')+_0x56bfbc(0x1d8)+esc(_0x28a6f2[_0x56bfbc(0x138)])+_0x56bfbc(0x29f)+(_0x28a6f2[_0x56bfbc(0x2b7)]||'')+(_0x28a6f2[_0x56bfbc(0x191)]?_0x56bfbc(0x36c)+esc(_0x28a6f2[_0x56bfbc(0x191)]):'')+'</div></div><div\x20class=\x22bg-a\x20'+_0x28a6f2['type']+'\x22>'+(_0x28a6f2[_0x56bfbc(0x245)]==='in'?'+':'-')+(+_0x28a6f2[_0x56bfbc(0x35b)])[_0x56bfbc(0x23e)]()+_0x56bfbc(0x367))[_0x56bfbc(0x2e2)]('');}function renderVotes(){const _0x2fb21a=a0_0x26d9d7,_0x454092=document[_0x2fb21a(0x13a)](_0x2fb21a(0x2d0)),_0x544b12=document[_0x2fb21a(0x13a)]('voteEmpty');if(!VOTES[_0x2fb21a(0x1c8)]){_0x454092[_0x2fb21a(0x25d)]='',_0x544b12[_0x2fb21a(0x235)][_0x2fb21a(0x399)]=_0x2fb21a(0x135);return;}_0x544b12[_0x2fb21a(0x235)][_0x2fb21a(0x399)]=_0x2fb21a(0x322);const _0x304ae4=JSON[_0x2fb21a(0x380)](localStorage[_0x2fb21a(0x278)](_0x2fb21a(0x181))||'{}');_0x454092['innerHTML']=VOTES[_0x2fb21a(0x1a5)]((_0x32d760,_0x43f02b)=>{const _0xb598e6=_0x2fb21a,_0x5ac7dc=Object[_0xb598e6(0x122)](_0x32d760[_0xb598e6(0x1df)]||{})[_0xb598e6(0x252)]((_0x3e65cd,_0x2a0234)=>_0x3e65cd+_0x2a0234,0x0),_0x54ef28=_0x304ae4[_0x32d760['id']],_0x4e2040=_0x32d760['status']===_0xb598e6(0x197),_0x21d141=_0x54ef28!==undefined||!_0x4e2040;return'<div\x20class=\x22vote-c\x22>\x0a\x20\x20\x20\x20\x20\x20<div\x20style=\x22display:flex;align-items:center;gap:8px\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22vote-badge\x20'+(_0x4e2040?_0xb598e6(0x1e0):_0xb598e6(0x221))+'\x22>'+(_0x4e2040?_0xb598e6(0x351):'종료')+'</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20'+(_0x54ef28!==undefined?'<span\x20style=\x22font-size:11px;color:var(--brand);font-weight:700\x22>✓\x20투표\x20완료</span>':'')+_0xb598e6(0x258)+esc(_0x32d760['title'])+_0xb598e6(0x34b)+(_0x32d760['start']||'')+_0xb598e6(0x3b6)+(_0x32d760['end']||'')+'</div>\x0a\x20\x20\x20\x20\x20\x20'+(_0x4e2040&&_0x54ef28===undefined?_0xb598e6(0x2d7)+_0x43f02b+'d\x22\x20placeholder=\x22동\x20(예:\x20101)\x22\x20maxlength=\x223\x22\x20style=\x22font-size:13px\x22><input\x20class=\x22fc\x22\x20id=\x22vd'+_0x43f02b+_0xb598e6(0x132):'')+_0xb598e6(0x1a9)+_0x32d760[_0xb598e6(0x364)][_0xb598e6(0x1a5)]((_0x1c7a27,_0xe876d5)=>{const _0x279e38=_0xb598e6,_0x16ab0e=_0x32d760[_0x279e38(0x1df)]?.[_0xe876d5]||0x0,_0xe82779=_0x5ac7dc?Math[_0x279e38(0x26c)](_0x16ab0e/_0x5ac7dc*0x64):0x0;return _0x279e38(0x25c)+(_0x54ef28===_0xe876d5?_0x279e38(0x193):'')+'\x20'+(_0x21d141?_0x279e38(0x272):'')+_0x279e38(0x1da)+(_0x4e2040&&_0x54ef28===undefined?_0x279e38(0x1ef)+_0x43f02b+','+_0xe876d5+')':'')+'\x22>'+(_0x21d141?_0x279e38(0x3a5)+_0xe82779+_0x279e38(0x295):'')+'<span\x20class=\x22vote-o-t\x22>'+(_0x54ef28===_0xe876d5?'✅\x20':'')+esc(_0x1c7a27)+'</span>'+(_0x21d141?_0x279e38(0x1ba)+_0xe82779+_0x279e38(0x3ba)+_0x16ab0e+_0x279e38(0x326):'')+_0x279e38(0x1d7);})['join']('')+_0xb598e6(0x36e)+_0x5ac7dc+_0xb598e6(0x244);})[_0x2fb21a(0x2e2)]('');}async function castVote(_0x1b12c6,_0x10fe1c){const _0x57b9ad=a0_0x26d9d7,_0x5b90b5=VOTES[_0x1b12c6],_0x2aa745=gv('vd'+_0x1b12c6+'d'),_0x4469d0=gv('vd'+_0x1b12c6+'h');if(!_0x2aa745||!_0x4469d0)return toast('동과\x20호수를\x20입력해\x20주세요');if(!confirm(_0x2aa745+'동\x20'+_0x4469d0+_0x57b9ad(0x1e8)+_0x5b90b5[_0x57b9ad(0x364)][_0x10fe1c]+_0x57b9ad(0x223)))return;if(!_0x5b90b5[_0x57b9ad(0x1df)])_0x5b90b5[_0x57b9ad(0x1df)]={};_0x5b90b5[_0x57b9ad(0x1df)][_0x10fe1c]=(_0x5b90b5[_0x57b9ad(0x1df)][_0x10fe1c]||0x0)+0x1;const _0x3cf43f=JSON[_0x57b9ad(0x380)](localStorage[_0x57b9ad(0x278)](_0x57b9ad(0x181))||'{}');_0x3cf43f[_0x5b90b5['id']]=_0x10fe1c,localStorage[_0x57b9ad(0x27f)](_0x57b9ad(0x181),JSON[_0x57b9ad(0x127)](_0x3cf43f)),await voteToGH(_0x5b90b5,_0x10fe1c,_0x2aa745,_0x4469d0),await S['s'](_0x57b9ad(0x157),VOTES),renderVotes(),renderHome(),toast(_0x57b9ad(0x1a1));}function renderDongSel(){const _0x115c1b=a0_0x26d9d7;document[_0x115c1b(0x13a)]('fDong')[_0x115c1b(0x25d)]=CFG['dongs']['map'](_0x25f43f=>'<option\x20value=\x22'+_0x25f43f['n']+'\x22>'+_0x25f43f['n']+_0x115c1b(0x2bb))[_0x115c1b(0x2e2)]('');}let sigCanvas,sigCtx,sigDraw=![],sigHas=![];function initSig(){const _0x3c20c1=a0_0x26d9d7;sigCanvas=document[_0x3c20c1(0x13a)](_0x3c20c1(0x1e1)),sigCtx=sigCanvas[_0x3c20c1(0x370)]('2d'),resizeSig(),window[_0x3c20c1(0x36d)](_0x3c20c1(0x303),resizeSig),window['addEventListener']('orientationchange',()=>setTimeout(resizeSig,0xc8));window[_0x3c20c1(0x1f9)]&&new ResizeObserver(()=>resizeSig())['observe'](document['getElementById'](_0x3c20c1(0x3be)));const _0x2171ff=_0x38b221=>{const _0x191d21=_0x3c20c1;sigDraw=!![],sigHas=!![],document['getElementById'](_0x191d21(0x144))[_0x191d21(0x235)][_0x191d21(0x399)]=_0x191d21(0x322),document['getElementById']('sigWrap')['classList'][_0x191d21(0x39d)](_0x191d21(0x1bd));const _0x7acb38=pt(_0x38b221);sigCtx[_0x191d21(0x2b6)](),sigCtx[_0x191d21(0x27d)](_0x7acb38['x'],_0x7acb38['y']);if(_0x38b221[_0x191d21(0x12e)]!==undefined)try{sigCanvas[_0x191d21(0x2db)](_0x38b221[_0x191d21(0x12e)]);}catch(_0x99caa2){}if(_0x38b221[_0x191d21(0x23c)])_0x38b221[_0x191d21(0x1f3)]();},_0x4ba311=_0x436d79=>{const _0x1c0006=_0x3c20c1;if(!sigDraw)return;const _0x4c233e=pt(_0x436d79);sigCtx[_0x1c0006(0x1d4)](_0x4c233e['x'],_0x4c233e['y']),sigCtx[_0x1c0006(0x267)]();if(_0x436d79[_0x1c0006(0x23c)])_0x436d79[_0x1c0006(0x1f3)]();},_0x5efe83=()=>{sigDraw=![];};sigCanvas[_0x3c20c1(0x36d)]('pointerdown',_0x2171ff,{'passive':![]}),sigCanvas[_0x3c20c1(0x36d)]('pointermove',_0x4ba311,{'passive':![]}),sigCanvas[_0x3c20c1(0x36d)]('pointerup',_0x5efe83),sigCanvas[_0x3c20c1(0x36d)](_0x3c20c1(0x240),_0x5efe83),sigCanvas[_0x3c20c1(0x36d)]('touchstart',_0x5bfee3=>{const _0x164380=_0x3c20c1;if(_0x5bfee3[_0x164380(0x37e)][0x0])_0x2171ff(touchToPointer(_0x5bfee3[_0x164380(0x37e)][0x0],_0x5bfee3));},{'passive':![]}),sigCanvas[_0x3c20c1(0x36d)]('touchmove',_0x392f90=>{const _0x55d83a=_0x3c20c1;if(_0x392f90['touches'][0x0])_0x4ba311(touchToPointer(_0x392f90[_0x55d83a(0x37e)][0x0],_0x392f90));},{'passive':![]}),sigCanvas['addEventListener'](_0x3c20c1(0x1b9),_0x5efe83),sigCanvas[_0x3c20c1(0x36d)]('touchcancel',_0x5efe83);}function touchToPointer(_0x41bf52,_0x3816a3){const _0x20d319=a0_0x26d9d7;return{'clientX':_0x41bf52[_0x20d319(0x153)],'clientY':_0x41bf52[_0x20d319(0x28b)],'cancelable':_0x3816a3['cancelable'],'preventDefault':()=>_0x3816a3[_0x20d319(0x1f3)]()};}function resizeSig(){const _0x519746=a0_0x26d9d7;if(!sigCanvas||sigDraw)return;const _0x538e50=sigCanvas[_0x519746(0x29a)](),_0x5b21d6=window[_0x519746(0x337)]||0x1;if(!_0x538e50[_0x519746(0x3b7)]||_0x538e50[_0x519746(0x3b7)]<0xa)return;const _0x2491ae=sigCanvas[_0x519746(0x3b7)],_0x536da6=sigCanvas[_0x519746(0x2ad)],_0xd8188f=Math[_0x519746(0x26c)](_0x538e50['width']*_0x5b21d6),_0x57635d=Math[_0x519746(0x26c)](0xa0*_0x5b21d6);if(_0x2491ae===_0xd8188f&&_0x536da6===_0x57635d)return;const _0x1b2de7=sigHas?sigCanvas[_0x519746(0x18d)]():null;sigCanvas['width']=_0xd8188f,sigCanvas[_0x519746(0x2ad)]=_0x57635d,sigCtx[_0x519746(0x134)](0x1,0x0,0x0,0x1,0x0,0x0),sigCtx[_0x519746(0x182)](_0x5b21d6,_0x5b21d6),sigCtx['lineWidth']=2.4,sigCtx['lineCap']=_0x519746(0x26c),sigCtx[_0x519746(0x2fe)]=_0x519746(0x26c),sigCtx['strokeStyle']=_0x519746(0x389);if(_0x1b2de7){const _0x498881=new Image();_0x498881[_0x519746(0x174)]=()=>sigCtx[_0x519746(0x1f6)](_0x498881,0x0,0x0,_0x538e50[_0x519746(0x3b7)],0xa0),_0x498881[_0x519746(0x24b)]=_0x1b2de7;}}function pt(_0x2173cb){const _0x9c7e52=a0_0x26d9d7,_0x2ac177=sigCanvas['getBoundingClientRect']();return{'x':_0x2173cb['clientX']-_0x2ac177[_0x9c7e52(0x1e7)],'y':_0x2173cb[_0x9c7e52(0x28b)]-_0x2ac177[_0x9c7e52(0x343)]};}function clearSig(){const _0xbe7185=a0_0x26d9d7;sigCtx[_0xbe7185(0x212)](0x0,0x0,sigCanvas[_0xbe7185(0x3b7)],sigCanvas[_0xbe7185(0x2ad)]),sigHas=![],document[_0xbe7185(0x13a)](_0xbe7185(0x144))[_0xbe7185(0x235)][_0xbe7185(0x399)]='flex',document[_0xbe7185(0x13a)](_0xbe7185(0x3be))[_0xbe7185(0x176)][_0xbe7185(0x31a)](_0xbe7185(0x1bd));}function bindMasks(){const _0x4e96d8=a0_0x26d9d7,_0x458797=_0x5e3f76=>{const _0x10aa8e=a0_0x72e6;_0x5e3f76=_0x5e3f76[_0x10aa8e(0x2a6)](/\D/g,'')['slice'](0x0,0xb);if(_0x5e3f76['length']>0x7)_0x5e3f76=_0x5e3f76['slice'](0x0,0x3)+'-'+_0x5e3f76[_0x10aa8e(0x38c)](0x3,0x7)+'-'+_0x5e3f76['slice'](0x7);else{if(_0x5e3f76['length']>0x3)_0x5e3f76=_0x5e3f76['slice'](0x0,0x3)+'-'+_0x5e3f76[_0x10aa8e(0x38c)](0x3);}return _0x5e3f76;},_0x3fad99=_0x18ec5f=>{const _0x8c0be8=a0_0x72e6;_0x18ec5f=_0x18ec5f[_0x8c0be8(0x2a6)](/\D/g,'')[_0x8c0be8(0x38c)](0x0,0x8);if(_0x18ec5f['length']>0x6)_0x18ec5f=_0x18ec5f[_0x8c0be8(0x38c)](0x0,0x4)+'-'+_0x18ec5f[_0x8c0be8(0x38c)](0x4,0x6)+'-'+_0x18ec5f[_0x8c0be8(0x38c)](0x6);else{if(_0x18ec5f[_0x8c0be8(0x1c8)]>0x4)_0x18ec5f=_0x18ec5f[_0x8c0be8(0x38c)](0x0,0x4)+'-'+_0x18ec5f[_0x8c0be8(0x38c)](0x4);}return _0x18ec5f;};document[_0x4e96d8(0x13a)]('fPhone')['addEventListener'](_0x4e96d8(0x228),_0x51a83e=>{const _0x1b849b=_0x4e96d8;_0x51a83e[_0x1b849b(0x257)][_0x1b849b(0x2ff)]=_0x458797(_0x51a83e[_0x1b849b(0x257)][_0x1b849b(0x2ff)]);}),document[_0x4e96d8(0x13a)]('fBirth')['addEventListener'](_0x4e96d8(0x228),_0x423fe4=>{const _0x4dd2dc=_0x4e96d8;_0x423fe4['target']['value']=_0x3fad99(_0x423fe4['target'][_0x4dd2dc(0x2ff)]);});const _0x14eccf=document[_0x4e96d8(0x13a)](_0x4e96d8(0x333));if(_0x14eccf)_0x14eccf['addEventListener'](_0x4e96d8(0x228),_0x2a41b7=>{const _0x44f53b=_0x4e96d8;_0x2a41b7[_0x44f53b(0x257)][_0x44f53b(0x2ff)]=_0x458797(_0x2a41b7[_0x44f53b(0x257)][_0x44f53b(0x2ff)]);});const _0x1b9f5a=document[_0x4e96d8(0x13a)]('fJointBirth');if(_0x1b9f5a)_0x1b9f5a[_0x4e96d8(0x36d)](_0x4e96d8(0x228),_0x3a7593=>{const _0x311ee9=_0x4e96d8;_0x3a7593['target'][_0x311ee9(0x2ff)]=_0x3fad99(_0x3a7593[_0x311ee9(0x257)]['value']);});}function toggleJoint(_0x3f8b17){const _0x371a01=a0_0x26d9d7;document[_0x371a01(0x13a)](_0x371a01(0x391))[_0x371a01(0x235)][_0x371a01(0x399)]=_0x3f8b17?_0x371a01(0x135):_0x371a01(0x322);if(_0x3f8b17)setTimeout(resizeJointSig,0x32);}let jointSigCanvas,jointSigCtx,jointSigDraw=![],jointSigHas=![];function initJointSig(){const _0xc04d9a=a0_0x26d9d7;jointSigCanvas=document['getElementById'](_0xc04d9a(0x2e4));if(!jointSigCanvas)return;jointSigCtx=jointSigCanvas[_0xc04d9a(0x370)]('2d'),resizeJointSig(),window['addEventListener'](_0xc04d9a(0x303),resizeJointSig),window[_0xc04d9a(0x36d)](_0xc04d9a(0x185),()=>setTimeout(resizeJointSig,0xc8));window[_0xc04d9a(0x1f9)]&&new ResizeObserver(()=>resizeJointSig())['observe'](document[_0xc04d9a(0x13a)](_0xc04d9a(0x321)));const _0x5415ac=_0x2b97f8=>{const _0x5acd55=_0xc04d9a;jointSigDraw=!![],jointSigHas=!![],document[_0x5acd55(0x13a)](_0x5acd55(0x1a3))[_0x5acd55(0x235)][_0x5acd55(0x399)]=_0x5acd55(0x322),document[_0x5acd55(0x13a)](_0x5acd55(0x321))[_0x5acd55(0x176)]['add'](_0x5acd55(0x1bd));const _0x35a077=jpt(_0x2b97f8);jointSigCtx[_0x5acd55(0x2b6)](),jointSigCtx[_0x5acd55(0x27d)](_0x35a077['x'],_0x35a077['y']);if(_0x2b97f8[_0x5acd55(0x12e)]!==undefined)try{jointSigCanvas['setPointerCapture'](_0x2b97f8['pointerId']);}catch(_0x34fad4){}if(_0x2b97f8[_0x5acd55(0x23c)])_0x2b97f8['preventDefault']();},_0x46dcea=_0x7d676b=>{const _0x1df74b=_0xc04d9a;if(!jointSigDraw)return;const _0x540b67=jpt(_0x7d676b);jointSigCtx[_0x1df74b(0x1d4)](_0x540b67['x'],_0x540b67['y']),jointSigCtx[_0x1df74b(0x267)]();if(_0x7d676b[_0x1df74b(0x23c)])_0x7d676b[_0x1df74b(0x1f3)]();},_0x15cf7b=()=>{jointSigDraw=![];};jointSigCanvas['addEventListener']('pointerdown',_0x5415ac,{'passive':![]}),jointSigCanvas['addEventListener']('pointermove',_0x46dcea,{'passive':![]}),jointSigCanvas[_0xc04d9a(0x36d)]('pointerup',_0x15cf7b),jointSigCanvas['addEventListener'](_0xc04d9a(0x240),_0x15cf7b),jointSigCanvas['addEventListener'](_0xc04d9a(0x189),_0x322b85=>{const _0x5799ec=_0xc04d9a;if(_0x322b85[_0x5799ec(0x37e)][0x0])_0x5415ac(touchToPointer(_0x322b85[_0x5799ec(0x37e)][0x0],_0x322b85));},{'passive':![]}),jointSigCanvas['addEventListener'](_0xc04d9a(0x34e),_0x371a3d=>{const _0x12cce8=_0xc04d9a;if(_0x371a3d[_0x12cce8(0x37e)][0x0])_0x46dcea(touchToPointer(_0x371a3d[_0x12cce8(0x37e)][0x0],_0x371a3d));},{'passive':![]}),jointSigCanvas['addEventListener'](_0xc04d9a(0x1b9),_0x15cf7b),jointSigCanvas[_0xc04d9a(0x36d)](_0xc04d9a(0x262),_0x15cf7b);}function jpt(_0x467b2a){const _0x17d33a=a0_0x26d9d7,_0x57a4a3=jointSigCanvas[_0x17d33a(0x29a)]();return{'x':_0x467b2a['clientX']-_0x57a4a3[_0x17d33a(0x1e7)],'y':_0x467b2a[_0x17d33a(0x28b)]-_0x57a4a3[_0x17d33a(0x343)]};}function resizeJointSig(){const _0x2524c4=a0_0x26d9d7;if(!jointSigCanvas||jointSigDraw)return;const _0x37daef=jointSigCanvas[_0x2524c4(0x29a)](),_0x1a3f62=window['devicePixelRatio']||0x1;if(!_0x37daef[_0x2524c4(0x3b7)]||_0x37daef[_0x2524c4(0x3b7)]<0xa)return;const _0x53573f=jointSigCanvas['width'],_0x4cd2aa=jointSigCanvas[_0x2524c4(0x2ad)],_0xa0c3f1=Math['round'](_0x37daef['width']*_0x1a3f62),_0x445a9b=Math['round'](0xa0*_0x1a3f62);if(_0x53573f===_0xa0c3f1&&_0x4cd2aa===_0x445a9b)return;const _0x3a5528=jointSigHas?jointSigCanvas[_0x2524c4(0x18d)]():null;jointSigCanvas[_0x2524c4(0x3b7)]=_0xa0c3f1,jointSigCanvas[_0x2524c4(0x2ad)]=_0x445a9b,jointSigCtx[_0x2524c4(0x134)](0x1,0x0,0x0,0x1,0x0,0x0),jointSigCtx[_0x2524c4(0x182)](_0x1a3f62,_0x1a3f62),jointSigCtx[_0x2524c4(0x22a)]=2.4,jointSigCtx[_0x2524c4(0x14f)]=_0x2524c4(0x26c),jointSigCtx[_0x2524c4(0x2fe)]=_0x2524c4(0x26c),jointSigCtx[_0x2524c4(0x2d5)]=_0x2524c4(0x389);if(_0x3a5528){const _0x179c0f=new Image();_0x179c0f[_0x2524c4(0x174)]=()=>jointSigCtx[_0x2524c4(0x1f6)](_0x179c0f,0x0,0x0,_0x37daef[_0x2524c4(0x3b7)],0xa0),_0x179c0f[_0x2524c4(0x24b)]=_0x3a5528;}}function clearJointSig(){const _0x25549d=a0_0x26d9d7;if(!jointSigCanvas)return;jointSigCtx[_0x25549d(0x212)](0x0,0x0,jointSigCanvas[_0x25549d(0x3b7)],jointSigCanvas[_0x25549d(0x2ad)]),jointSigHas=![],document['getElementById']('jointSigPh')[_0x25549d(0x235)][_0x25549d(0x399)]='flex',document['getElementById'](_0x25549d(0x321))[_0x25549d(0x176)]['remove'](_0x25549d(0x1bd));}async function submitDelegate(){const _0x291806=a0_0x26d9d7,_0x4cfc6a=gv(_0x291806(0x1aa)),_0xf7a325=gv('fBirth'),_0x213c3d=gv(_0x291806(0x3c9)),_0x550f40=gv(_0x291806(0x3b1))[_0x291806(0x2a6)](/\D/g,''),_0x18811f=gv(_0x291806(0x349)),_0x32edaa=rv(_0x291806(0x37f)),_0x35b7fc=rv('fPriv');if(!_0x4cfc6a)return toast(_0x291806(0x2b1));if(!_0xf7a325)return toast(_0x291806(0x33c));if(!_0x550f40)return toast(_0x291806(0x1a8));if(_0x18811f[_0x291806(0x1c8)]<0xc)return toast(_0x291806(0x358));if(!_0x35b7fc)return toast(_0x291806(0x27c));if(!sigHas)return toast(_0x291806(0x339));const _0x5455ad=document[_0x291806(0x13a)]('fJoint')[_0x291806(0x3bb)];let _0x2c328b=null;if(_0x5455ad){const _0x227699=gv('fJointName'),_0x69e2b1=gv(_0x291806(0x2dc)),_0x4848f9=gv(_0x291806(0x333));if(!_0x227699)return toast(_0x291806(0x344));if(!_0x69e2b1)return toast(_0x291806(0x1b4));if(!jointSigHas)return toast(_0x291806(0x31f));_0x2c328b={'name':_0x227699,'birth':_0x69e2b1,'phone':_0x4848f9,'sig':jointSigCanvas[_0x291806(0x18d)](_0x291806(0x3a6))};}const _0x14498f=_0x213c3d+'-'+_0x550f40,_0x5177ca=document['getElementById'](_0x291806(0x160));_0x5177ca[_0x291806(0x323)]=!![],_0x5177ca['textContent']=_0x291806(0x15c);const _0xfe1491=await checkExistingSubmission(_0x213c3d,_0x550f40);if(_0xfe1491){_0x5177ca[_0x291806(0x323)]=![],_0x5177ca[_0x291806(0x271)]=_0x291806(0x26e);const _0x2bc851=confirm('📋\x20'+_0x213c3d+'동\x20'+_0x550f40+_0x291806(0x194)+(_0xfe1491['name']||_0x291806(0x151))+_0x291806(0x2a4));if(!_0x2bc851)return;}else{if(SUBMITTED_KEYS['includes'](_0x14498f)&&!confirm(_0x213c3d+'동\x20'+_0x550f40+_0x291806(0x348))){_0x5177ca['disabled']=![],_0x5177ca[_0x291806(0x271)]=_0x291806(0x26e);return;}}const _0xb276e8={'name':_0x4cfc6a,'birth':_0xf7a325,'dong':_0x213c3d,'ho':_0x550f40,'phone':_0x18811f,'agree':_0x32edaa,'priv':_0x35b7fc,'joint':_0x2c328b,'sig':sigCanvas[_0x291806(0x18d)](_0x291806(0x3a6)),'ts':new Date()['toISOString']()};_0x5177ca[_0x291806(0x323)]=!![],_0x5177ca[_0x291806(0x271)]=_0x291806(0x1fe);let _0x24f079=![];try{await saveToGH(_0xb276e8),_0x24f079=!![];}catch(_0x116940){console[_0x291806(0x304)](_0x116940);}if(!_0x24f079){const _0x2bade5=await S['g'](_0x291806(0x141))||{};_0x2bade5[_0x14498f]=_0xb276e8,await S['s'](_0x291806(0x141),_0x2bade5);}!SUBMITTED_KEYS[_0x291806(0x1cd)](_0x14498f)&&(SUBMITTED_KEYS[_0x291806(0x3bf)](_0x14498f),STATS[_0x291806(0x272)]++);if(_0x32edaa==='동의')STATS[_0x291806(0x12b)]++;await S['s'](_0x291806(0x20a),SUBMITTED_KEYS),await S['s'](_0x291806(0x34d),STATS),lastRec=_0xb276e8,_0x5177ca[_0x291806(0x323)]=![],_0x5177ca[_0x291806(0x271)]=_0x291806(0x26e),document[_0x291806(0x13a)](_0x291806(0x1d1))[_0x291806(0x235)][_0x291806(0x399)]='none',document['getElementById'](_0x291806(0x2d1))[_0x291806(0x235)]['display']=_0x291806(0x135),document[_0x291806(0x13a)]('doneMsg')[_0x291806(0x271)]=CFG[_0x291806(0x310)]+'\x0a'+_0x213c3d+'동\x20'+_0x550f40+_0x291806(0x376)+_0x4cfc6a+(_0x2c328b?_0x291806(0x36c)+_0x2c328b[_0x291806(0x138)]+_0x291806(0x2ce):'')+_0x291806(0x161)+_0x32edaa+_0x291806(0x2c0)+(_0x24f079?'':_0x291806(0x1b2)),updateStats(),toast(_0x24f079?_0x291806(0x21b):_0x291806(0x279));}function resetDelegate(){const _0x2f946d=a0_0x26d9d7;['fName',_0x2f946d(0x382),'fHo',_0x2f946d(0x349),_0x2f946d(0x18a),_0x2f946d(0x2dc),'fJointPhone'][_0x2f946d(0x12f)](_0x462a39=>document[_0x2f946d(0x13a)](_0x462a39)[_0x2f946d(0x2ff)]=''),document[_0x2f946d(0x1c6)](_0x2f946d(0x3b0))[_0x2f946d(0x3bb)]=!![],document[_0x2f946d(0x302)](_0x2f946d(0x2ae))[_0x2f946d(0x12f)](_0x31ffec=>_0x31ffec['checked']=![]),document[_0x2f946d(0x13a)](_0x2f946d(0x1ec))['checked']=![],toggleJoint(![]),clearSig(),clearJointSig(),document[_0x2f946d(0x13a)](_0x2f946d(0x2d1))[_0x2f946d(0x235)][_0x2f946d(0x399)]=_0x2f946d(0x322),document[_0x2f946d(0x13a)]('dForm')[_0x2f946d(0x235)][_0x2f946d(0x399)]=_0x2f946d(0x135),window[_0x2f946d(0x1a7)]({'top':0x0});}function buildPrintPage(_0x2cf294){const _0x4fd5a3=a0_0x26d9d7,_0x211ec0=_0x2cf294[_0x4fd5a3(0x12b)]==='동의'?'<span\x20class=\x22cbx\x22>☑</span>\x20동의&nbsp;&nbsp;&nbsp;<span\x20class=\x22cbx\x22>☐</span>\x20미동의':_0x4fd5a3(0x299),_0x4d810c=_0x2cf294['priv']==='동의'?_0x4fd5a3(0x1fb):_0x4fd5a3(0x192),_0xaed4ac=new Date(_0x2cf294['ts']),_0x1988c5=isNaN(_0xaed4ac)?'':_0xaed4ac['getFullYear']()+_0x4fd5a3(0x35d)+(_0xaed4ac[_0x4fd5a3(0x2e6)]()+0x1)+_0x4fd5a3(0x306)+_0xaed4ac['getDate']()+'일',_0x44dcb8=TERMS[_0x4fd5a3(0x1a5)](_0x312e02=>_0x4fd5a3(0x2d2)+esc(_0x312e02)+_0x4fd5a3(0x355))[_0x4fd5a3(0x2e2)](''),_0x458553=_0x2cf294[_0x4fd5a3(0x24c)]?_0x4fd5a3(0x168)+esc(_0x2cf294[_0x4fd5a3(0x24c)][_0x4fd5a3(0x138)])+'\x20('+esc(_0x2cf294['joint'][_0x4fd5a3(0x1f4)])+_0x4fd5a3(0x281)+esc(_0x2cf294[_0x4fd5a3(0x24c)][_0x4fd5a3(0x2c7)]||'-')+'</td></tr>':'',_0x1f24a0=_0x2cf294[_0x4fd5a3(0x229)]?_0x4fd5a3(0x16f)+_0x2cf294[_0x4fd5a3(0x229)]+_0x4fd5a3(0x2bf):'',_0x48d9d8=_0x4fd5a3(0x2d4)+esc(_0x2cf294[_0x4fd5a3(0x138)])+_0x4fd5a3(0x2bd)+_0x1f24a0+_0x4fd5a3(0x2c8),_0x3419af=_0x2cf294[_0x4fd5a3(0x24c)]&&_0x2cf294['joint'][_0x4fd5a3(0x229)]?'<div\x20class=\x22pl-sign-row\x22><span\x20class=\x22pl-sign-label\x22>공동명의인\x20:\x20'+esc(_0x2cf294[_0x4fd5a3(0x24c)]['name'])+'</span><span\x20class=\x22pl-sign-imgbox\x22><img\x20src=\x22'+_0x2cf294[_0x4fd5a3(0x24c)][_0x4fd5a3(0x229)]+'\x22\x20alt=\x22공동명의자\x20서명\x22></span><span\x20class=\x22pl-sign-suffix\x22>(서명)</span></div>':'';return _0x4fd5a3(0x378)+esc(CFG[_0x4fd5a3(0x310)])+_0x4fd5a3(0x297)+esc(CFG[_0x4fd5a3(0x310)])+_0x4fd5a3(0x1bc)+esc(_0x2cf294[_0x4fd5a3(0x138)])+(_0x2cf294[_0x4fd5a3(0x24c)]?_0x4fd5a3(0x123):'')+_0x4fd5a3(0x273)+esc(_0x2cf294['dong'])+'동\x20'+esc(_0x2cf294['ho'])+_0x4fd5a3(0x3ad)+esc(_0x2cf294[_0x4fd5a3(0x1f4)])+_0x4fd5a3(0x18f)+esc(_0x2cf294[_0x4fd5a3(0x2c7)])+'</td></tr>\x0a\x20\x20\x20\x20\x20\x20'+_0x458553+_0x4fd5a3(0x238)+_0x211ec0+'</td></tr>\x0a\x20\x20\x20\x20</table>\x0a\x20\x20\x20\x20<div\x20class=\x22pl-sec\x22>※\x20수임자(단체)</div>\x0a\x20\x20\x20\x20<table\x20class=\x22pl-tb\x22><tr><th>단\x20체\x20명</th><td>'+esc(CFG['orgName'])+_0x4fd5a3(0x342)+esc(CFG[_0x4fd5a3(0x276)])+_0x4fd5a3(0x300)+_0x44dcb8+'</ol></div>\x0a\x20\x20\x20\x20<div\x20class=\x22pl-note\x22>상기\x20위임\x20사항에\x20대하여\x20입주예정자협의회\x20임원진들은\x20주택법\x20시행령\x20및\x20그\x20외\x20관련\x20법령을\x20준수하고\x20비용처리\x20및\x20사용\x20증빙을\x20철저히\x20하여\x20윤리적으로\x20투명하게\x20운영하기로\x20하며,\x20위임사항에\x20대한\x20부의안건과\x20의결내용\x20및\x20비용처리\x20내역들은\x20입주예정자협의회\x20카페\x20내\x20게시하기로\x20한다.</div>\x0a\x20\x20\x20\x20<div\x20class=\x22pl-priv\x22><b>≪\x20개인정보수집\x20·\x20이용\x20·\x20제공\x20동의서\x20≫</b>본인은\x20입주예정자협의회에\x20개인정보\x20수집/이용,\x20제3자\x20제공에\x20대하여\x20'+_0x4d810c+_0x4fd5a3(0x26b)+_0x1988c5+_0x4fd5a3(0x3ae)+_0x48d9d8+_0x4fd5a3(0x3c1)+_0x3419af+'\x0a\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20<div\x20class=\x22pl-foot\x22>'+esc(CFG[_0x4fd5a3(0x3af)])+'\x20귀중</div>';}function printSelected(_0x4c2807){const _0x38217f=a0_0x26d9d7,_0x2ed94a=_0x4c2807[_0x38217f(0x2c5)](_0x256707=>DATA[_0x256707]);if(!_0x2ed94a['length']){toast(_0x38217f(0x2b2));return;}const _0x89e6f5=document[_0x38217f(0x13a)]('printLayer');_0x89e6f5[_0x38217f(0x25d)]=_0x2ed94a[_0x38217f(0x1a5)](_0x1ccd06=>{const _0x42f476=_0x38217f,_0x45b41b=DATA[_0x1ccd06],_0x568f80=_0x45b41b[_0x42f476(0x24c)]?_0x42f476(0x2bc):'';return'<div\x20class=\x22pl-page'+_0x568f80+'\x22>'+buildPrintPage(_0x45b41b)+'</div>';})[_0x38217f(0x2e2)](''),toast(_0x2ed94a[_0x38217f(0x1c8)]+'건\x20인쇄\x20준비\x20중…\x20(서명\x20로딩)'),waitForImages(_0x89e6f5)['then'](()=>{const _0x10bda5=_0x38217f;setTimeout(()=>window[_0x10bda5(0x254)](),0x50);});}function waitForImages(_0x1aef87){const _0xd4ee66=a0_0x26d9d7,_0x33586d=Array[_0xd4ee66(0x3b9)](_0x1aef87[_0xd4ee66(0x302)](_0xd4ee66(0x36b)));if(!_0x33586d[_0xd4ee66(0x1c8)])return Promise[_0xd4ee66(0x255)]();const _0x170893=0x1770,_0x3602c5=_0x33586d['map'](_0x28d501=>{const _0x193214=_0xd4ee66;if(_0x28d501[_0x193214(0x154)]&&_0x28d501[_0x193214(0x16c)]>0x0)return Promise[_0x193214(0x255)]();return new Promise(_0x52abf7=>{const _0x46a165=_0x193214,_0x583bc2=()=>_0x52abf7();_0x28d501[_0x46a165(0x36d)](_0x46a165(0x187),_0x583bc2,{'once':!![]}),_0x28d501[_0x46a165(0x36d)](_0x46a165(0x14a),_0x583bc2,{'once':!![]});});});return Promise['race']([Promise[_0xd4ee66(0x248)](_0x3602c5),new Promise(_0x456089=>setTimeout(_0x456089,_0x170893))]);}function printRecord(_0x464d63){printSelected([_0x464d63]);}function a0_0x33e5(){const _0x1c0456=['7zI466gCici','pc9ZCgfUpJXKAxyGC3r5Bgu9iMzSzxG6msi+pgrPDIbJBgfZCZ0IBNqTDci+','CMv2zxjZzq','7zIe7j6LidhSSkGG67cP66Y4','zKPVAw50','mJe0nda5meHczwDhra','7jEW65297lky','y2fZDfzVDguO','B3v0','BgLZDevTChr5','BM90AwnLrgv0ywLS','ChjLDMvUDerLzMf1Bhq','yMLYDgG','7kgW6Rk97yQ57zMuioYALoYYRq','zhjHD0LTywDL','zgvSzwDHDgu','zgvUEq','uMvZAxPLt2jZzxj2zxi','ntNJJQff','phnWyw4Gy2XHC3m9iMnIEci+4PIrpc9ZCgfUpIdRJ5NSNzJTLANRI4JRI6qUjM5IC3a7jM5IC3a7phnWyw4Gy2XHC3m9iMnIEci+4PIqpc9ZCgfUpIdRJ5NSNzJTLzJSP4aG7jwk7iQ164Ui64UKlG','yxaT','Dg9Nz2XL','7kca7j6LioYKKEkaPG','Cg9PBNrLCMrVD24','mJaYns0Woc0Ymq','pc9IpIdcTYa8C3bHBIbZDhLSzt0Iy29SB3i6DMfYkc0TAw5RncKIpG','ndvKEujIrLO','y29Uy2f0','7jIO65287j24ioYCHoYEHoYEPEUpHcdRSPxSOieG7zQO66cL7j20ioYEIoUcMoYALd8','pgrPDIbZDhLSzt0IBwfYz2LUlwjVDhrVBtO2ChGIpGOGicaGicaGidXKAxyGC3r5Bgu9iMrPC3bSyxK6zMXLEdTQDxn0Awz5lwnVBNrLBNq6C3bHy2uTyMv0D2vLBJTMB250lxnPEMu6mtjWEdTTyxjNAw4TyM90Dg9ToJnWEci+phnWyw4GC3r5Bgu9iMzVBNqTD2vPz2H0oJyWmdTJB2XVCJP2yxiOls1PBMSYksi+','DgHLBG','yNvKz2v0rw1WDhK','7j6f7ko8ioYGHcdSNOxSO7ZRR7WG7isK66Qf7zQmioQWNoY1NoYxRoU2GcdRHBZSNzG','mteX','DhbFA2v5CW','nE2AJcdSI6tTJkGG4OcuidyW7lsi6RceioYEOoQ4Ia','7kEa67cy67o06Rcv7j6r7jEf','y2zN','7j6f7ko87jIi7kcv7j6q7zIr7j2y7zQmioYAToYyGEYDHcdSNitTLzWG7j6e7jUq7kEeioYeOoY2NcdRSi8G6Rsa66ASioQ3UoUMRoQZOcdTMOZSM5dQTidRPQWO6Rca7j6flcdRK7hQUiKSioYNLEQZHcWG7yoi7yE0ioUtSsK','iZbenumZma','BNrJlxnJAa','C2vSzwn0qwXSq2HRmG','y2XLyxjszwn0','7jEW6RkWio2zLEYDUcdTLytSMPq','64UK7kEa6RIWioUWJYdSP4dRSjJRS7tQSjxQS7xSGQWSioUqMoUPLoYASoQ4ScdSNPhSL4u','67kv66Y067kv7j24ioYGNoYDToYxMcdRP4JSIQtTHlaG66QO65oC','DNrtDgfYDa','7jYe7j6e7j6LioUVUoUpMEYDMcJRR7JSOjZSTPWPioYeUoUmGcJSNitSNOtSNPaP7jEqioUmGo2vMoYxRoUkLcdQSjZSNBJSOieG66QO65oGioYcRo2vREYxKcdRJidTLzJSL6WG66+8WRFTMjxSGQZSG4eG66QO65oGioYNHo2wIEYcRo2vREYDGcdSOitSOihSNlZROzWG6RcC7j247j20ioU2GoUlTo2vMoUPScdSNOxSO7ZSMiJSOjxSNPdTMjhSNzJTMOZRIPqG7j207jEqioQWNoYDMoY5McdSLytRI4JTLzZRI6qU','64sK7j2067cnioYePoUSUcdSNitSNOtSNQuG7iIy7lEOlcdRI6JSP4dTMitTMANSSRtTGAW','7iUC7zAj7ikSlcdSI5ZQS7xSGQWSioQ0GoQZTEYeNcdRSi8G6Rsa6Roe67Aa7lkylcdRJidSMBGG6Rsa6Roe7j6qioUtSEQZVoYDMcdTMjhSG4eO7zIr7j2yksdRJ5NSNzGG65Iq64QuioQXSoYGIcdRSi8G7yIS7zgCioQYSoYGLEQ2JcdTLONSGQW','zg9Uz3m','4PYfioYeNoUYHoYxKcdSLyJSOitTLzJQSOWG7kca7j6L65cy7jEi7iQ164Ui64UK','ChjVz01VzgfSqMC','lZuP','DhbFB3jNCW','zgvSzxrL','mta0','DMiTzw5K','BKnHDa','iUYxKcdTIkZTKzZTLzJSI5ZQSQdSIRxRI4JQUyW/','idXZCgfUignSyxnZpsj0ywCGDgfNlweIihn0EwXLpsjTyxjNAw4TBgvMDdO0ChGIpUQ4SoQ4SoYEHoYlNdWVC3bHBJ4','CMv2B2TLt2jQzwn0vvjm','pgrPDIbJBgfZCZ0IDgWTAsa','7iUC7zAjWRFSI5ZQS7xSGQWG6Ro166Y4ioYEKEYeSsdRSi8G7kcv6RIW7zQm7j2yioYWUoYeNq','Aw5WDxq','C2LN','BgLUzvDPzhrO','phrYpJX0zd48Aw5WDxqGDhLWzt0Iy2HLy2TIB3GIignSyxnZpsjYB3CTy2HRiIa','cUYxSoUDVEYYMdOG','6Ro164+z66Qf7j2y7j6q','DNrfBMq','ksi+','7ikS7kce7kcq6RkaioYDVoYGLsdTMjhSNzG','7zI4imk3ioUVUoYGKEYiMa','ChjVz01VzgfSugn0','yK5HBwu','A2v5','C3r5Bgu','z2fSBgvYEq','7zgCktWVC3bHBJ48l3nWyw4+pc9KAxy+cIaGicaGicaGpgrPDIbZDhLSzt0IAgvPz2H0oJDWEdTIywnRz3jVDw5KoNzHCIGTlwLUAZuPo2jVCMrLCI1YywrPDxm6nhb4o292zxjMBg93oMHPzgrLBIi+pgrPDIbZDhLSzt0IAgvPz2H0oJeWmcu7D2LKDgG6','cIaGicaGidX0CJ48DgG+7jYe7j6eioUpMEYDMdWVDgG+phrKignVBhnWyw49iJmIpG','BgLZDa','7kgW6Rk97iUD7j6Sio2zLEYDUa','cIaGicaGidXKAxyGC3r5Bgu9iMrPC3bSyxK6zMXLEdTNyxa6n3b4o21HCMDPBI10B3a6ohb4iJ4kicaGicaGica8yNv0Dg9UignSyxnZpsjIDg4GyNrUlwCGyNrUlxnTiIbVBMnSAwnRpsj0B2DNBgvwB3rLka','y2fUy2vSywjSzq','Ahr0Chm6lY9HCgKUz2L0AhvIlMnVBs9ZzwfYy2GVAxnZDwvZp3e9','Dg9mB2nHBgvtDhjPBMC','y29SB3i6iZbenumZmdTMB250lxnPEMu6mtrWEdTMB250lxDLAwDODdO2mda','Cg9PBNrLCMnHBMnLBa','7jYe7j6e7j6LioYGNoY2NcdSHlJRJidSL5aG7zwC7zw0io2yKEYDMo2AJcdSP4dSOjuG67kv66Y064Ya66AS7j24ioYvIoUcTcdRRlJSNPdQSiaG67cC7iAH65cP64Ui64UKlIdSL7dRNB3SSPJRPBWG7kcv7zMv7z6iioYEHEUGPE2vTcdSO7ZSHlJSMPqU','C2vSzwn0qwXSq2HR','6RoO7kgW66Ei6RcqicJSLB0GnJaLioYlNoYGKcK','66Qfio2iRo2rNdWVC3bHBJ48l2rPDJ4kicaGidWVzgL2pG','DhLWzq','yxb0Aw5MBW','C3rsyxrL','ywXS','DM90zq','rJeY','C3jJ','AM9PBNq','pc9ZCgfUpJXZCgfUignSyxnZpsj0ywCG','6Rg07j2eio2vNcdRSOJSL5aGuerg66gCioY2NoUGPE2vMoYlNoQYOoYkTEUlIoQ5Jd8','65cy66Mu7jQW6RIWioUlPoYNKcWG67cW7iIy66gCioYEKEYxHq','7is464Yapc9ZCgfUpJWVzgL2pJXKAxyGy2XHC3m9iNrIlxrYiJ48zgL2ignSyxnZpsj0yI1MiIbZDhLSzt0ID2LKDgG6','BM93','CMvKDwnL','C3rmzwz0','ChjPBNq','CMvZB2X2zq','Cg9Z','DgfYz2v0','cIaGicaGidWVzgL2pGOGicaGica8zgL2ignSyxnZpsj2B3rLlxqIpG','y2zNq29SB3i','phrYpJX0zcbJB2XZCgfUpsi3iIbZDhLSzt0IDgv4Dc1HBgLNBJPJzw50zxi7CgfKzgLUzZOYmhb4o2nVBg9YoNzHCIGTlwLUAZqPiJ7RTOJRN6ZSMktRIPqG7ksr4OcMpc90zd48l3rYpG','Bwf4','pgrPDIbJBgfZCZ0IDM90zs1Via','Aw5Uzxjive1m','mta1','l2LZC3vLCZ9SywjLBhm97yIS7zgCjNn0yxrLpwfSBczWzxjFCgfNzt0XmdaMCgfNzt0','7ioi66gC6RoG7lMO65cy7jEi7iQ164Ui64UK','DgfNlwe','Dg91y2HJyw5JzwW','DNrpChrZ','7j6f7jIi7zIrioYAToYyGEYNHcaX7lcOio2AJoYDMa','BM90AwnL','pc9ZCgfUpJXZCgfUihn0EwXLpsjMBgv4oJe7zM9UDc1ZAxPLoJeZChGIpG','C3rYB2TL','CMf0zq','B05HBwu','BMruAxrSzq','pc9KAxy+cIaGica8zgL2ignSyxnZpsjWBc1KyxrLiJ4','CM91BMq','7kEi7j2y7j2r64U1ioYEKEYeSq','7jYe7j6e7j6LioYGNoY2No2vMoQ4ScdIHPi','jYKIpLberJWVyNv0Dg9UpJXIDxr0B24Gy2XHC3m9iMrLBciGB25JBgLJAZ0IzgvSuMvJB3jKkcC','7jYe7j6e7j6LioYNLEQ1Ra','Dgv4DenVBNrLBNq','zg9Uzq','pc90zd48DgG+6Roe7jw9ioUpMs/TMlJSIjG8l3rOpJX0zd4','mtaX','67cP7iIyioUZToYiMoQZTEYcRa','y2fMzufKzhi','ioU2IoUFRoYzLoYkTEUlIoUlPa','z2v0sxrLBq','8j+tSsdSNBqG6RIW6RIW7jEqioYEHoYlNcdSOidSNQxRKjJSL4JSIRxRI4JRI6q','6Ro17kEa7ikS7zwT','o2jHy2TNCM91BMq6','6RcC7j247kcv67o0ioUpMEYDMcdSL6ZRTOdRPBWG7isG7yoD7zw0ioYJVoYeUoYALa','Bw92zvrV','ntNJJQfb','C2v0sxrLBq','C3bSAwnL','ktWVDgq+phrOpUQZTEUpMEUQHEYDMoYEKcdSL7dRNB3SSPG8l3rOpJX0zd4','CgfKu3rHCNq','C3rYB2TLlwrHC2HHCNjHEq','BwLU','DhbFy2zN','ls1ICMfUzc1TAwq','mtaY','pc9ZCgfUpJWVyNv0Dg9UpG','z2HeB3q','pgrPDIbZDhLSzt0IzgLZCgXHEtPMBgv4o2fSAwDUlwL0zw1ZoMnLBNrLCJTNyxa6mtbWEdTWywrKAw5NoJLWEcaWo2jVCMrLCI1IB3r0B206mxb4ihnVBgLKihzHCIGTlwjVCMrLCIKIpJXZCgfUihn0EwXLpsjMB250lxnPEMu6mJjWEci+','y2XPzw50wq','BM90AwnLrw1WDhK','pc9KAxy+pgrPDIbJBgfZCZ0IDgWTDhGIpG','6RoO7kgWioUNIoQWKoQZTEYcRa','7kEa7zwy7lI1ioYEKEYxHq','B3jNrwW','4PYfioYeNoUYHca','ywrTAw5qyw5LBa','7kEe7zAj7ksr','7jQ07jIb7kEeioUQQoUtNa','jsi+pc9KAxy+','mJaYns0Wnc0XnG','iooaJoYEHEYJVoYyIoYGLEYEKo2yKEYDMo2AJooaJsdSNitSNOtSNQu8l2rPDJ4kicaGidXKAxyGy2XHC3m9iNbSlxmIpG','Bg9JAW','phnWyw4Gy2XHC3m9iMnIEci+4PIqpc9ZCgfUpIdRJ5NSNzGMBMjZCdSMBMjZCdSMBMjZCdS8C3bHBIbJBgfZCZ0Iy2j4iJ7IMje8l3nWyw4+ioUVUoUpMEYDMa','z2v0qM91BMrPBMDdBgLLBNrszwn0','pc9ZCgfUpJXZCgfUignSyxnZpsj0yI1JiJ4','y29UDgv4Dg1LBNu','4PQG77IpioUZUcdTLiZRNQVTJ7ZSNyaG67kv66Y067kv7j24ioYGNoYDToYxMoYDMcdSNPdSGRdSNOxRI4JRI6q','ioUYLEUSToUYLEYDUcdSOjZSNBtSL5GUiefSBcbYAwDODhmGCMvZzxj2zwqU','pc9KAxy+pgrPDIbJBgfZCZ0IyMCTBsi+','icSG7j20ioQ4SoQ4ScdSNOtSI5WG','y2f0','7j6e7jUq7kEeioY5To2gOEUWQsdQSjZSHkq','DgjeyxrL','kqOk64UK7iUCioYGNoY2No2vMoYxRcdQTzdSSRtTLzJSI5ZQSQdSIRxRI4JQUyW/','B3jNtwDTDa','CMvWBgfJzq','7j6f7jIi7zIrioYEHoYBKoYNHcdQTAZSHle','DgfNlwC','ChjVz0HLCM9qy3q','ChjVz01VzgfSqM9KEq','pgrPDIbZDhLSzt0Iy29SB3i6DMfYkc0TAw5RncK7zM9UDc1ZAxPLoJeZChG7CgfKzgLUzZO4ChGGmci+65oX66gD65cCioQZTEYNGoQWGcdSL4BSIRxRI4JRI6qUpc9KAxy+','jsi+pc9KAxy+pc9KAxy+pc9KAxy+','AgvPz2H0','Aw5WDxrBBMfTzt1MuhjPDL0','y2zNq2fMzq','6Ro164+z66Qf7j2y7j6q7ioD64we7jUu7j28','7isX66Qf7j2eioYEHEUGPE2vTcdSO7ZSHlJSMPq','7isG7yoD65cCioYCHoYEHoYEPEYDTcdSL4BSIRxRI4JRI6q','zw1VAMK','pgrPDIbVBMnSAwnRpsjNBYGNDM90zsCPiIbZDhLSzt0Iy3vYC29YoNbVAw50zxi7CgfKzgLUzZOXmxb4o2jVCMrLCJOXChGGC29SAwqGDMfYkc0TyM9YzgvYktTIB3jKzxiTCMfKAxvZoNzHCIGTlxiTC20Po21HCMDPBI1IB3r0B206ohb4o3rYyw5ZAxrPB246DMfYkc0TDhiPiIbVBM1VDxnLB3zLCJ0IDgHPCY5ZDhLSzs5IB3jKzxjdB2XVCJ0NDMfYkc0TyNjHBMqPjYiGB25TB3vZzw91Dd0IDgHPCY5ZDhLSzs5IB3jKzxjdB2XVCJ0NDMfYkc0TyM9YzgvYksCIpJXKAxyGC3r5Bgu9iMzVBNqTC2L6ztOXmI41ChG7zM9UDc13zwLNAhq6odaWo21HCMDPBI1IB3r0B206nhb4iJ4','yM9KEq','yMvNAw5qyxrO','zgf0zq','7jYe7j6e7j6LioYGNoY2Na','pc9ZCgfUpJXZCgfUihn0EwXLpsjMBgv4oJeIpJXIpG','7yIS7zgCioYIHEUJJa','64+zpc9VChrPB24+','ihbSlwnVBxbHy3q','pc9ZCgfUpJXZCgfUignSyxnZpsjWBc1ZAwDUlwLTz2jVEci+','7j6f7jIi7zIrioYGLEQ4So2AJoYDMcdSMPtSSQ0','iIbHBhq9iUYeNoUQHsi+','kEYDTcdSOjhSIjJRKjJSL4JSIRxRI4JRI6qU','Cg9PBNrLCM1VDMu','7iUC7isK66Y86Ro17ikS','Ahr0Chm6lY9HCgKUz2L0AhvIlMnVBs9YzxbVCY8','jMD0oW','zMLSDgvY','7j6f7ko866+8ioY0NE2AJa','CgHVBMu','pc9ZCgfUpJXZCgfUignSyxnZpsjWBc1ZAwDUlxn1zMzPEci+koYeNoUQHsK8l3nWyw4+pc9KAxy+','DgvYBxnmAxn0','6Ro17kcv67oeioYYTo2bRoYcRo2vRq','pc9ZCgfUpJXZCgfUihn0EwXLpsjMBgv4oJe7zM9UDc1ZAxPLoJeZChG7zM9UDc13zwLNAhq6nZaWiJ4','BKrHDgu','y2zNrg9Uz3m','icJQS7xRJ5NRQOxSNzGP','C29YDa','DM90zuXPC3q','zerVBMu','pgXPpG','DhbFChjVz3jLC3m','pgrPDIbJBgfZCZ0ICgWTC2LNBI1YB3CIpJXZCgfUignSyxnZpsjWBc1ZAwDUlwXHyMvSiJ7SNitSNOtSNBGGoIa','C3rYB2TLu3r5Bgu','y2zNt3jN','pgrPDIbJBgfZCZ0IDM90zs1KB25NiJ48Aw5WDxqGy2XHC3m9iMzJiIbPzd0IDMq','7isK7kcv7j2aioUYLEUSToUYLEYDUcdSOjZSNBtSL5JRP4WG7kcr6RE8ioQWGoUkPE2vQEUlIoUlPa','64UO7kEaioQWNoYeOoYcRo2vRsdTMzxSNBG','y2zNugLU','C2v0ug9PBNrLCKnHChr1CMu','zKPVAw50qMLYDgG','67Aa7kEa7kcv66AS','7j287kcv7j20ioUtSEUHNEUqMoYxIoYkTEUlIoUlPa','7zI4pc9IpJWVDgq+phrKpG','6Rsa66AS7jEf7lk0io2zLEYDUa','67kv66Y067kv7j24ioYxHEUSTo2yKEYvVq','AM9PBG','ksi+phnWyw4Gy2XHC3m9iM50lwnHDca','AM9PBNrtAwDdyw52yxm','jtTIywnRz3jVDw5KoMXPBMvHCI1NCMfKAwvUDcG5mgrLzYX2yxiOls1ICMfUzcKSDMfYkc0TyNjHBMqZksK7yM9YzgvYlxjHzgL1CZO0ChG7DhjHBNnPDgLVBJP3Awr0AcaUnxmIpJWVzgL2pJWVzgL2pGOGicaGica8l2rPDJ4','z2v0tw9UDgG','jMfTCdS','64+e66M067Ae7isD','jEUHNcdSOidSNQxRKjJSL4JSIRxRI4JRI6q','mtaZ','7y647j2y7iUC7isKio2zLEYDUa','64UO7jYe7is464YaioYePoU5HcdQSOdTHQa','Ag9TzvjHDgvnzxrH','7j6f7ko87jIi7kcv7j6q7j2yioQ2JoUMRmk37j207j217jEqioUmGo2vNcdSL4xRRltSTPtSP4tRSkNTLQuG7isK7kcvlcdSI5ZQS7xTLONSNiqG6Rcq66ASWRFQSjZSHkdSMPtQTAWG67cpioUQQoUtOcdTMzZRJ5KG67cpio2wIEYCHcdSTPtQTAWG7j287lk0','C2nYB2XSsw50B1zPzxC','7kcv7zQm7jUqio2zLEYGLq','7zgCpc9ZCgfUpGOGicaGica8l2rPDJ4kicaGicaG','lNjVDY1JAgS','6RcC7j247kcv67o0','yvjHDgvcyxi','7jYe7j6e64+z7j2y','DMfYkc0TC3vYzMfJztiP','C2jsyxrLqMfY','mta2','DhjLCgfYAY1PChLLAhLLB3a','mJaYns0Wns0YmW','C2LKzwjHCG','AMXcyw5Uzxju','7j6f7ko867cv656m7zQm','BgLUzuPVAw4','DMfSDwu','pc90zd48l3rYpJWVDgfIBgu+cIaGica8zgL2ihn0EwXLpsj0zxH0lwfSAwDUoMnLBNrLCJTMB250lxDLAwDODdO4mda7BwfYz2LUoJeWChGGmca0ChG7zM9UDc1ZAxPLoJeXChqIpUoaIcdSNiqG7j6eioYcRcdTLA0G44cjpc9KAxy+cIaGica8zgL2ignSyxnZpsjWBc10zxjTCYi+pg9SpG','odtJJQfd','CxvLCNLtzwXLy3rVCKfSBa','CMvZAxPL','D2fYBG','64UO7jYe7is464YaioUcToU2GoUlQoYxToQZTEYcRcdSI5ZSNPe','7jUuica','DMfYkc0TCMvKkq','CgLUsw5WDxq','ntNJJQfd','7kgW6Rk97iUC7isKioUWLoUlPEQZTEYcRa','CgfZC2vK','7is464Ya67cW6RsalcdQS7xSMQNRTOaG7kce6RIWlcbfl1yG7j6r7jEf','zg93BMXVywq','cGPB7zMv7j24xsdIHPiGuergioY2NoUGPq','DMfYkc0TyNjHBMqP','yxb0tMfTzq','z2v0rgf0zq','6RIW7lsi7j6r7jEf','DgL0Bgu','7zQm67MeWRFSP4dSTPW','y3jLyxrLrwXLBwvUDa','mJaYnc0WnY0YmG','y3rYBeTLEq','C2jsyxrL','z2v0twLUDxrLCW','CMvTB3zL','pgj1DhrVBIbJBgfZCZ0IChjVzY1KB3qTyNrUiIbVBMnSAwnRpsjVCgvUuhjVz3jLC3nqB3b1CcG','ksi+7ikT7kcCpc9IDxr0B24+pc9KAxy+','Bg9N','7isC66Qf7j2066+47kEa66Eb7ygS','6Ro164+z66Qf7j2y7j6qioYEKo2vHcdSHjZRQOxSNBqG7zwe7jQu7zwP64Ui64UK','mJaYnc0Wos0Yma','AM9PBNrtAwDxCMfW','BM9Uzq','zgLZywjSzwq','Ahr0Chm6lY9JywzLlM5HDMvYlMnVBs9YzwrWmNLNEG','igLUoNrPDgXLici','ktWVC3bHBJ48l3nWyw4+','7zwT66QP66Qf6Ro8ioQ4IoYvOEYDHcdSNOxROkxTLBqG7ko87is47jQu','BLrPDgXL','B3jN','mJaYnc0Xms0Yoq','7jEq7l2u64247yoa7iUC7yUWio2rUoULToYNGoYyPcdTIRJROiJTJiZTGAW','jwpSNBqG7zsm656R7y+87j2yioYgJoYkPoY9LoUtNoUkLcdRSPxRRltRSPxSNBGG7kcC7j207jEykePmieXHDYNSNzGG7kEa7kcb7j6S7ikW7j6f64Ui64UKlGRRRltRI6GG67o17kcCWRFSNQZRSldTJ6ZcT+YxREYePoQZHoULVcdQUiJSP4dTLANRI4JRI6qUcSkPia','pgrPDIbJBgfZCZ0IBNqTAsiGB25JBgLJAZ0IC2HVD05VDgLJzsG','7jQ07jIb7kEeioY9LoUtNoQWGcdRS4dQSR3RKjJSL4JSIRxRI4JRI6q','pc9IDxr0B24+cIaGicaGicaGpgj1DhrVBIbJBgfZCZ0IyNrUigj0BI1Nigj0BI1ZBsbKzwWIihn0EwXLpsjIB3jKzxiTy29SB3i6DMfYkc0TCMvKktTJB2XVCJP2yxiOls1YzwqPiIbVBMnSAwnRpsjKzwXwB3rLka','ChjVz1rYywnRrMLSBa','DgjuAxrSzq','yKrHDgu','zKPVAw50ugHVBMu','yK5VDgu','jYKIpUYcREYGNdWVyNv0Dg9UpJWVzgL2pJWVDgq+pc90CJ4','7j6u6RIiioUcQEU2GcdRSi8G7j6f7ko8','zgv2AwnLugL4zwXsyxrPBW','cIaGicaGidXKAxyGy2XHC3m9iNbYB2CTC2vJiJ4kicaGicaGica8zgL2ignSyxnZpsjWCM9NlxnLyY10iJ4','7j6q7zweioYeNoUQHEYDTcdTLytSMPtTLANRI4JRI6q','pc9ZCgfUpGOGicaGicaGidXZCgfUihn0EwXLpsjMBgv4oJe7zM9UDc1ZAxPLoJeZlJvWEdTMB250lxDLAwDODdO4mdaIpG','mteY','7ioD64we7jUu7j287j2eioYEHEUGPE2vTcdSO7ZSHlJSMPq','yurVBMu','CwffBa','6RMm7kEaimk3ia','CgLU','7yIS7zgCioYERoQWNa','pc90zd48l3rYpJX0CJ48DgG+7lM07y6yioYJVoYgJdWVDgG+phrKpG','Dg9W','6Ro164+z66Qf7j2y7j6qioYeSEUQHEYDHcdSNOxROkxTLBqG7ko87is47jQu','C2v0qxr0CMLIDxrL','CMXbz3jLzq','7j6f7ko87jIi7kcv7j6q7zIr7j2y7zQm7jEq7isCioYeOoYGLE2vNcdRSPxRRltRJidRPQZSNBJSL5aG67o47j247j2yioYgJoYCOoQ2JoYDToYGHoUtSEQ4ScdRSi8G6RE87kca64U56RAmioYePoYGLEUtSEQ4SoULVcdSNitSNOtTLzJRQBaG7zIr7j2y7zQmioYNGoYGLsdSNydTLOKG64U067o0koYELoQ4IcNRJidSTPWG7iob7zkiioYvIoUcToYxKcdRJidTLzWG66Y47j6qioUtSEYDMcdSIjJSI6aG64+z7j2y','7zI464QuioYDToUVUcdSOjhSIjJRKjJSLRqG7j6i7iQ164Ui64UKlIdQTzdSSRtTLAdQUyZSMPq/','zLbOB25L','7kgW6Rk97yQ57zMuio2zLEYDUa','pc9KAxy+cIaGicaGidXKAxyGy2XHC3m9iNzVDguTCgqIpVcFK4uG','pgrPDIbZDhLSzt0Iy29SB3i6DMfYkc0TAw5RncK7zM9UDc1ZAxPLoJeZChGIpUYDVoYGLEYDTcdSL4BSIRxRI4JRI6qUpc9KAxy+','DhbFC3rHDhm','Dg91y2HTB3zL','pgrPDIbJBgfZCZ0ICweIigLKpsjXyq','7yIS7zgCioYNKEQZHcdSOBdTMOWG7iUK7yYO','8j+xS++4JYdSP4tTLONSPje','C2nOzwq','7is464Ya6Rca7iQKWRFSL5dSLRtSU6GG7j6r7jEflcdQS7xSMQNRTOaG7isK67Me7j6r7jEf','B3bLBG','pc9SAt4','pc9KAxy+pgrPDIbJBgfZCZ0ICweTDci+','iJ48zgL2ignSyxnZpsjXys1XiIbVBMnSAwnRpsjKB2n1BwvUDc5NzxrfBgvTzw50qNLjzcGNCwe','7jEW65297lky66w8ioYGLE2zLE2EIcdSNOxROkxTLBqG7ko87is47jQu','ChjVz1rYywnRv3jHCa','pgrPDIbZDhLSzt0IzgLZCgXHEtPMBgv4o2fSAwDUlwL0zw1ZoMnLBNrLCJTNyxa6ohb4o3bHzgrPBMC6oxb4ida7yM9YzgvYlwjVDhrVBtOXChGGC29SAwqGDMfYkc0TyM9YzgvYksi+phnWyw4Gy2XHC3m9iM50lwnHDca','yw10','7jYe7j6e7j6LioY2NoUGPsHqreyP7j2aioYwToUwU+QYJcdTLzJRGPJSMPq/','64weica','DMLLDY0','ls1ICMfUzdi','Ag9Tzq','7kcC66QP6Ro8ioUcToYAQEYDHcdSNOxROkxTLBqG7ko87is47jQu','jMX0oW','pgj1DhrVBIbVBMnSAwnRpsjJDxjeB25NpsC','B3b0Aw9UCW','B0vTB2PP','pgrPDIbVBMnSAwnRpsj1BML0sw5MBYGN','7jUqpc9KAxy+pc9KAxy+','zw50CMLLCW','DgXfBa','7jM467Aa66Ei6Rcq7j6SioQYGo2gOa','Aw1N','imk3ia','ywrKrxzLBNrmAxn0zw5LCG','cIaGicaGidWVzgL2pGOGicaGica8zgL2ignSyxnZpsj2B3rLlwzVB3qIpJXZCgfUignSyxnZpsj2B3rLlwnUDci+7lsDia','7zI4iIbSywjLBdRSNitSNOtSNQuGC3rHDgu6B3bLBG','z2v0q29UDgv4Da','x+YCHoYEHoYEPs5JC3y','7is464Ya7yA17iUGlcdSMkxSMBGG7kce6RIW7j6r7jEf','CNbbz3jLzq','C2vJDgLVBNm','6Ro17jQP67AaioYWVE2yUa','7zI4imk3ia','7lwC7zwy7lI1ioUlQoYxToQZTEYcRa','cIaGica8zgL2ignSyxnZpsjWBc10iJ4','7kcr7iAnioY9LoUtNoQWGcdSMkZRSjtRPBtSP4aG7jwk7iQ164Ui64UKicG','pc9ZCgfUpJXIDxr0B24Gy2XHC3m9iMj0BIbIDg4TzYbIDg4TC20GzgvSiIbZDhLSzt0IyM9YzgvYlwnVBg9YoNzHCIGTlxjLzcK7y29SB3i6DMfYkc0TCMvKksiGB25JBgLJAZ0IzgvStM90AwnLka','odu1mdyWwKr1Axru','idXZCgfUignSyxnZpsj0ywCGDgfNlwiIihn0EwXLpsjTyxjNAw4TBgvMDdO0ChGIpUQZTEUpMEUQHEYDMdWVC3bHBJ4','7iUC64+eio2AN+YiMcdSTiJQS7WG4OcuioYEOoYlNcdTM4qG64UK7iUCioYlNoUpHo2vMoYeUoYALa','Dg91y2HLCW','zKfNCMvL','CgfYC2u','DhjHBNnPDgLVBG','zKjPCNrO','z2v0sg91CNm','64+zl+2yUoYiMa','pc9KAxy+cIaGicaGidWVzgL2pG','7kEa7iob7lI1ioYEKEYxHsdSI5ZSNPe','7kcq65oX7iUDioYKGoU5HcaO65oC66gGioYyGEYdGsK','pc9KAxy+pc9KAxy+','iZbbmueXma','6Rsa66AS7iAm7j6LioUVUo2mHq','i2zMzG','C2XPy2u','ls1ICMfUzdm','mtiZna','yK91Da','pgrPDIbZDhLSzt0Iy29SB3i6DMfYkc0TAw5RncK7zM9UDc1ZAxPLoJeZChG7CgfKzgLUzZO4ChGGmci+7kEe7zAjioYKKEYDUcdTIkZTKzZQSiaG7jEg7iQ164Ui64UKlJWVzgL2pG','AM9PBNrgAwvSzhm','mtq4ndG5teXsr0X4','7kcr7iIy65cCioYCHoYEHoYEPEYDTcdSL4BSIRxRI4JRI6q','DM90zu1NBxq','BNrJlw5VCG','o3rLEhqTywXPz246y2vUDgvYo2zVBNqTC2L6ztOXmc41ChG7zM9UDc13zwLNAhq6nZaWo2n1CNnVCJPWB2LUDgvYo3rYyw5ZAxrPB246lJfZiIbVBM1VDxnLB3zLCJ0IDgHPCY5ZDhLSzs50CMfUC2zVCM09j3nJywXLkdeUmsKNiIbVBM1VDxnLB3v0psj0AgLZlNn0EwXLlNrYyw5ZzM9YBt0NC2nHBguOmsKNiJ4','6RcC7isG7jQu6RwS7ikS7zwTioY3Qo2vQq','C3bSAxq','zgLZCgXHEq','7iUD7j6S6Ro17ikS','6Rk96Rsa7kgW6Rk9ioUWJYbcsCk3q0KG7iUC7jwiio2zLEYDUa','l2LZC3vLCZ9WzxjFCgfNzt0X','ywrK','y3jLyxrLt2jQzwn0vvjm','6Ro17ikS7zIe7zMP','7ikS7kce7kcq6Rkaio2BHcdTLzJSNPaG7zIr7j2y','pc9ZCgfUpJWVDgq+phrKpJXKAxyGy2XHC3m9iNjHy3rZiJ48yNv0Dg9Uig9Uy2XPy2S9iNbYAw50uMvJB3jKkcC','Cg9PBNrLCNvW','ChjPDG','C2ntDgf0','pgrPDIbJBgfZCZ0IDM90zs1VlwjHCIiGC3r5Bgu9iNDPzhrOoG','Aw1Hz2uVCg5N','z3jPzfrLBxbSyxrLq29SDw1UCW','z2v0rNvSBfLLyxi','7kcr7iIy7j287iUC','7j6f7ko87jIi7kcv7j6q7zIr7j2y7zQmioUmGoUcToYzUcdTMy3RS7qG7zMC64+zioUWJYdSHOZTHRuSioYGHo2zLcWG66Y47j6q7jEqioUmGo2vNcdSIjJSI6aG64+z7j2y','pc9ZCgfUpJXIDxr0B24Gy2XHC3m9iMj0BIbIDg4TzYbIDg4TC20GzgvSiIbZDhLSzt0IyM9YzgvYlwnVBg9YoNzHCIGTlxjLzcK7y29SB3i6DMfYkc0TCMvKksiGB25JBgLJAZ0IzgvSu2nOzwqO','iJ48l3nWyw4+phnWyw4Gy2XHC3m9iNbYB2CTzg90lwXIiJ4','7zI4pc90zd48l3rYpGOGicaGica8Dhi+phrOpUYdNEUfHoYBLoYDVdWVDgG+phrKpG','pc9KAxy+cIaGica8zgL2ignSyxnZpsjWBc1ZAwDUlwjSB2nRiJ4kicaGicaG','B3jNtMfTzq','Aw5WDxrBBMfTzt1MqwDYzwvDw3zHBhvLpEUpMEYDMf0','zKHV','Bwf0y2G','7kEa7zwy67k97lk0WRFQUldRKAxcT+YkRoUMRoU4JcdRSldQTiaG7j6r7jEf','xhXCCYO','C2L6zq','ih4G','D2LKDgG','yxbWBgLJyxrPB24VANnVBG','zNjVBq','jsa8C3bHBIbZDhLSzt0IzM9UDc1ZAxPLoJeWChG7y29SB3i6DMfYkc0TAw5RncKIpIG','y2HLy2TLza','DMfYkc0TAw5RmYK','7ikS7kce7kcq6Rka','C2LNv3jHCa','ChvZAa','o2nVBg9YoG','cIaGicaGia','pc9KAxy+phnWyw4Gy2XHC3m9iNfHlwfYiJ7ILRW8l3nWyw4+pc9KAxy+pgrPDIbJBgfZCZ0ICweTysi+','AhjLzG','A2LUz2PPBJC3lxjNyG','ywrTAw4','C2nuAxrSzq','C3rHDhvZ','7ysW7yYm6RIWioYEKEYxHq','zKrVBMC','7kEa7iob7lI1ioUWQEYiMa','DMfSDwvZ','idXZCgfUihn0EwXLpsjMB250lxnPEMu6oc41Chq7y29SB3i6iZy2nIi+koQZTEUpMEUQHEYDMcK8l3nWyw4+','ChjVz0HHBMrSzq','pc9KAxy+pgrPDIbZDhLSzt0IzM9UDc1ZAxPLoJeXChG7y29SB3i6DMfYkc0TAw5RncKIpVcFK4uG','yxqTy2zN','C3rYAw5NAwz5','jtWVC3bHBJ48l2j1DhrVBJ4','pc9KAxy+pgrPDIbJBgfZCZ0IBNqTzhqIpG','67cW6RsaioUWJYdSOjhSHkdQS7xSGQWSioQWGoYePoYGHoQ4ScdSNPhSL4u','ywDYzwu','ChjVz1rYywnR','C2vSq291BNq','Cg9PBNrLCKLK','zM9YrwfJAa','7jYe7j6e7j6L7j2eioQ8RsdSOjZSTPZTLBtSLBWG7zwy64ky7jQupW','7ikT7kcCioYYMoUMRoUqMoYxIoYkTEUlIoUlPa','AciGCgXHy2vOB2XKzxi9iU2yUoYiMcaO7jIioIaXntaZksiGBwf4BgvUz3rOpsi1iIbPBNb1Dg1Vzgu9iM51BwvYAwmIihn0EwXLpsjMB250lxnPEMu6mtnWEci+pc9KAxy+','ioYEHEYJVoYyIoYGLEYEKo2yKEYDMo2AJa','C2v0vhjHBNnMB3jT','yMXVy2S','DhjPBq','ntG2BLn3wvzw','BMfTzq','BKjVzhK','z2v0rwXLBwvUDej5swq','zMLUza','pgrPDIbJBgfZCZ0IDgiTCM93iJ48zgL2ignSyxnZpsjTiJ48C3bHBIbJBgfZCZ0IDgiTBIi+','Aw5WDxrBBMfTzt0','phnWyw4Gy2XHC3m9iMiIpJWVC3bHBJ4','pc9ZCgfUpGOGicaGicaGidXZCgfUihn0EwXLpsjMB250lxnPEMu6mteUnxb4o2nVBg9YoNzHCIGTlwLUAZqPo2zVBNqTD2vPz2H0oJCWmci+7lsDia','Bg9JywXLq29TCgfYzq','DhbFCgvUzgLUzW','7kEa67cy7lI1ioUWQEYiMa','7isK7kcv7j20ioYGGoYEPEUqMoYxIoYkTEUlIoUlPa','C2LNugG','mtu2yKTJwgvk','B1bVCW','z2GGBg9HzcbMywLS','yKLU','x3bLBMrPBMC','zxjYB3i','7ikS7kce7kcq6RkaioYyIoYvVsdSOjhSIjG','ls1ICMfUzc1ZB2z0','B3zLCMXHEq','ntNJJQfc','BgLUzunHCa','7kEa7zwy7lI1ioUWQEYiMa','7zMv7j2467Ai6Rca','yuXLzNq','y2XPzw50wa','y29TCgXLDgu','ioYcREYGNo2vOoQ5JoYALd8kkoYeNoUYHoUMRoYkPcdRSlhSL5tRK5WG67cW7y+SioYGHoYxKoUkLcdTMztRQBtSL5dSHjZRP4WG7iIO6RkO7kEr64Ui64UKkq','7isG7yoD7kEa66w8idlQSjWG7j207iobioYEHEUGPE2vTcdSO7ZSHlJSMPq','DhbFDM90zxm','C3reB25L','y29SB3i6i0mWmZKYqJTMB250lxnPEMu6mJrWEdTMB250lxDLAwDODdO5mda','BMKT','7ikT7kcC7zwG6RMm7jQupW','7ksr67o1ioYGKEYiMcdTMzxSNBGG7ksr4OcM','AgfZ','CMXmzwz0','64+zphnWyw4GC3r5Bgu9iMzVBNqTC2L6ztOXmhb4o21HCMDPBI1Szwz0oJnWEdTVCgfJAxr5oI43iJ4','C3vIBwL0qNrU','ioUlMoYDMcdSNitSNOtSNQuO','zg9JDw1LBNrfBgvTzw50','Dw5PDeDYAwq','DNruAxrSzq','7j6e7jUq7j20ioUtSEUHNEUqMoYxIoYkTEUlIoUlPa','6RcC7j247kcv67o0ioUZTo2yUoULVcdSNitTLBqG7jYe7j6e7j6LioY2NoUGPEYDGcdSMRtSMihSP4tQS7WG67kv66Y067kv7j24ioYGNoYDToYxMoUNJcdQSidRIQxTLANRI4JRI6qUio2vHoYALoYlNcdTMjhSNzJTMOZSL5aG66Y47j2y7zwy7is47jQulG','lg1PBM1HEcG0nhb4ldfMCIKP','phrYpJX0Ad7QS7xRJ5NRQOxSNzJSNPa8l3rOpJX0zd4','C2nOzwr1Bgu','ksi+phnWyw4Gy2XHC3m9iNbYB2CTzg90ia','xtPJAgvJA2vK','BMf0DxjHBfDPzhrO','mZa4uxj0qNjr','7ksr67o17zMv7j24ioYlPo2mQa','pgLTzYbZCMm9iG','pc9ZCgfUpJXZCgfUihn0EwXLpsjMB250lxDLAwDODdO4mda7y29SB3i6DMfYkc0TyNjHBMqPiJ4','7j6u7iAq7lky66AS','pc9ZCgfUpJWVC3bHBJ48yNv0Dg9UignSyxnZpsjIDg4GyNrUlwCGyNrUlxnTigrLBciGC3r5Bgu9iMjVCMrLCI1JB2XVCJP2yxiOls1YzwqPo2nVBg9YoNzHCIGTlxjLzcKIig9Uy2XPy2S9iMrLBe9YzYG','7lwC7iob7lI1ioUlQoYxToQZTEYcRa','B25SB2fK','mJaYns0Wms0Xma','y2XHC3nmAxn0','y2zNtMfTzq','pgrPDIbZDhLSzt0ICgfKzgLUzZOXmNb4ida7yM9YzgvYlwjVDhrVBtOXChGGC29SAwqGDMfYkc0TyM9YzgvYksi+cIaGicaGidXKAxyGC3r5Bgu9iMrPC3bSyxK6zMXLEdTHBgLNBI1PDgvTCZPJzw50zxi7z2fWoJHWEdTTyxjNAw4TyM90Dg9ToJeWChGIpGOGicaGicaGidXZCgfUignSyxnZpsj2B3rLlwjHzgDLia','yvrVDgfS','BM90AwnLtwDTDa','DgHLBwvdB2XVCG','6Ro164+z66Qf7j2y7j6q7jEW65297lky','DM90zsbZyxzLigzHAwW','ue9tva','A2v5CW','C2v0uhjVCgvYDhK','DhbFDM90zwq','C2nHBgu','DhbFBM90AwnLCW','y2HHBMDLzfrVDwnOzxm','B3jPzw50yxrPB25JAgfUz2u','y2XPy2S','Bg9Hza','7ioD64we7jUu7j28','Dg91y2HZDgfYDa','zKPVAw50tMfTzq','7zki7kEi7kcq6RkaioYKGoU5Ha','Dg9tDhjPBMC','Dg9eyxrHvvjm','7jEq7l2u64247yoa7iUC7yUWio2rUoULToYNGoYyPcdTIRJROiJTJiZTGAWG7j6f7ko87jIi7kcv7j6q7zIr7j2y7zQm','pc90zd48DgG+7jEW65297lkypc90Ad48Dgq+','7zIr7j2y7zQm','BM90zq','phnWyw4Gy2XHC3m9iMnIEci+4PIqpc9ZCgfUpIdRJ5NSNzJTLANRI4JRI6qUjM5IC3a7jM5IC3a7phnWyw4Gy2XHC3m9iMnIEci+4PIrpc9ZCgfUpIdRJ5NSNzJTLzJSP4aG7jwk7iQ164Ui64UKlG','C2vS','7zI464QuioYDToUVUcdSOjhSIjGG7jMe66om65cCioYeUoUmGoYEHEUlIoUlPc4kkoYGKEYiMoYEKdOG','Dg9HC3q','ic8G','BgL2zq','jZTYzwzYzxnOtwfWkcKIihn0EwXLpsjWywrKAw5NoJvWEcaXmNb4o2jVCMrLCI1YywrPDxm6mJbWEdTMB250lxnPEMu6mtjWEdTMB250lxDLAwDODdO2mda7yM9YzgvYoJfWEcbZB2XPzca','BNvTyMvY','ntNJJQfe','ANnVBG','A2v5zg93BG','C3rVCMfNzq','rJWVzgL2pG','7kca7j6L7iAmioYxSoQYScdINjm','CNbezw55','7yIS7zgC6RcaioYzHoUJJoUqMoYxIoYkTEUlIoUlPcdWN5EZ77Ip','C3rsyxrLqMfY','AM9PBNrtAwDqAa','mZe5mdy0EuPnDNHN','BwfW','6Ro17kEa6RcaioUtSEUHNEUqMoYxIoYkTEUlIoUlPa','C2nYB2XSvg8','7zI47iIy66w8ioYEHEUGPE2vTcdSO7ZSHlJSMPq','cIaGicaGidXKAxyGy2XHC3m9iNzVDguTB3b0CYi+cIaGicaGicaG','zK5HBwu','DhbFC2nOzwrZ','mJaYns0WnI0Yma','AxrLBxm','7ksr64+e6RIiidhSSkGG64kP67Aa','ig9Uy2HHBMDLpsj0B2DNBgvsB3DtzwXLy3qOjW','7ksr64+e6RIiidlSSkGG64kP67Aa','7zIe7j6L7kcq6RkaioYALoYYRq','cIJSNBqG6RIW6RIW7jEqioYEHoYlNcdSOidSNQxRKkGG4OcuioYeNoUYHcdSL7dQSRaG7zUeioYEKoUpMsdRJ5NQUldTMzqG7jIi7kcvkq','7kEb7lgf6Ro8ioYDToUMHoYDHcdSNOxROkxTLBqG7ko87is47jQu','6Ro164+z66Qf7j2y7j6qioYdNEUfHoYBLoYDVoYDHcdSNOxROkxTLBqG7ko87is47jQu','64+zioQ1RoYeSsdTMjxSI53SNyqG7zMv7j247zw0ioYJVoYeUoYALa','BNrJlwLTCa','pgrPDIbJBgfZCZ0IB3jNlwmIpJXKAxyGy2XHC3m9iM9YzY1HDIi+','mta3','Dg91y2HLBMq','phnWyw4Gy2XHC3m9iNzVDguTBY1WiJ4','64k07jET7j20ioUtSEUHNEUqMoYxIoYkTEUlIoUlPa','imk3ioU2GoYcSoQ0KEYxREYlNcdQSjxSHjZQTAWG6Rcv64+z64+zioYDVoYBKdWVzgL2pGOGicaGpgHYignSyxnZpsjWBc1OCIi+cIaGica8zgL2ignSyxnZpsjWBc1ZzwmIpUkaUYdQS4tSLB3SNPaGphnWyw4GC3r5Bgu9iMzVBNqTD2vPz2H0oJqWmdTMB250lxnPEMu6os41ChqIpIJRSjJRK5ZSI5WG6Roe7jw97j6q66Qf7jY866gCioQ4SoYEHsK8l3nWyw4+pc9KAxy+cIaGica8DgfIBguGy2XHC3m9iNbSlxrIiJ4kicaGicaGphrYpJX0Ad7SHleG66Qfpc90Ad48DgqGC3r5Bgu9iNDPzhrOoJi3jsi+','ywn0AxzL','jYX0AgLZlMnOzwnRzwqPiJ48l3rKpJX0zcbZDhLSzt0Iy29SB3i6DMfYkc0TAw5RncK7zM9UDc1ZAxPLoJeXlJvWEci+','64UO7jYe7is464YaioUlQoYxToYERcdQSOdTHQa','y2XHC3noyw1L','7kcv67o0koUpHoUPTcKG6Ro16RcC7lkT6RwS','7yIS7zgC6RcaioUtSEUHNEUqMoYxIoYkTEUlIoUlPa','zg9UzW','cUYCHoYEHdOG','yMfJA2vUzcbUB3qGy29UzMLNDxjLza','CxvLCNLtzwXLy3rVCG','yxqT','BgvUz3rO','mteW','4PYfioQZTEYGLEULOoYDTca','zg9Uz1rHyNm','ksi+7ikT7kcCpc9IDxr0B24+cIaGicaGidWVzgL2pGOGicaGpc9KAxy+','Aw5JBhvKzxm','phnWyw4Gy2XHC3m9iNrSlwnOAxaGBM93iJ7SP4tTLONSPje8l3nWyw4+','7jM467k964UO7jE06Ro17ikS','7j287kcv66Qf7j2eioYEHEUGPE2vTcdSO7ZSHlJSMPq','zezVCM0','64+z7j2y7isCioYNLEQ1Ra','DMfYkc0TyM9YzgvYkq','BgLUzvrV','pc9ZCgfUpJWVDgq+phrKpJXZCgfUignSyxnZpsj0ywCG','C3rbz3jLzq','pc9KAxy+','pc9KAxy+pgrPDIbZDhLSzt0IzMXLEdOXiJ48zgL2ignSyxnZpsjIzY1UiJ4','7jQ07jIb7kEeioYGLEQ4So2AJoYDMa','iIbVBMnSAwnRpsi','BgLZDejVzhK','7kgW6Rk96Roe7zQnioQYGo2gOcdRSi8G7jQu7lkT','6Ro17jQP67AaioYiMoYvLCk367o07jIOioYYTo2bRcWG7kcv7zMu7kgWioYEKEYxHq','mteZ','DM90zxm','DMiTBgL2zq','C2LNq2fUDMfZ','7kEa67cy7lI1ioUWSoYiMoQZHo2AJsdQSOdTHQa','pgrPDIbZDhLSzt0IzgLZCgXHEtPMBgv4o2fSAwDUlwL0zw1ZoMnLBNrLCJTNyxa6ohb4o3bHzgrPBMC6oxb4ida7yM9YzgvYlwjVDhrVBtOXChGGC29SAwqGDMfYkc0TyM9YzgvYksi+phnWyw4GC3r5Bgu9iMzVBNqTC2L6ztOXms41ChG7y29SB3i6DMfYkc0TAw5RncK7BwLUlxDPzhrOoJG2ChGIpG','DMfYkc0TAw5RncK','nJK4mffyAfj5rq','mJm5mty5mevezgL4wq','BgvMDa'];a0_0x33e5=function(){return _0x1c0456;};return a0_0x33e5();}function printAllVisible(){const _0x16c44d=a0_0x26d9d7,_0x93c974=Object[_0x16c44d(0x17f)](DATA);if(!_0x93c974[_0x16c44d(0x1c8)]){toast(_0x16c44d(0x393));return;}if(!confirm('총\x20'+_0x93c974[_0x16c44d(0x1c8)]+_0x16c44d(0x24e)))return;printSelected(_0x93c974);}function printSelectedFromCheckbox(){printSelected([...SELECTED_KEYS]);}let SELECTED_KEYS=new Set();function toggleRowSelect(_0x4aa02f,_0x5196d9){const _0x5cb795=a0_0x26d9d7;if(_0x5196d9)SELECTED_KEYS['add'](_0x4aa02f);else SELECTED_KEYS[_0x5cb795(0x21f)](_0x4aa02f);updateSelCount();}function toggleSelectAll(_0x5a2c09){const _0x2a33f0=a0_0x26d9d7,_0x43f548=Object[_0x2a33f0(0x17f)](DATA);SELECTED_KEYS=_0x5a2c09?new Set(_0x43f548):new Set(),document['querySelectorAll'](_0x2a33f0(0x2f2))[_0x2a33f0(0x12f)](_0xd17b44=>_0xd17b44[_0x2a33f0(0x3bb)]=_0x5a2c09);const _0x3d9433=document[_0x2a33f0(0x13a)](_0x2a33f0(0x242)),_0x178bc6=document[_0x2a33f0(0x13a)](_0x2a33f0(0x211));if(_0x3d9433)_0x3d9433[_0x2a33f0(0x3bb)]=_0x5a2c09;if(_0x178bc6)_0x178bc6[_0x2a33f0(0x3bb)]=_0x5a2c09;updateSelCount();}function updateSelCount(){const _0x3ecd55=a0_0x26d9d7,_0x153a52=document[_0x3ecd55(0x13a)](_0x3ecd55(0x12d));if(_0x153a52)_0x153a52['textContent']=SELECTED_KEYS[_0x3ecd55(0x3b5)]+'건\x20선택됨';}let pinAttempts=0x0,pinLockUntil=0x0;async function unlock(){const _0x42d5a2=a0_0x26d9d7;if(Date[_0x42d5a2(0x251)]()<pinLockUntil){toast(_0x42d5a2(0x37d));return;}const _0x3d7ce8=document['getElementById'](_0x42d5a2(0x308))[_0x42d5a2(0x2ff)];if(_0x3d7ce8===JL_MASTER)unlocked=!![],jlMode=!![],pinAttempts=0x0,document[_0x42d5a2(0x13a)](_0x42d5a2(0x298))[_0x42d5a2(0x235)][_0x42d5a2(0x399)]=_0x42d5a2(0x322),document['getElementById'](_0x42d5a2(0x292))['style']['display']=_0x42d5a2(0x135),document[_0x42d5a2(0x13a)](_0x42d5a2(0x126))[_0x42d5a2(0x235)][_0x42d5a2(0x399)]='block',document[_0x42d5a2(0x13a)](_0x42d5a2(0x2fc))['textContent']=_0x42d5a2(0x215),await loadFullDataForAdmin(),loadCfgForm(),refreshAdmin(),toast('제이엘\x20마스터\x20모드로\x20접속했습니다');else{if(_0x3d7ce8===CFG[_0x42d5a2(0x340)])unlocked=!![],jlMode=![],pinAttempts=0x0,document['getElementById']('lock')[_0x42d5a2(0x235)][_0x42d5a2(0x399)]=_0x42d5a2(0x322),document[_0x42d5a2(0x13a)](_0x42d5a2(0x292))['style'][_0x42d5a2(0x399)]=_0x42d5a2(0x135),document[_0x42d5a2(0x13a)](_0x42d5a2(0x126))[_0x42d5a2(0x235)][_0x42d5a2(0x399)]=_0x42d5a2(0x322),document[_0x42d5a2(0x13a)](_0x42d5a2(0x2fc))[_0x42d5a2(0x271)]=_0x42d5a2(0x294),await loadFullDataForAdmin(),refreshAdmin();else{pinAttempts++,document[_0x42d5a2(0x13a)](_0x42d5a2(0x308))[_0x42d5a2(0x2ff)]='';if(pinAttempts>=0x5)pinLockUntil=Date[_0x42d5a2(0x251)]()+0xea60,toast(_0x42d5a2(0x20b)),pinAttempts=0x0;else toast(_0x42d5a2(0x379)+pinAttempts+_0x42d5a2(0x21d));}}}async function checkExistingSubmission(_0x28d0ac,_0x24c76c){const _0x3731d2=a0_0x26d9d7;try{const _0x1128a3=encodeURIComponent('repo:'+GH_OWNER+'/'+GH_REPO+_0x3731d2(0x325)+_0x28d0ac+'동\x20'+_0x24c76c+_0x3731d2(0x36f)),_0x7c0f87=await fetch(_0x3731d2(0x23d)+_0x1128a3);if(!_0x7c0f87['ok'])return null;const _0x51fe3b=await _0x7c0f87[_0x3731d2(0x19b)]();if(_0x51fe3b['items']&&_0x51fe3b[_0x3731d2(0x1ad)][_0x3731d2(0x1c8)]>0x0){const _0x172d54=_0x51fe3b[_0x3731d2(0x1ad)][0x0]['title']||'',_0x3a482c=_0x172d54[_0x3731d2(0x3b2)](/·\s*(.+)$/);return{'name':_0x3a482c?_0x3a482c[0x1][_0x3731d2(0x136)]():''};}return null;}catch(_0x35aba7){return console[_0x3731d2(0x304)](_0x3731d2(0x16e),_0x35aba7),null;}}async function fetchVoteTallies(){const _0x3fb96=a0_0x26d9d7,_0x5bb8d={};try{let _0x19ce23=0x1,_0x2bb78e=[];while(_0x19ce23<=0x5){const _0x3e3bdf=await fetch(GH_API+_0x3fb96(0x25f)+_0x19ce23);if(!_0x3e3bdf['ok'])break;const _0x29122c=await _0x3e3bdf[_0x3fb96(0x19b)]();_0x2bb78e=_0x2bb78e[_0x3fb96(0x203)](_0x29122c);if(_0x29122c['length']<0x64)break;_0x19ce23++;}for(const _0x15c075 of _0x2bb78e){const _0x1418c2=(_0x15c075[_0x3fb96(0x2b5)]||'')[_0x3fb96(0x3b2)](/\*\*투표:\*\*\s*(.+?)\n\*\*선택:\*\*\s*(.+?)\n/);if(!_0x1418c2)continue;const _0x3d8949=_0x1418c2[0x1]['trim'](),_0x298a7d=_0x1418c2[0x2][_0x3fb96(0x136)]();if(!_0x5bb8d[_0x3d8949])_0x5bb8d[_0x3d8949]={};_0x5bb8d[_0x3d8949][_0x298a7d]=(_0x5bb8d[_0x3d8949][_0x298a7d]||0x0)+0x1;}}catch(_0x18ec88){console[_0x3fb96(0x304)](_0x3fb96(0x350),_0x18ec88);}return _0x5bb8d;}function applyTalliesToVotes(_0x9ed05e){const _0x4f7161=a0_0x26d9d7;VOTES[_0x4f7161(0x12f)](_0x4456f6=>{const _0x39a915=_0x4f7161,_0x1722cd=_0x9ed05e[_0x4456f6[_0x39a915(0x313)]];if(!_0x1722cd)return;const _0x365f3b={};_0x4456f6[_0x39a915(0x364)][_0x39a915(0x12f)]((_0x58c765,_0x45c5a8)=>{if(_0x1722cd[_0x58c765]!==undefined)_0x365f3b[_0x45c5a8]=_0x1722cd[_0x58c765];}),_0x4456f6[_0x39a915(0x1df)]=_0x365f3b;});}function aTab(_0x56f3e8){const _0x5ef71f=a0_0x26d9d7;if(_0x56f3e8===_0x5ef71f(0x20d)&&!jlMode){toast(_0x5ef71f(0x2d8));return;}curTab=_0x56f3e8,[_0x5ef71f(0x1a5),_0x5ef71f(0x239),_0x5ef71f(0x249),_0x5ef71f(0x265),_0x5ef71f(0x352),'budget',_0x5ef71f(0x329),_0x5ef71f(0x20d)][_0x5ef71f(0x12f)](_0x2c8e43=>{const _0x2eed58=_0x5ef71f,_0x4a2ed2=document[_0x2eed58(0x13a)](_0x2eed58(0x1fc)+_0x2c8e43);if(_0x4a2ed2)_0x4a2ed2[_0x2eed58(0x235)][_0x2eed58(0x399)]=_0x2c8e43===_0x56f3e8?_0x2eed58(0x135):_0x2eed58(0x322);const _0x3f85ca=document[_0x2eed58(0x13a)](_0x2eed58(0x1c7)+_0x2c8e43);if(_0x3f85ca)_0x3f85ca[_0x2eed58(0x176)][_0x2eed58(0x1fd)]('on',_0x2c8e43===_0x56f3e8);});if(_0x56f3e8===_0x5ef71f(0x1a5))refreshMap();if(_0x56f3e8===_0x5ef71f(0x239))renderList();_0x56f3e8===_0x5ef71f(0x249)&&(renderVoteMgmt(),fetchVoteTallies()[_0x5ef71f(0x206)](_0x2ac752=>{applyTalliesToVotes(_0x2ac752),renderVoteMgmt();}));if(_0x56f3e8==='notice')renderNoticeMgmt();if(_0x56f3e8===_0x5ef71f(0x352))renderSchedMgmt();if(_0x56f3e8===_0x5ef71f(0x329))renderOrgMgmt();}function refreshAdmin(){const _0x428734=a0_0x26d9d7;updateStats();if(curTab===_0x428734(0x1a5))refreshMap();if(curTab===_0x428734(0x239))renderList();}function refreshMap(){renderDongTabs(),renderUnitGrid();}function renderDongTabs(){const _0x116175=a0_0x26d9d7;document[_0x116175(0x13a)](_0x116175(0x1cb))[_0x116175(0x25d)]=CFG[_0x116175(0x21a)]['map'](_0x147499=>{const _0x56d461=_0x116175,_0x321834=Object['values'](DATA)['filter'](_0x11838f=>_0x11838f['dong']===_0x147499['n'])['length'];return _0x56d461(0x363)+_0x147499['n']+_0x56d461(0x198)+(_0x147499['n']===curDong?'var(--brand)':_0x56d461(0x1d3))+_0x56d461(0x27b)+(_0x147499['n']===curDong?'var(--brand)':'var(--surface2)')+_0x56d461(0x3c0)+(_0x147499['n']===curDong?_0x56d461(0x38b):_0x56d461(0x3bc))+';cursor:pointer;transition:var(--tr)\x22>'+_0x147499['n']+_0x56d461(0x15f)+_0x321834+'/'+_0x147499['f']*_0x147499['l']+_0x56d461(0x288);})[_0x116175(0x2e2)]('');}function renderUnitGrid(){const _0x93f70e=a0_0x26d9d7,_0x315b2e=CFG[_0x93f70e(0x21a)][_0x93f70e(0x13b)](_0x16fea5=>_0x16fea5['n']===curDong),_0x577d5c=document['getElementById'](_0x93f70e(0x163));if(!_0x315b2e){_0x577d5c[_0x93f70e(0x25d)]='';return;}_0x577d5c[_0x93f70e(0x235)][_0x93f70e(0x3a7)]='34px\x20repeat('+_0x315b2e['l']+_0x93f70e(0x167);let _0x21c9df='';for(let _0x85f57b=_0x315b2e['f'];_0x85f57b>=0x1;_0x85f57b--){_0x21c9df+='<div\x20style=\x22display:flex;align-items:center;justify-content:center;font-size:9.5px;font-weight:700;color:var(--ink4)\x22>'+_0x85f57b+_0x93f70e(0x19e);for(let _0x14ca16=0x1;_0x14ca16<=_0x315b2e['l'];_0x14ca16++){const _0x90a017=String(_0x85f57b*0x64+_0x14ca16),_0x1ae82d=_0x315b2e['n']+'-'+_0x90a017,_0x1fd39e=DATA[_0x1ae82d],_0x4b9f89=_0x1fd39e?_0x1fd39e[_0x93f70e(0x12b)]==='동의'?_0x93f70e(0x30f):_0x93f70e(0x307):_0x93f70e(0x2f6),_0x28d85c=_0x1fd39e?_0x93f70e(0x38b):_0x93f70e(0x1e4),_0x1dbb2b=_0x1fd39e?_0x4b9f89:'var(--border)';_0x21c9df+=_0x93f70e(0x366)+_0x1ae82d+'\x27)\x22\x20style=\x22min-width:44px;padding:6px\x202px;border-radius:5px;border:1px\x20solid\x20'+_0x1dbb2b+';background:'+_0x4b9f89+_0x93f70e(0x3c0)+_0x28d85c+_0x93f70e(0x396)+_0x90a017+'</div>';}}_0x577d5c[_0x93f70e(0x25d)]=_0x21c9df;}function unitInfo(_0x4dfa8f){const _0x43af16=a0_0x26d9d7,_0x3d7763=DATA[_0x4dfa8f];if(!_0x3d7763){toast(_0x4dfa8f[_0x43af16(0x2a6)]('-','동\x20')+_0x43af16(0x231));return;}if(confirm(_0x3d7763[_0x43af16(0x1c3)]+'동\x20'+_0x3d7763['ho']+_0x43af16(0x376)+_0x3d7763[_0x43af16(0x138)]+_0x43af16(0x22c)+_0x3d7763[_0x43af16(0x2c7)]+_0x43af16(0x1c4)+_0x3d7763[_0x43af16(0x12b)]+'\x20/\x20개인정보:\x20'+_0x3d7763['priv']+'\x0a접수:\x20'+fmtTs(_0x3d7763['ts'])+_0x43af16(0x30e)))printRecord(_0x4dfa8f);}function renderList(){const _0x31d35d=a0_0x26d9d7,_0x495beb=Object[_0x31d35d(0x368)](DATA)[_0x31d35d(0x2cf)]((_0x21818e,_0x353fba)=>_0x353fba[0x1]['ts'][_0x31d35d(0x140)](_0x21818e[0x1]['ts']));document[_0x31d35d(0x13a)](_0x31d35d(0x1f1))[_0x31d35d(0x235)]['display']=_0x495beb[_0x31d35d(0x1c8)]?_0x31d35d(0x322):_0x31d35d(0x135),document[_0x31d35d(0x13a)](_0x31d35d(0x1db))[_0x31d35d(0x25d)]=_0x495beb[_0x31d35d(0x1a5)](([_0x3562e6,_0x30e4d0])=>_0x31d35d(0x22b)+(SELECTED_KEYS[_0x31d35d(0x15d)](_0x3562e6)?_0x31d35d(0x3bb):'')+_0x31d35d(0x1af)+_0x3562e6+_0x31d35d(0x1be)+fmtTs(_0x30e4d0['ts'])+(_0x30e4d0[_0x31d35d(0x149)]?_0x31d35d(0x224):'')+'</td><td><b>'+_0x30e4d0[_0x31d35d(0x1c3)]+'동\x20'+_0x30e4d0['ho']+_0x31d35d(0x2df)+esc(_0x30e4d0[_0x31d35d(0x138)])+(_0x30e4d0[_0x31d35d(0x24c)]?_0x31d35d(0x37c):'')+'</td><td>'+_0x30e4d0[_0x31d35d(0x2c7)]+'</td><td><span\x20class=\x22tag\x20'+(_0x30e4d0[_0x31d35d(0x12b)]==='동의'?'tag-g':'tag-r')+'\x22>'+_0x30e4d0['agree']+_0x31d35d(0x1d5)+(_0x30e4d0[_0x31d35d(0x3a3)]==='동의'?_0x31d35d(0x2a8):_0x31d35d(0x261))+'\x22>'+_0x30e4d0[_0x31d35d(0x3a3)]+_0x31d35d(0x3a1)+_0x3562e6+_0x31d35d(0x26f)+_0x3562e6+_0x31d35d(0x335))[_0x31d35d(0x2e2)](''),updateSelCount();}async function delRecord(_0xa58f33){const _0x3c8f43=a0_0x26d9d7,_0x281f06=DATA[_0xa58f33];if(!_0x281f06)return;if(!confirm(_0x281f06['dong']+'동\x20'+_0x281f06['ho']+'호\x20'+_0x281f06[_0x3c8f43(0x138)]+_0x3c8f43(0x155)))return;delete DATA[_0xa58f33],SELECTED_KEYS[_0x3c8f43(0x21f)](_0xa58f33);if(WORKER_URL)try{await fetch(WORKER_URL,{'method':'POST','headers':{'Content-Type':_0x3c8f43(0x3b8)},'body':JSON['stringify']({'type':'delete','dong':_0x281f06[_0x3c8f43(0x1c3)],'ho':_0x281f06['ho']})});}catch(_0x542cec){console[_0x3c8f43(0x304)](_0x542cec);}renderList(),refreshMap(),toast(_0x3c8f43(0x131));}async function addVote(){const _0x143efc=a0_0x26d9d7,_0xf944c=gv(_0x143efc(0x164)),_0x4f8e0a=(gv(_0x143efc(0x263))||'')[_0x143efc(0x398)]('\x0a')[_0x143efc(0x1a5)](_0x5dfac1=>_0x5dfac1[_0x143efc(0x136)]())['filter'](Boolean);if(!_0xf944c)return toast('투표\x20제목을\x20입력해\x20주세요');if(_0x4f8e0a[_0x143efc(0x1c8)]<0x2)return toast(_0x143efc(0x156));VOTES[_0x143efc(0x3bf)]({'id':Date[_0x143efc(0x251)]()[_0x143efc(0x18c)](),'title':_0xf944c,'options':_0x4f8e0a,'start':gv(_0x143efc(0x216))||fmtDate(new Date()),'end':gv(_0x143efc(0x22e))||fmtDate(new Date(Date[_0x143efc(0x251)]()+0x7*0x5265c00)),'status':_0x143efc(0x197),'votes':{}}),await S['s'](_0x143efc(0x157),VOTES),document[_0x143efc(0x13a)](_0x143efc(0x164))[_0x143efc(0x2ff)]='',document[_0x143efc(0x13a)](_0x143efc(0x263))['value']='',renderVoteMgmt(),renderVotes(),renderHome(),toast(_0x143efc(0x1c2));}function renderVoteMgmt(){const _0x4d0c8d=a0_0x26d9d7,_0x25b2d5=document[_0x4d0c8d(0x13a)](_0x4d0c8d(0x394));if(!VOTES['length']){_0x25b2d5[_0x4d0c8d(0x25d)]='<div\x20style=\x22color:var(--ink4);font-size:13px;padding:8px\x200\x22>등록된\x20투표가\x20없습니다.</div>';return;}_0x25b2d5[_0x4d0c8d(0x25d)]=VOTES[_0x4d0c8d(0x1a5)]((_0x50034c,_0x1c7285)=>{const _0x22a4fe=_0x4d0c8d,_0x4abbcc=Object[_0x22a4fe(0x122)](_0x50034c[_0x22a4fe(0x1df)]||{})[_0x22a4fe(0x252)]((_0xc2baaf,_0x66db11)=>_0xc2baaf+_0x66db11,0x0),_0x3f3468=_0x50034c[_0x22a4fe(0x364)][_0x22a4fe(0x1a5)]((_0x3636bd,_0x51aad8)=>{const _0x44627d=_0x22a4fe,_0x387327=_0x50034c[_0x44627d(0x1df)]?.[_0x51aad8]||0x0,_0x5953dc=_0x4abbcc?Math[_0x44627d(0x26c)](_0x387327/_0x4abbcc*0x64):0x0;return _0x44627d(0x205)+esc(_0x3636bd)+_0x44627d(0x170)+_0x5953dc+'%\x20<span\x20style=\x22color:var(--ink4);font-weight:500\x22>('+_0x387327+_0x44627d(0x237)+_0x5953dc+_0x44627d(0x2e5);})[_0x22a4fe(0x2e2)]('');return _0x22a4fe(0x178)+(_0x50034c['status']===_0x22a4fe(0x197)?_0x22a4fe(0x1e0):_0x22a4fe(0x221))+'\x22>'+(_0x50034c[_0x22a4fe(0x3c7)]===_0x22a4fe(0x197)?_0x22a4fe(0x293):'종료')+_0x22a4fe(0x33a)+esc(_0x50034c[_0x22a4fe(0x313)])+_0x22a4fe(0x13f)+_0x4abbcc+_0x22a4fe(0x2f1)+_0x3f3468+_0x22a4fe(0x23b)+_0x1c7285+_0x22a4fe(0x22f)+(_0x50034c[_0x22a4fe(0x3c7)]===_0x22a4fe(0x197)?_0x22a4fe(0x2ba):_0x22a4fe(0x341))+_0x22a4fe(0x32f)+_0x1c7285+_0x22a4fe(0x1cc);})[_0x4d0c8d(0x2e2)]('');}async function toggleVote(_0x2d719c){const _0x2e3f75=a0_0x26d9d7;VOTES[_0x2d719c][_0x2e3f75(0x3c7)]=VOTES[_0x2d719c]['status']==='live'?'end':_0x2e3f75(0x197),await S['s'](_0x2e3f75(0x157),VOTES),renderVoteMgmt(),renderVotes(),renderHome();}async function delVote(_0x3f20c0){const _0x1aac81=a0_0x26d9d7;if(!confirm(_0x1aac81(0x15b)))return;VOTES[_0x1aac81(0x280)](_0x3f20c0,0x1),await S['s'](_0x1aac81(0x157),VOTES),renderVoteMgmt(),renderVotes(),renderHome();}async function addNotice(){const _0x496271=a0_0x26d9d7,_0x10ac30=gv('nTitle'),_0x2b49b2=gv('nBody');if(!_0x10ac30||!_0x2b49b2)return toast(_0x496271(0x361));NOTICES[_0x496271(0x3bf)]({'title':_0x10ac30,'body':_0x2b49b2,'cat':gv(_0x496271(0x222)),'date':gv(_0x496271(0x2cc))||fmtDate(new Date()),'ts':new Date()['toISOString']()}),await S['s'](_0x496271(0x183),NOTICES),document[_0x496271(0x13a)](_0x496271(0x328))[_0x496271(0x2ff)]='',document[_0x496271(0x13a)](_0x496271(0x139))['value']='',renderNotice(),renderNoticeMgmt(),renderHome(),toast(_0x496271(0x1a6));}function renderNoticeMgmt(){const _0xffe2de=a0_0x26d9d7,_0x3cbfa3=document[_0xffe2de(0x13a)](_0xffe2de(0x17a));_0x3cbfa3[_0xffe2de(0x25d)]=NOTICES[_0xffe2de(0x1c8)]?[...NOTICES][_0xffe2de(0x1ea)]()['map']((_0x59941f,_0x1eadaa)=>_0xffe2de(0x35a)+(_0x59941f['cat']==='중요'?'ntc-imp':'ntc-nor')+'\x22>'+esc(_0x59941f[_0xffe2de(0x2a1)])+_0xffe2de(0x266)+esc(_0x59941f['title'])+_0xffe2de(0x37a)+(NOTICES[_0xffe2de(0x1c8)]-0x1-_0x1eadaa)+')\x22>삭제</button></div>')[_0xffe2de(0x2e2)](''):_0xffe2de(0x2ab);}async function delNotice(_0x4b3711){const _0x3f724b=a0_0x26d9d7;if(!confirm(_0x3f724b(0x15b)))return;NOTICES[_0x3f724b(0x280)](_0x4b3711,0x1),await S['s'](_0x3f724b(0x183),NOTICES),renderNotice(),renderNoticeMgmt(),renderHome();}async function addSched(){const _0x818f61=a0_0x26d9d7,_0x4eb9af=gv(_0x818f61(0x3c6));if(!_0x4eb9af)return toast(_0x818f61(0x1d0));SCHEDS[_0x818f61(0x3bf)]({'t':_0x4eb9af,'d':gv('scDate'),'s':gv(_0x818f61(0x3a4))}),SCHEDS['sort']((_0x1e94dc,_0xe7f249)=>(_0x1e94dc['d']||'')[_0x818f61(0x140)](_0xe7f249['d']||'')),await S['s'](_0x818f61(0x1ab),SCHEDS),document[_0x818f61(0x13a)](_0x818f61(0x3c6))['value']='',renderSchedule(),renderSchedMgmt(),toast(_0x818f61(0x2de));}function renderSchedMgmt(){const _0x57ecb6=a0_0x26d9d7,_0x5f3f92=document[_0x57ecb6(0x13a)]('schedMgmt');_0x5f3f92[_0x57ecb6(0x25d)]=SCHEDS[_0x57ecb6(0x1c8)]?SCHEDS[_0x57ecb6(0x1a5)]((_0x353e7f,_0x32d04d)=>_0x57ecb6(0x1e3)+(_0x353e7f['d']||'')+_0x57ecb6(0x2cb)+esc(_0x353e7f['t'])+_0x57ecb6(0x24d)+(_0x353e7f['s']===_0x57ecb6(0x272)?_0x57ecb6(0x2a8):_0x353e7f['s']===_0x57ecb6(0x251)?'tag-a':'tag-b')+'\x22>'+(_0x353e7f['s']===_0x57ecb6(0x272)?'완료':_0x353e7f['s']===_0x57ecb6(0x251)?_0x57ecb6(0x293):'예정')+_0x57ecb6(0x3ab)+_0x32d04d+_0x57ecb6(0x31c))[_0x57ecb6(0x2e2)](''):'<div\x20style=\x22color:var(--ink4);font-size:13px;padding:8px\x200\x22>등록된\x20일정이\x20없습니다.</div>';}async function delSched(_0x2d8ba1){const _0x5eae4a=a0_0x26d9d7;if(!confirm('삭제할까요?'))return;SCHEDS[_0x5eae4a(0x280)](_0x2d8ba1,0x1),await S['s'](_0x5eae4a(0x1ab),SCHEDS),renderSchedule(),renderSchedMgmt();}async function addBudget(){const _0x203291=a0_0x26d9d7,_0x4811c7=gv(_0x203291(0x233)),_0x26741f=gv('bAmt')[_0x203291(0x2a6)](/,/g,'');if(!_0x4811c7||!_0x26741f)return toast(_0x203291(0x327));BUDGETS['push']({'type':gv('bType'),'date':gv(_0x203291(0x332))||fmtDate(new Date()),'name':_0x4811c7,'amt':+_0x26741f,'note':gv(_0x203291(0x334))}),await S['s']('tp_budgets',BUDGETS),document['getElementById'](_0x203291(0x233))[_0x203291(0x2ff)]='',document['getElementById']('bAmt')[_0x203291(0x2ff)]='',renderBudget(),toast(_0x203291(0x1bb));}async function addOrg(){const _0x1f35d2=a0_0x26d9d7,_0x2c2fa0=gv(_0x1f35d2(0x146)),_0x4dc0fd=gv('oName');if(!_0x2c2fa0||!_0x4dc0fd)return toast(_0x1f35d2(0x1b3));ORGS['push']({'pos':_0x2c2fa0,'name':_0x4dc0fd,'emoji':gv(_0x1f35d2(0x365))||'👤'}),await S['s'](_0x1f35d2(0x21e),ORGS),document['getElementById'](_0x1f35d2(0x146))[_0x1f35d2(0x2ff)]='',document[_0x1f35d2(0x13a)](_0x1f35d2(0x269))['value']='',document[_0x1f35d2(0x13a)](_0x1f35d2(0x365))[_0x1f35d2(0x2ff)]='',renderOrg(),renderOrgMgmt(),toast(_0x1f35d2(0x165));}function renderOrgMgmt(){const _0x536400=a0_0x26d9d7,_0x585fbd=document[_0x536400(0x13a)](_0x536400(0x2a5));_0x585fbd['innerHTML']=ORGS['length']?ORGS[_0x536400(0x1a5)]((_0x30b687,_0x41c706)=>_0x536400(0x28a)+esc(_0x30b687[_0x536400(0x2b3)])+_0x536400(0x2b9)+esc(_0x30b687[_0x536400(0x138)])+_0x536400(0x201)+esc(_0x30b687['pos'])+_0x536400(0x172)+_0x41c706+_0x536400(0x31c))[_0x536400(0x2e2)](''):'<div\x20style=\x22color:var(--ink4);font-size:13px;padding:8px\x200\x22>등록된\x20임원이\x20없습니다.</div>';}async function delOrg(_0x2f2572){const _0x4f5c92=a0_0x26d9d7;if(!confirm('삭제할까요?'))return;ORGS[_0x4f5c92(0x280)](_0x2f2572,0x1),await S['s'](_0x4f5c92(0x21e),ORGS),renderOrg(),renderOrgMgmt();}function loadCfgForm(){const _0x2d92cd=a0_0x26d9d7;document[_0x2d92cd(0x13a)](_0x2d92cd(0x177))['value']=CFG['aptName'],document[_0x2d92cd(0x13a)](_0x2d92cd(0x259))[_0x2d92cd(0x2ff)]=CFG[_0x2d92cd(0x17b)],document[_0x2d92cd(0x13a)](_0x2d92cd(0x2d6))[_0x2d92cd(0x2ff)]=CFG[_0x2d92cd(0x3af)],document['getElementById'](_0x2d92cd(0x2af))[_0x2d92cd(0x2ff)]=CFG[_0x2d92cd(0x276)],document['getElementById']('cfgDongs')[_0x2d92cd(0x2ff)]=CFG[_0x2d92cd(0x21a)]['map'](_0x42d690=>_0x42d690['n']+',\x20'+_0x42d690['f']+',\x20'+_0x42d690['l'])[_0x2d92cd(0x2e2)]('\x0a'),document[_0x2d92cd(0x13a)](_0x2d92cd(0x2da))[_0x2d92cd(0x2ff)]='';}function a0_0x72e6(_0x5ff5f7,_0x2e8784){_0x5ff5f7=_0x5ff5f7-0x121;const _0x33e5a0=a0_0x33e5();let _0x72e6c0=_0x33e5a0[_0x5ff5f7];if(a0_0x72e6['TQCbYt']===undefined){var _0x3dab64=function(_0x3070b5){const _0x5d44e7='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+/=';let _0x17478b='',_0x1d5c18='';for(let _0x1f7f1d=0x0,_0xcf2d9d,_0x1281bb,_0x12741a=0x0;_0x1281bb=_0x3070b5['charAt'](_0x12741a++);~_0x1281bb&&(_0xcf2d9d=_0x1f7f1d%0x4?_0xcf2d9d*0x40+_0x1281bb:_0x1281bb,_0x1f7f1d++%0x4)?_0x17478b+=String['fromCharCode'](0xff&_0xcf2d9d>>(-0x2*_0x1f7f1d&0x6)):0x0){_0x1281bb=_0x5d44e7['indexOf'](_0x1281bb);}for(let _0xe16f2b=0x0,_0x7652c6=_0x17478b['length'];_0xe16f2b<_0x7652c6;_0xe16f2b++){_0x1d5c18+='%'+('00'+_0x17478b['charCodeAt'](_0xe16f2b)['toString'](0x10))['slice'](-0x2);}return decodeURIComponent(_0x1d5c18);};a0_0x72e6['xULPcq']=_0x3dab64,a0_0x72e6['ICecPM']={},a0_0x72e6['TQCbYt']=!![];}const _0x10bd33=_0x33e5a0[0x0],_0x47fe6b=_0x5ff5f7+_0x10bd33,_0x4ba954=a0_0x72e6['ICecPM'][_0x47fe6b];return!_0x4ba954?(_0x72e6c0=a0_0x72e6['xULPcq'](_0x72e6c0),a0_0x72e6['ICecPM'][_0x47fe6b]=_0x72e6c0):_0x72e6c0=_0x4ba954,_0x72e6c0;}async function saveCfg(){const _0x405634=a0_0x26d9d7,_0x311895=[];for(const _0x5b38d3 of document[_0x405634(0x13a)](_0x405634(0x2cd))[_0x405634(0x2ff)][_0x405634(0x398)]('\x0a')){const _0x1aa1c5=_0x5b38d3[_0x405634(0x398)](',')['map'](_0x56f500=>_0x56f500[_0x405634(0x136)]())[_0x405634(0x2c5)](Boolean);if(_0x1aa1c5[_0x405634(0x1c8)]>=0x3&&+_0x1aa1c5[0x1]>0x0&&+_0x1aa1c5[0x2]>0x0)_0x311895['push']({'n':_0x1aa1c5[0x0],'f':Math['min'](+_0x1aa1c5[0x1],0x63),'l':Math[_0x405634(0x284)](+_0x1aa1c5[0x2],0x14)});}if(!_0x311895[_0x405634(0x1c8)])return toast(_0x405634(0x1b5));CFG[_0x405634(0x310)]=gv(_0x405634(0x177))||CFG[_0x405634(0x310)],CFG[_0x405634(0x17b)]=document['getElementById'](_0x405634(0x259))[_0x405634(0x2ff)],CFG[_0x405634(0x3af)]=gv(_0x405634(0x2d6)),CFG[_0x405634(0x276)]=gv(_0x405634(0x2af)),CFG['dongs']=_0x311895;if(!_0x311895['find'](_0x4ead1c=>_0x4ead1c['n']===curDong))curDong=_0x311895[0x0]['n'];await S['s'](_0x405634(0x285),CFG),applyTheme(),renderDongSel(),updateStats(),refreshMap(),toast(_0x405634(0x143));}async function savePin(){const _0x19e85c=a0_0x26d9d7,_0x4dad93=gv('cfgPin');if(!_0x4dad93)return toast('새\x20코드를\x20입력해\x20주세요');CFG[_0x19e85c(0x340)]=_0x4dad93,await S['s'](_0x19e85c(0x285),CFG),document[_0x19e85c(0x13a)](_0x19e85c(0x2da))[_0x19e85c(0x2ff)]='',toast(_0x19e85c(0x32e));}async function wipeData(){const _0x2aefdc=a0_0x26d9d7;if(!confirm('현재\x20화면의\x20로컬\x20캐시만\x20지웁니다.\x20GitHub\x20원본\x20데이터는\x20유지됩니다.\x20계속할까요?'))return;DATA={},dataLoaded=![],await loadFullDataForAdmin(),refreshAdmin(),renderList(),toast(_0x2aefdc(0x260));}function exportCSV(){const _0x17c809=a0_0x26d9d7,_0x55346f=[['접수일시','동','호수','성명',_0x17c809(0x188),_0x17c809(0x1ee),'공동명의자',_0x17c809(0x2b0),_0x17c809(0x17c),_0x17c809(0x2f5),_0x17c809(0x2f3),_0x17c809(0x31e)]];Object[_0x17c809(0x122)](DATA)[_0x17c809(0x2cf)]((_0x261f18,_0x25b8b8)=>_0x261f18[_0x17c809(0x1c3)][_0x17c809(0x140)](_0x25b8b8[_0x17c809(0x1c3)])||+_0x261f18['ho']-+_0x25b8b8['ho'])['forEach'](_0x32575b=>_0x55346f['push']([fmtTs(_0x32575b['ts']),_0x32575b['dong'],_0x32575b['ho'],_0x32575b[_0x17c809(0x138)],_0x32575b[_0x17c809(0x1f4)],_0x32575b['phone'],_0x32575b['joint']?_0x32575b[_0x17c809(0x24c)][_0x17c809(0x138)]:'',_0x32575b[_0x17c809(0x24c)]?_0x32575b['joint'][_0x17c809(0x1f4)]:'',_0x32575b[_0x17c809(0x24c)]?_0x32575b[_0x17c809(0x24c)][_0x17c809(0x2c7)]||'':'',_0x32575b['agree'],_0x32575b[_0x17c809(0x3a3)],_0x32575b[_0x17c809(0x229)]||'']));const _0x363b63=document[_0x17c809(0x315)]('a');_0x363b63[_0x17c809(0x3c3)]=URL[_0x17c809(0x39e)](new Blob(['\ufeff'+_0x55346f[_0x17c809(0x1a5)](_0x2b7ead=>_0x2b7ead[_0x17c809(0x1a5)](_0x13ba57=>'\x22'+String(_0x13ba57)[_0x17c809(0x2a6)](/"/g,'\x22\x22')+'\x22')[_0x17c809(0x2e2)](','))[_0x17c809(0x2e2)]('\x0a')],{'type':'text/csv'})),_0x363b63[_0x17c809(0x30d)]=CFG[_0x17c809(0x310)]+_0x17c809(0x371),_0x363b63[_0x17c809(0x186)](),URL[_0x17c809(0x225)](_0x363b63[_0x17c809(0x3c3)]);}function guardDevtools(){const _0x235b1d=a0_0x26d9d7;document[_0x235b1d(0x36d)](_0x235b1d(0x29c),_0x4b7949=>_0x4b7949['preventDefault']()),document[_0x235b1d(0x36d)](_0x235b1d(0x19c),_0x1a4c6c=>{const _0x29b402=_0x235b1d;(_0x1a4c6c[_0x29b402(0x234)]===_0x29b402(0x24a)||_0x1a4c6c['ctrlKey']&&_0x1a4c6c['shiftKey']&&['I','J','C'][_0x29b402(0x1cd)](_0x1a4c6c[_0x29b402(0x234)])||_0x1a4c6c[_0x29b402(0x317)]&&_0x1a4c6c[_0x29b402(0x234)]==='u')&&(_0x1a4c6c['preventDefault'](),toast(_0x29b402(0x29d)));}),console['log']('%c⚠️\x20경고',_0x235b1d(0x159)),console[_0x235b1d(0x31d)](_0x235b1d(0x32c)+new Date()[_0x235b1d(0x3a8)]()+_0x235b1d(0x29e),_0x235b1d(0x23f));}init();
+</script>
+</body>
+</html>
