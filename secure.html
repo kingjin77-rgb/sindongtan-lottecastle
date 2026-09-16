@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>임원 전용 · 위임장 조회</title>
+<meta name="robots" content="noindex,nofollow">
+<style>
+:root{--ink:#0B1220;--acc:#2E5BFF;--ok:#0E9F6E;--warn:#D97706;--bad:#DC2626;
+ --bg:#F7F8FB;--surf:#fff;--surf2:#F1F3F8;--tx:#0F172A;--tx2:#5A6579;--tx3:#98A1B2;
+ --line:#E4E8F0;--sh:0 1px 2px rgba(11,18,32,.04),0 8px 24px rgba(11,18,32,.06)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);padding:0 0 60px;
+ font-family:Pretendard,-apple-system,system-ui,"Malgun Gothic",sans-serif;
+ font-size:15px;line-height:1.6;letter-spacing:-.015em;word-break:keep-all}
+.num{font-variant-numeric:tabular-nums}
+header{background:var(--ink);color:#fff;padding:22px 18px}
+.wrap{max-width:900px;margin:0 auto;padding:0 18px}
+header .wrap{padding:0}
+h1{font-size:1.12rem;font-weight:800;letter-spacing:-.03em;margin:0}
+header p{margin:6px 0 0;font-size:.82rem;color:#93A4C4}
+.card{background:var(--surf);border:1px solid var(--line);border-radius:18px;
+ box-shadow:var(--sh);padding:20px;margin-top:18px}
+label{display:block;font-size:.82rem;font-weight:700;color:var(--tx2);margin-bottom:7px}
+input{width:100%;border:1.5px solid var(--line);border-radius:12px;padding:13px 14px;
+ font-size:.95rem;outline:0;background:var(--surf)}
+input:focus{border-color:var(--acc);box-shadow:0 0 0 4px rgba(46,91,255,.09)}
+button{border:0;cursor:pointer;font:inherit}
+.btn{display:block;width:100%;background:var(--acc);color:#fff;border-radius:13px;
+ padding:14px;font-weight:750;font-size:.96rem;margin-top:14px}
+.btn.ghost{background:var(--surf);color:var(--tx);border:1.5px solid var(--line)}
+.btn.sm{width:auto;padding:9px 15px;font-size:.85rem;border-radius:10px;margin:0}
+.hint{font-size:.79rem;color:var(--tx3);margin-top:9px;line-height:1.6}
+.warn{background:#FEF3E2;border:1px solid rgba(217,119,6,.3);border-radius:14px;
+ padding:13px 15px;font-size:.84rem;color:var(--tx2);line-height:1.7;margin-top:14px}
+.warn b{color:var(--warn)}
+.bar{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin-bottom:12px}
+.stat{font-size:.85rem;color:var(--tx2)}
+.stat b{color:var(--tx);font-weight:800}
+table{width:100%;border-collapse:collapse;font-size:.86rem}
+th,td{text-align:left;padding:10px 8px;border-bottom:1px solid var(--line)}
+th{font-size:.76rem;color:var(--tx3);font-weight:700;position:sticky;top:0;background:var(--surf)}
+td.r{text-align:right}
+.tblwrap{overflow:auto;max-height:62vh;border:1px solid var(--line);border-radius:14px;background:var(--surf)}
+.sig{cursor:pointer;color:var(--acc);font-weight:700;font-size:.8rem}
+.err{color:var(--bad);font-size:.85rem;margin-top:10px}
+dialog{border:0;border-radius:18px;padding:0;max-width:92vw;box-shadow:0 20px 60px rgba(0,0,0,.3)}
+dialog::backdrop{background:rgba(6,10,20,.55)}
+.dlg{padding:18px}
+.dlg h3{margin:0 0 4px;font-size:1rem;letter-spacing:-.03em}
+.dlg p{margin:0 0 12px;font-size:.8rem;color:var(--tx2)}
+.dlg img{display:block;max-width:100%;border:1px solid var(--line);border-radius:12px;background:#fff}
+</style>
+</head>
+<body>
+
+<header><div class="wrap">
+  <h1>임원 전용 · 위임장 조회</h1>
+  <p>신동탄 롯데캐슬 분양전환추진위원회</p>
+</div></header>
+
+<div class="wrap">
+
+  <div class="card" id="gate">
+    <label for="pin">관리자 코드</label>
+    <input id="pin" type="password" placeholder="코드를 입력하세요" autocomplete="off">
+    <button class="btn" onclick="load()">조회</button>
+    <div class="err" id="err" hidden></div>
+    <div class="warn">
+      이 화면은 <b>성명 · 생년월일 · 연락처 · 자필서명</b>을 그대로 보여줍니다.<br>
+      코드를 입력하는 동안에만 내려받아 화면에 표시하며, 이 기기에 저장하지 않습니다.
+      옆에 다른 사람이 없는지 확인하고 열어주세요.
+    </div>
+    <div class="hint">
+      코드는 협의회 임원에게만 공유되며, 화면을 새로 고치면 다시 입력해야 합니다.
+    </div>
+  </div>
+
+  <div id="panel" hidden>
+    <div class="card">
+      <div class="bar">
+        <span class="stat">접수 <b class="num" id="cnt">0</b>건</span>
+        <span class="stat">공동명의 <b class="num" id="cntJoint">0</b>건</span>
+        <span style="flex:1"></span>
+        <button class="btn sm" onclick="csv()">CSV 내려받기</button>
+        <button class="btn sm ghost" onclick="lock()">닫기</button>
+      </div>
+      <div class="tblwrap">
+        <table>
+          <thead><tr>
+            <th>동</th><th>호</th><th>성명</th><th>생년월일</th><th>연락처</th>
+            <th>공동명의</th><th>접수일시</th><th>서명</th>
+          </tr></thead>
+          <tbody id="rows"></tbody>
+        </table>
+      </div>
+      <div class="hint">화면을 닫거나 새로 고치면 내용이 사라집니다.</div>
+    </div>
+  </div>
+
+</div>
+
+<dialog id="sigDlg"><div class="dlg">
+  <h3 id="sigT"></h3>
+  <p>자필 전자서명 원본</p>
+  <img id="sigImg" alt="서명">
+  <button class="btn ghost" style="margin-top:14px" onclick="sigDlg.close()">닫기</button>
+</div></dialog>
+
+<script>
+var WORKER = 'https://trepark-jl.treparkjl.workers.dev';
+var REPO   = 'sindongtan-data';
+var PIN = '', DATA = [];
+
+function pick(b, l) {
+  var m = b.match(new RegExp('\\\\|\\\\s*' + l + '\\\\s*\\\\|\\\\s*([^|\\n]+?)\\\\s*\\\\|'));
+  return m ? m[1].trim() : '';
+}
+
+async function load() {
+  var err = document.getElementById('err');
+  err.hidden = true;
+  PIN = document.getElementById('pin').value.trim();
+  if (!PIN) { err.textContent = '코드를 입력해 주세요.'; err.hidden = false; return; }
+
+  var all = [];
+  try {
+    for (var page = 1; page <= 20; page++) {
+      var r = await fetch(WORKER + '/gh/' + REPO + '/issues?labels=' +
+        encodeURIComponent('위임장') + '&state=open&per_page=100&page=' + page +
+        '&pin=' + encodeURIComponent(PIN));
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      var arr = await r.json();
+      if (!Array.isArray(arr)) throw new Error('응답 오류');
+      all = all.concat(arr);
+      if (arr.length < 100) break;
+    }
+  } catch (e) {
+    err.textContent = '조회에 실패했습니다. 코드가 맞는지 확인해 주세요. (' + e.message + ')';
+    err.hidden = false;
+    return;
+  }
+
+  DATA = all.map(function (it) {
+    var b = it.body || '';
+    var u = (pick(b, '동/호수') || '').match(/(\d+)\D+(\d+)/) || [];
+    return {
+      dong: u[1] || '', ho: u[2] || '',
+      name: pick(b, '성명'), birth: pick(b, '생년월일'), tel: pick(b, '연락처'),
+      name2: pick(b, '배우자\\(공동명의\\)'),
+      at: pick(b, '접수일시') || it.created_at
+    };
+  });
+
+  /* 코드가 틀리면 워커가 가린 자료를 주므로 생년월일이 비어 있습니다 */
+  if (DATA.length && !DATA.some(function (r) { return r.birth; })) {
+    err.textContent = '코드가 올바르지 않습니다. 개인정보가 가려진 상태로 응답되었습니다.';
+    err.hidden = false;
+    return;
+  }
+
+  DATA.sort(function (a, b) { return (b.at || '').localeCompare(a.at || ''); });
+  render();
+  document.getElementById('gate').hidden = true;
+  document.getElementById('panel').hidden = false;
+}
+
+function esc(s) {
+  return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+    return { '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c];
+  });
+}
+
+function render() {
+  document.getElementById('cnt').textContent = DATA.length.toLocaleString();
+  document.getElementById('cntJoint').textContent =
+    DATA.filter(function (r) { return r.name2; }).length.toLocaleString();
+  document.getElementById('rows').innerHTML = DATA.map(function (r) {
+    return '<tr>' +
+      '<td class="num">' + esc(r.dong) + '</td>' +
+      '<td class="num">' + esc(r.ho) + '</td>' +
+      '<td>' + esc(r.name) + '</td>' +
+      '<td class="num">' + esc(r.birth) + '</td>' +
+      '<td class="num">' + esc(r.tel) + '</td>' +
+      '<td>' + esc(r.name2 || '') + '</td>' +
+      '<td class="num" style="color:var(--tx2)">' +
+        esc((r.at || '').replace('T', ' ').slice(0, 16)) + '</td>' +
+      '<td><span class="sig" onclick="sig(\'' + esc(r.dong) + '\',\'' + esc(r.ho) + '\')">보기</span></td>' +
+      '</tr>';
+  }).join('');
+}
+
+async function sig(d, h) {
+  var t = document.getElementById('sigT');
+  var img = document.getElementById('sigImg');
+  t.textContent = d + '동 ' + h + '호';
+  img.removeAttribute('src');
+  sigDlg.showModal();
+  try {
+    var r = await fetch(WORKER + '/gh/' + REPO + '/contents/signatures/' + d + '-' + h +
+      '.png?pin=' + encodeURIComponent(PIN));
+    if (!r.ok) throw new Error('없음');
+    var j = await r.json();
+    img.src = 'data:image/png;base64,' + String(j.content).replace(/\n/g, '');
+  } catch (e) {
+    t.textContent = d + '동 ' + h + '호 — 서명 파일을 찾지 못했습니다';
+  }
+}
+
+function csv() {
+  var rows = [['동','호','성명','생년월일','연락처','배우자(공동명의)','접수일시']];
+  DATA.forEach(function (r) {
+    rows.push([r.dong, r.ho, r.name, r.birth, r.tel, r.name2 || '', r.at]);
+  });
+  var txt = '﻿' + rows.map(function (r) {
+    return r.map(function (c) { return '"' + String(c).replace(/"/g, '""') + '"'; }).join(',');
+  }).join('\n');
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([txt], { type: 'text/csv' }));
+  a.download = '신동탄롯데캐슬_위임장접수내역.csv';
+  a.click();
+}
+
+function lock() {
+  PIN = ''; DATA = [];
+  document.getElementById('rows').innerHTML = '';
+  document.getElementById('pin').value = '';
+  document.getElementById('panel').hidden = true;
+  document.getElementById('gate').hidden = false;
+}
+
+document.getElementById('pin').addEventListener('keydown', function (e) {
+  if (e.key === 'Enter') load();
+});
+</script>
+</body>
+</html>
