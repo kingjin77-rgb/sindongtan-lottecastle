@@ -154,7 +154,7 @@ async function load() {
 
   /* 코드가 틀리면 워커가 가린 자료를 주므로 생년월일이 비어 있습니다 */
   if (DATA.length && !DATA.some(function (r) { return r.birth; })) {
-    err.textContent = '코드가 올바르지 않습니다. 개인정보가 가려진 상태로 응답되었습니다.';
+    err.innerHTML = '코드가 올바르지 않습니다. 개인정보가 가려진 상태로 응답되었습니다.<br>' + '<a href=\"' + WORKER + '/gh/' + REPO + '/ping?pin=' + encodeURIComponent(PIN) + '\" target=\"_blank\" style=\"color:var(--acc)\">설정 진단 보기</a>';
     err.hidden = false;
     return;
   }
